@@ -1,0 +1,239 @@
+/* ===== BASE ===== */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #2d3748;
+}
+
+header {
+  background: #0b1f3a;
+  color: white;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+footer {
+  background: #0b1f3a;
+  color: white;
+  padding: 20px 32px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+nav a:hover { opacity: 1; }
+
+main { padding: 0; }
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: #c0392b;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #0b1f3a;
+  border: 2px solid #0b1f3a;
+}
+
+/* ===== HERO (shared by home + blog) ===== */
+.hero {
+  background-color: #eef3fb;
+  background-image: radial-gradient(#b8c8e0 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  padding: 72px 24px;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: start;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  background: #fde8e8;
+  color: #c0392b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.hero-headline {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #0b1f3a;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+
+.hero-headline span { color: #c0392b; }
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: #4a5568;
+  margin: 0 0 28px;
+  line-height: 1.75;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+/* ===== STAT CARDS ===== */
+.hero-stats {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 12px rgba(11,31,58,0.09);
+  text-align: center;
+  flex: 1;
+  min-width: 80px;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0b1f3a;
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.72rem;
+  color: #718096;
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ===== HERO PANEL (right side card) ===== */
+.hero-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 28px rgba(11,31,58,0.11);
+}
+
+.hero-panel h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0b1f3a;
+  margin: 0 0 6px;
+}
+
+.hero-panel > p {
+  font-size: 0.88rem;
+  color: #718096;
+  margin: 0 0 22px;
+}
+
+.form-group { margin-bottom: 14px; }
+
+.hero-panel input,
+.hero-panel select,
+.hero-panel textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #2d3748;
+  background: #f8fafc;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.hero-panel input:focus,
+.hero-panel select:focus,
+.hero-panel textarea:focus {
+  outline: none;
+  border-color: #0b1f3a;
+  background: #fff;
+}
+
+.hero-panel .btn {
+  width: 100%;
+  text-align: center;
+  padding: 13px;
+  margin-top: 4px;
+}
+
+.panel-note {
+  font-size: 0.76rem;
+  color: #a0aec0;
+  text-align: center;
+  margin: 12px 0 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hero-headline { font-size: 2rem; }
+}
+
+@media (max-width: 560px) {
+  .hero { padding: 48px 16px; }
+  .hero-headline { font-size: 1.65rem; }
+  .hero-panel { padding: 28px 20px; }
+  header { padding: 14px 16px; }
+}

@@ -85,3 +85,158 @@
   .posts-grid { grid-template-columns: 1fr; }
   .blog-posts { padding: 48px 16px; }
 }
+
+/* ===== AUTHOR PROFILE PAGE ===== */
+.author-profile {
+  padding: 64px 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.author-card {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.author-info h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0b1f3a;
+  margin: 0 0 6px;
+}
+
+.author-role {
+  font-size: 1rem;
+  color: #718096;
+  margin: 0 0 18px;
+}
+
+.author-bio {
+  font-size: 1rem;
+  color: #4a5568;
+  line-height: 1.75;
+  margin: 0 0 20px;
+}
+
+.author-links a {
+  color: #0b1f3a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.author-links a:hover { text-decoration: underline; }
+
+/* ===== AUTHOR BYLINE (on individual post pages) ===== */
+.post-content {
+  padding: 48px 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-content h2 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #0b1f3a;
+  line-height: 1.25;
+  margin: 12px 0 0;
+}
+
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  padding: 16px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.author-meta .author-name {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0b1f3a;
+  text-decoration: none;
+}
+
+.author-meta .author-name:hover { text-decoration: underline; }
+
+.author-meta .author-title {
+  display: block;
+  font-size: 0.8rem;
+  color: #718096;
+  margin-top: 2px;
+}
+
+/* ===== AUTHOR LINE on listing cards ===== */
+.post-author-line {
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+.post-author-line a {
+  color: #0b1f3a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.post-author-line a:hover { text-decoration: underline; }
+
+@media (max-width: 560px) {
+  .author-profile { padding: 48px 20px; }
+  .post-content { padding: 40px 20px; }
+}
+
+/* ===== ANSWER BLOCK (first-paragraph AEO pattern) ===== */
+.answer-block {
+  background: #eef3fb;
+  border-left: 4px solid #0b1f3a;
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  font-size: 1rem;
+  color: #2d3748;
+  line-height: 1.75;
+  margin: 20px 0 28px;
+}
+
+/* ===== FAQ SECTION (service pages) ===== */
+.faq-section {
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0b1f3a;
+  margin: 0 0 24px;
+}
+
+.faq-list {
+  margin: 0;
+  padding: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 20px 0;
+}
+
+.faq-item:last-child { border-bottom: none; }
+
+.faq-item dt {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0b1f3a;
+  margin: 0 0 8px;
+}
+
+.faq-item dd {
+  font-size: 0.95rem;
+  color: #4a5568;
+  line-height: 1.7;
+  margin: 0;
+}

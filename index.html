@@ -6,75 +6,116 @@
   <title>ReformedTech.ca | Web Design, SEO & AI Solutions in BC</title>
   <meta name="description" content="ReformedTech.ca helps businesses in BC and across Canada grow online with web design, SEO, digital marketing, and AI solutions." />
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/homepage.css" />
 </head>
 <body>
   <header>
-    <h1>ReformedTech.ca</h1>
-    <nav>
-      <a href="index.html">Home</a>
+    <a href="index.html" class="brand" aria-label="ReformedTech home">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span class="brand-wordmark">ReformedTech<span class="brand-suffix">.ca</span></span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="index.html" class="is-active">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="blog/index.html">Blog</a>
       <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-cta">Start a Project</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
 
         <div class="hero-left">
-          <span class="hero-eyebrow">Canadian Digital Agency</span>
-          <h2 class="hero-headline">Grow Your Business with <span>High-Converting Websites</span> &amp; AI Marketing</h2>
-          <p class="hero-sub">Helping businesses in BC and across Canada grow online with web design, SEO, digital marketing, and AI automation.</p>
+          <span class="hero-eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            Accepting new projects · Q2 2026
+          </span>
+
+          <h2 id="hero-title" class="hero-headline">
+            Grow your business with <span>high-converting websites</span> &amp; AI marketing.
+          </h2>
+
+          <p class="hero-sub">
+            We design premium websites and build AI-driven marketing systems for businesses across British Columbia and Canada &mdash; engineered to turn visitors into loyal customers.
+          </p>
+
           <div class="hero-ctas">
-            <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
-            <a href="services.html" class="btn btn-secondary">View Services</a>
+            <a href="contact.html" class="btn btn-primary">
+              Get a Free Quote
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="services.html" class="btn btn-secondary">
+              View Services
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
           </div>
-          <div class="hero-stats">
-            <div class="stat-card">
+
+          <div class="hero-trust" aria-label="Trust indicators">
+            <span class="hero-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span><strong>5.0</strong> average rating</span>
+            <span class="hero-trust-sep" aria-hidden="true"></span>
+            <span><strong>150+</strong> Canadian businesses served</span>
+          </div>
+
+          <div class="hero-stats" role="list">
+            <div class="stat-card" role="listitem">
               <span class="stat-number">150+</span>
-              <span class="stat-label">Canadian Businesses Served</span>
+              <span class="stat-label">Businesses served</span>
             </div>
-            <div class="stat-card">
-              <span class="stat-number">3x</span>
-              <span class="stat-label">Avg. Growth</span>
+            <div class="stat-card" role="listitem">
+              <span class="stat-number">3&times;</span>
+              <span class="stat-label">Avg. lead growth</span>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" role="listitem">
               <span class="stat-number">98%</span>
-              <span class="stat-label">Satisfaction</span>
+              <span class="stat-label">Client satisfaction</span>
             </div>
           </div>
         </div>
 
         <div class="hero-right">
-          <div class="hero-panel">
-            <h3>Start Your Free Consultation</h3>
-            <p>Tell us about your project — we'll respond within 24 hours.</p>
-            <form action="contact.html">
+          <aside class="hero-panel" aria-label="Request a proposal">
+            <span class="panel-tag">Free consultation</span>
+            <h3>Tell us about your project</h3>
+            <p>Share a few details and we&rsquo;ll reply with next steps within 24 hours &mdash; no obligation.</p>
+
+            <form action="contact.html" novalidate>
               <div class="form-group">
-                <input type="text" placeholder="Your Name" />
+                <label for="hp-name">Full name</label>
+                <input id="hp-name" type="text" placeholder="Jane Doe" autocomplete="name" />
               </div>
               <div class="form-group">
-                <input type="email" placeholder="Your Email" />
+                <label for="hp-email">Work email</label>
+                <input id="hp-email" type="email" placeholder="you@company.ca" autocomplete="email" />
               </div>
               <div class="form-group">
-                <select>
-                  <option value="">Select a Service</option>
-                  <option>Web Design</option>
-                  <option>SEO</option>
+                <label for="hp-service">What can we help with?</label>
+                <select id="hp-service">
+                  <option value="">Select a service</option>
+                  <option>Web Design &amp; Development</option>
+                  <option>Search Engine Optimization (SEO)</option>
                   <option>Digital Marketing</option>
-                  <option>AI Solutions</option>
+                  <option>AI &amp; Automation</option>
                 </select>
               </div>
               <div class="form-group">
-                <textarea rows="3" placeholder="Tell us about your project..."></textarea>
+                <label for="hp-message">Project details</label>
+                <textarea id="hp-message" rows="3" placeholder="A short description of your goals..."></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <button type="submit" class="btn btn-primary">
+                Send Message
+                <span class="arrow" aria-hidden="true">&rarr;</span>
+              </button>
+              <p class="panel-note">No spam. We respond within 24 hours.</p>
             </form>
-          </div>
+          </aside>
         </div>
 
       </div>
@@ -82,7 +123,7 @@
   </main>
 
   <footer>
-    <p>© 2026 ReformedTech.ca</p>
+    <p>&copy; 2026 ReformedTech.ca &mdash; Crafted in British Columbia, Canada.</p>
   </footer>
 </body>
 </html>

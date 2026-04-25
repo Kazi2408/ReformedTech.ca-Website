@@ -3,25 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | ReformedTech.ca</title>
-  <meta name="description" content="Get in touch with ReformedTech.ca. We help businesses in BC and across Canada with web design, SEO, and AI solutions." />
+  <title>Contact ReformedTech.ca | Free Consultation for Canadian Businesses</title>
+  <meta name="description" content="Get in touch with ReformedTech.ca for web design, SEO, AI chatbots, and digital marketing in British Columbia and across Canada. Free consultation, 24-hour response." />
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
 </head>
 <body>
   <header>
-    <h1>Contact Us</h1>
-    <nav>
+    <a href="index.html" class="brand" aria-label="ReformedTech home">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span class="brand-wordmark">ReformedTech<span class="brand-suffix">.ca</span></span>
+    </a>
+    <nav aria-label="Primary">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
+      <a href="about-us/">About</a>
       <a href="services.html">Services</a>
-      <a href="contact.html">Contact</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="contact.html" class="is-active">Contact</a>
+      <a href="contact.html" class="nav-cta">Start a Project</a>
     </nav>
   </header>
 
   <main>
-    <p>Email: hello@reformedtech.ca</p>
-    <p>Phone: Your business phone here</p>
+
+    <!-- HERO + FORM (homepage hero pattern) -->
+    <section class="hero" aria-labelledby="contact-hero-title">
+      <div class="hero-inner">
+
+        <div class="hero-left">
+          <span class="hero-eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            We reply within 24 hours
+          </span>
+
+          <h1 id="contact-hero-title" class="hero-headline">
+            Let&rsquo;s build something <span>that converts</span>.
+          </h1>
+
+          <p class="hero-sub">
+            Tell us about your project &mdash; web design, SEO, AI chatbots, or full-funnel marketing. We&rsquo;ll reply within 24 hours with next steps and an honest estimate. No obligation.
+          </p>
+
+          <!-- Contact details card -->
+          <div class="card" style="padding: 24px; margin-bottom: 18px;">
+            <span class="chip">Direct contact</span>
+            <div style="display: grid; gap: 14px; margin-top: 16px;">
+              <div>
+                <div style="font-size: 0.78rem; font-weight: 600; color: var(--ink-3); letter-spacing: 0.02em; text-transform: uppercase; margin-bottom: 4px;">Email</div>
+                <a href="mailto:hello@reformedtech.ca" style="color: var(--ink); font-size: 1.02rem; font-weight: 600; text-decoration: none; letter-spacing: -0.01em;">hello@reformedtech.ca</a>
+              </div>
+              <div>
+                <div style="font-size: 0.78rem; font-weight: 600; color: var(--ink-3); letter-spacing: 0.02em; text-transform: uppercase; margin-bottom: 4px;">Based in</div>
+                <span style="color: var(--ink); font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em;">Kamloops, British Columbia &middot; Canada</span>
+              </div>
+              <div>
+                <div style="font-size: 0.78rem; font-weight: 600; color: var(--ink-3); letter-spacing: 0.02em; text-transform: uppercase; margin-bottom: 4px;">Service area</div>
+                <span style="color: var(--text); font-size: 0.96rem;">All of Canada &mdash; remote-first, in-person available across BC.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-trust" aria-label="Trust indicators">
+            <span class="hero-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span><strong>5.0</strong> average rating</span>
+            <span class="hero-trust-sep" aria-hidden="true"></span>
+            <span><strong>150+</strong> Canadian businesses served</span>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <aside class="hero-panel" aria-label="Project inquiry form">
+            <span class="panel-tag">Free consultation</span>
+            <h3>Tell us about your project</h3>
+            <p>Share a few details and we&rsquo;ll reply with next steps within 24 hours &mdash; no obligation.</p>
+
+            <form action="#" novalidate>
+              <div class="form-group">
+                <label for="c-name">Full name</label>
+                <input id="c-name" type="text" placeholder="Jane Doe" autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="c-email">Work email</label>
+                <input id="c-email" type="email" placeholder="you@company.ca" autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="c-company">Company</label>
+                <input id="c-company" type="text" placeholder="Your business name" autocomplete="organization" />
+              </div>
+              <div class="form-group">
+                <label for="c-service">What can we help with?</label>
+                <select id="c-service">
+                  <option value="">Select a service</option>
+                  <option>Web Design &amp; Development</option>
+                  <option>Search Engine Optimization (SEO)</option>
+                  <option>Digital Marketing</option>
+                  <option>AI &amp; Automation</option>
+                  <option>Not sure yet &mdash; let&rsquo;s talk</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="c-message">Project details</label>
+                <textarea id="c-message" rows="4" placeholder="A short description of your goals, timeline, and budget if you have one..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Send Message
+                <span class="arrow" aria-hidden="true">&rarr;</span>
+              </button>
+              <p class="panel-note">No spam. We respond within 24 hours.</p>
+            </form>
+          </aside>
+        </div>
+
+      </div>
+    </section>
+
   </main>
+
+  <footer>
+    <p>&copy; 2026 ReformedTech.ca &mdash; Crafted in British Columbia, Canada.</p>
+  </footer>
 </body>
 </html>

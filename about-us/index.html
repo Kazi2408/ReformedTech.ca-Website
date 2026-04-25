@@ -3,30 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About ReformedTech.ca | Canadian Digital Agency</title>
-  <meta name="description" content="Learn about ReformedTech.ca — a Canadian digital agency offering web design, SEO, digital marketing, and AI solutions for businesses." />
+  <title>About ReformedTech.ca | Canadian Web, SEO &amp; AI Agency</title>
+  <meta name="description" content="ReformedTech.ca is a Canadian digital agency building high-converting websites, SEO, and AI marketing systems for businesses across BC and Canada." />
   <link rel="canonical" href="https://reformedtech.ca/about-us/" />
   <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
 </head>
 <body>
   <header>
-    <h1>About ReformedTech.ca</h1>
-    <nav>
+    <a href="../index.html" class="brand" aria-label="ReformedTech home">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span class="brand-wordmark">ReformedTech<span class="brand-suffix">.ca</span></span>
+    </a>
+    <nav aria-label="Primary">
       <a href="../index.html">Home</a>
-      <a href="index.html">About</a>
+      <a href="index.html" class="is-active">About</a>
       <a href="../services.html">Services</a>
       <a href="../blog/index.html">Blog</a>
       <a href="../contact.html">Contact</a>
+      <a href="../contact.html" class="nav-cta">Start a Project</a>
     </nav>
   </header>
 
   <main>
-    <p>We help businesses with websites, SEO, digital marketing, and AI solutions.</p>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="about-hero-title">
+      <div class="hero-inner" style="grid-template-columns: 1fr;">
+        <div class="hero-left" style="max-width: 760px; margin: 0 auto; text-align: center;">
+          <span class="hero-eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            Based in British Columbia &middot; Serving all of Canada
+          </span>
+          <h1 id="about-hero-title" class="hero-headline" style="max-width: 18ch; margin-left: auto; margin-right: auto;">
+            A Canadian agency built to help <span>real businesses grow</span>.
+          </h1>
+          <p class="hero-sub" style="margin-left: auto; margin-right: auto;">
+            We design premium websites and build AI-driven marketing systems that turn web traffic into qualified leads — engineered for small and mid-sized Canadian businesses.
+          </p>
+          <div class="hero-ctas" style="justify-content: center;">
+            <a href="../contact.html" class="btn btn-primary">
+              Start a Project
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="../services.html" class="btn btn-secondary">
+              View Services
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="section-head">
+          <span class="eyebrow">Our story</span>
+          <h2 class="section-title">Built on the conviction that <span>good websites should pay for themselves</span>.</h2>
+        </div>
+        <p class="section-lede">
+          Too many Canadian small businesses pay thousands for websites that look fine and convert nothing. We started ReformedTech.ca to flip that &mdash; combining premium design, modern SEO, and AI-driven marketing into one system that brings in measurable, repeatable leads.
+        </p>
+        <p class="section-lede">
+          Every project we ship is built around a single question: <em>does this turn visitors into customers?</em> If the answer is no, we redesign until it does.
+        </p>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head" style="text-align: center;">
+          <span class="eyebrow">What we stand for</span>
+          <h2 class="section-title" style="margin-left: auto; margin-right: auto;">Four principles that <span>shape every project</span>.</h2>
+        </div>
+
+        <div class="grid grid--4">
+          <article class="card card--hover">
+            <span class="chip">01 &middot; Conversion</span>
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--ink); margin: 14px 0 8px; letter-spacing: -0.012em;">Leads over looks</h3>
+            <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin: 0;">A website is an investment, not a brochure. We measure success in qualified leads, not page views.</p>
+          </article>
+
+          <article class="card card--hover">
+            <span class="chip">02 &middot; Speed</span>
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--ink); margin: 14px 0 8px; letter-spacing: -0.012em;">Performance first</h3>
+            <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin: 0;">Fast sites rank higher and convert better. We build mobile-first and ship in weeks, not months.</p>
+          </article>
+
+          <article class="card card--hover">
+            <span class="chip">03 &middot; Ownership</span>
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--ink); margin: 14px 0 8px; letter-spacing: -0.012em;">You own everything</h3>
+            <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin: 0;">Your domain, your hosting, your code, your data. No proprietary lock-in, no monthly hostage fees.</p>
+          </article>
+
+          <article class="card card--hover">
+            <span class="chip">04 &middot; Local</span>
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--ink); margin: 14px 0 8px; letter-spacing: -0.012em;">Built for Canada</h3>
+            <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin: 0;">PIPEDA-compliant, BC-grounded, and tuned for how Canadians actually search and buy online.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="section-head">
+          <span class="eyebrow">Who builds your project</span>
+          <h2 class="section-title">A focused team, <span>led hands-on</span>.</h2>
+        </div>
+        <div class="card card--feature">
+          <span class="chip">Founder &amp; CEO</span>
+          <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--ink); margin: 14px 0 6px; letter-spacing: -0.018em;">Kazi Hasnain</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; margin: 0 0 14px;">SEO &amp; AEO Specialist &middot; Web &amp; AI Strategist</p>
+          <p style="color: var(--text); line-height: 1.75; margin: 0 0 18px;">
+            Kazi founded ReformedTech.ca to bring senior-agency design and modern SEO/AI capability to Canadian small businesses without senior-agency pricing. Every project he takes on, he ships personally &mdash; from strategy to launch to ongoing optimization.
+          </p>
+          <a href="../author/kazi-hasnain/" class="btn btn-secondary">
+            Read Kazi&rsquo;s profile
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--compact section--alt">
+      <div class="container container--narrow" style="text-align: center;">
+        <h2 class="section-title" style="margin-left: auto; margin-right: auto;">Ready to build something that <span>actually converts</span>?</h2>
+        <p class="section-lede" style="margin-left: auto; margin-right: auto;">Tell us about your project and we&rsquo;ll reply within 24 hours &mdash; no obligation.</p>
+        <div class="hero-ctas" style="justify-content: center; margin-bottom: 0;">
+          <a href="../contact.html" class="btn btn-primary">
+            Start a Project
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="../services.html" class="btn btn-secondary">
+            See Services
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    <p>&copy; 2026 ReformedTech.ca</p>
+    <p>&copy; 2026 ReformedTech.ca &mdash; Crafted in British Columbia, Canada.</p>
   </footer>
 </body>
 </html>

@@ -1,218 +1,299 @@
-/* ===== BLOG POSTS SECTION ===== */
+/* ==========================================================
+   ReformedTech.ca — Inner page modules
+   All values reference tokens defined in style.css.
+   ========================================================== */
+
+/* =========================================================
+   BLOG POSTS LISTING
+   ========================================================= */
 .blog-posts {
-  padding: 72px 24px;
-  background: #f8fafc;
+  padding: 88px 24px;
+  background: var(--bg-2);
 }
 
 .blog-posts-inner {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.section-title {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #0b1f3a;
-  margin: 0 0 36px;
-}
+.blog-posts .section-title { margin-bottom: 36px; }
 
 .posts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 24px;
 }
 
 .post-card {
-  background: #ffffff;
-  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
   padding: 28px 24px;
-  box-shadow: 0 2px 14px rgba(11,31,58,0.08);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  transition: transform var(--t-med), box-shadow var(--t-med), border-color var(--t-med);
+}
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: #CBD5E1;
 }
 
 .post-tag {
   display: inline-block;
-  background: #fde8e8;
-  color: #c0392b;
+  background: var(--accent-soft);
+  color: var(--accent);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 20px;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
   width: fit-content;
 }
 
 .post-card h3 {
-  font-size: 1rem;
+  font-size: 1.06rem;
   font-weight: 700;
-  color: #0b1f3a;
+  letter-spacing: -0.012em;
+  color: var(--ink);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .post-card h3 a {
   color: inherit;
   text-decoration: none;
+  transition: color var(--t-fast);
 }
 
-.post-card h3 a:hover { color: #c0392b; }
+.post-card h3 a:hover { color: var(--accent); }
 
 .post-card p {
-  font-size: 0.88rem;
-  color: #718096;
+  font-size: 0.92rem;
+  color: var(--muted);
   margin: 0;
   flex: 1;
+  line-height: 1.6;
 }
 
 .post-link {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: #c0392b;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
   text-decoration: none;
   margin-top: auto;
+  transition: gap var(--t-fast), color var(--t-fast);
 }
 
-.post-link:hover { text-decoration: underline; }
+.post-link:hover {
+  color: var(--accent-dark);
+  gap: 10px;
+}
 
 @media (max-width: 900px) {
   .posts-grid { grid-template-columns: 1fr 1fr; }
+  .blog-posts { padding: 64px 20px; }
 }
 
 @media (max-width: 560px) {
-  .posts-grid { grid-template-columns: 1fr; }
-  .blog-posts { padding: 48px 16px; }
+  .posts-grid { grid-template-columns: 1fr; gap: 18px; }
+  .blog-posts { padding: 52px 18px; }
 }
 
-/* ===== AUTHOR PROFILE PAGE ===== */
+/* =========================================================
+   AUTHOR PROFILE PAGE
+   ========================================================= */
 .author-profile {
-  padding: 64px 32px;
+  padding: 88px 24px;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .author-card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-md);
+  padding: 36px 32px;
   display: flex;
   gap: 32px;
   align-items: flex-start;
 }
 
-.author-info h2 {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #0b1f3a;
-  margin: 0 0 6px;
+.author-info h1,
+.author-info h2,
+.author-name-heading {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 2.6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 12px 0 6px;
 }
 
+.author-info .chip { margin-bottom: 0; }
+
 .author-role {
-  font-size: 1rem;
-  color: #718096;
+  font-size: 0.96rem;
+  color: var(--muted);
   margin: 0 0 18px;
+  font-weight: 500;
 }
 
 .author-bio {
   font-size: 1rem;
-  color: #4a5568;
+  color: var(--text);
   line-height: 1.75;
-  margin: 0 0 20px;
+  margin: 0 0 22px;
+  max-width: 60ch;
+}
+
+.author-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .author-links a {
-  color: #0b1f3a;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
+  padding: 9px 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast);
 }
 
-.author-links a:hover { text-decoration: underline; }
+.author-links a:hover {
+  border-color: #CBD5E1;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
 
-/* ===== AUTHOR BYLINE (on individual post pages) ===== */
+/* =========================================================
+   BLOG POST CONTENT
+   ========================================================= */
 .post-content {
-  padding: 48px 32px;
-  max-width: 800px;
+  padding: 72px 24px 88px;
+  max-width: 760px;
   margin: 0 auto;
 }
 
+.post-content h1,
 .post-content h2 {
-  font-size: 1.9rem;
-  font-weight: 800;
-  color: #0b1f3a;
-  line-height: 1.25;
-  margin: 12px 0 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 16px 0 0;
+  max-width: 22ch;
+}
+
+.post-content > p {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 68ch;
+  margin: 0 0 20px;
 }
 
 .post-author {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 24px 0;
-  padding: 16px 0;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
+  margin: 28px 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .author-meta .author-name {
   display: block;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #0b1f3a;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
   text-decoration: none;
+  transition: color var(--t-fast);
 }
 
-.author-meta .author-name:hover { text-decoration: underline; }
+.author-meta .author-name:hover { color: var(--accent); }
 
 .author-meta .author-title {
   display: block;
-  font-size: 0.8rem;
-  color: #718096;
+  font-size: 0.82rem;
+  color: var(--muted);
   margin-top: 2px;
 }
 
-/* ===== AUTHOR LINE on listing cards ===== */
+/* Author byline on listing cards */
 .post-author-line {
-  font-size: 0.8rem;
-  color: #718096;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0;
 }
 
 .post-author-line a {
-  color: #0b1f3a;
-  font-weight: 700;
+  color: var(--ink);
+  font-weight: 600;
   text-decoration: none;
+  transition: color var(--t-fast);
 }
 
-.post-author-line a:hover { text-decoration: underline; }
+.post-author-line a:hover { color: var(--accent); }
 
 @media (max-width: 560px) {
-  .author-profile { padding: 48px 20px; }
-  .post-content { padding: 40px 20px; }
+  .author-profile { padding: 56px 18px; }
+  .author-card { padding: 28px 22px; flex-direction: column; gap: 18px; }
+  .post-content { padding: 56px 18px 64px; }
 }
 
-/* ===== ANSWER BLOCK (first-paragraph AEO pattern) ===== */
+/* =========================================================
+   ANSWER BLOCK (AEO first-paragraph pattern)
+   ========================================================= */
 .answer-block {
-  background: #eef3fb;
-  border-left: 4px solid #0b1f3a;
-  padding: 16px 20px;
-  border-radius: 0 8px 8px 0;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 18px 22px;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
   font-size: 1rem;
-  color: #2d3748;
-  line-height: 1.75;
-  margin: 20px 0 28px;
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 24px 0 32px;
+  font-weight: 500;
 }
 
-/* ===== FAQ SECTION (service pages) ===== */
+/* =========================================================
+   FAQ SECTION (service pages)
+   ========================================================= */
 .faq-section {
-  margin-top: 48px;
-  padding-top: 36px;
-  border-top: 1px solid #e2e8f0;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--hairline);
 }
 
 .faq-section h2 {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #0b1f3a;
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  color: var(--ink);
   margin: 0 0 24px;
+  line-height: 1.2;
 }
 
 .faq-list {
@@ -221,22 +302,58 @@
 }
 
 .faq-item {
-  border-bottom: 1px solid #e2e8f0;
-  padding: 20px 0;
+  border-bottom: 1px solid var(--hairline);
+  padding: 22px 0;
 }
 
 .faq-item:last-child { border-bottom: none; }
 
 .faq-item dt {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #0b1f3a;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
   margin: 0 0 8px;
+  line-height: 1.4;
 }
 
 .faq-item dd {
-  font-size: 0.95rem;
-  color: #4a5568;
+  font-size: 0.96rem;
+  color: var(--text);
   line-height: 1.7;
   margin: 0;
+  max-width: 68ch;
+}
+
+/* =========================================================
+   SERVICE PAGE INTRO (replaces inline-styled <main> wrappers)
+   ========================================================= */
+.service-page {
+  padding: 72px 24px 96px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.service-page h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3.6vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.026em;
+  color: var(--ink);
+  line-height: 1.12;
+  margin: 0 0 18px;
+  max-width: 22ch;
+}
+
+.service-page > p {
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 60ch;
+  margin: 0 0 32px;
+}
+
+@media (max-width: 560px) {
+  .service-page { padding: 56px 18px 72px; }
+  .service-page > p { font-size: 1rem; }
 }

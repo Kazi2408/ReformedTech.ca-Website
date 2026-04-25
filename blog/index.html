@@ -6,19 +6,26 @@
   <title>Blog | ReformedTech.ca — Web, SEO & AI Insights</title>
   <meta name="description" content="Practical tips and expert guides on web design, SEO, digital marketing, and AI automation for Canadian businesses." />
   <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages.css" />
 </head>
 <body>
 
   <header>
-    <h1>ReformedTech.ca</h1>
-    <nav>
+    <a href="../index.html" class="brand" aria-label="ReformedTech home">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span class="brand-wordmark">ReformedTech<span class="brand-suffix">.ca</span></span>
+    </a>
+    <nav aria-label="Primary">
       <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
+      <a href="../about-us/">About</a>
       <a href="../services.html">Services</a>
-      <a href="index.html">Blog</a>
+      <a href="index.html" class="is-active">Blog</a>
       <a href="../contact.html">Contact</a>
+      <a href="../contact.html" class="nav-cta">Start a Project</a>
     </nav>
   </header>
 
@@ -29,12 +36,21 @@
       <div class="hero-inner">
 
         <div class="hero-left">
-          <span class="hero-eyebrow">Canadian SEO, AI &amp; Growth Insights</span>
-          <h2 class="hero-headline">Grow Your Canadian Business With <span>Strategies That Actually Work</span></h2>
-          <p class="hero-sub">Practical advice on local SEO, AI automation, digital marketing, and website conversions — written for Canadian small businesses by a Canadian agency.</p>
+          <span class="hero-eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            Canadian SEO, AI &amp; Growth Insights
+          </span>
+          <h1 class="hero-headline">Grow your Canadian business with <span>strategies that actually work</span>.</h1>
+          <p class="hero-sub">Practical advice on local SEO, AI automation, digital marketing, and website conversions &mdash; written for Canadian small businesses by a Canadian agency.</p>
           <div class="hero-ctas">
-            <a href="#blog-posts" class="btn btn-primary">Browse Articles</a>
-            <a href="../contact.html" class="btn btn-secondary">Book a Free Call</a>
+            <a href="#blog-posts" class="btn btn-primary">
+              Browse Articles
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="../contact.html" class="btn btn-secondary">
+              Book a Free Call
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
           </div>
           <div class="hero-stats">
             <div class="stat-card">
@@ -53,29 +69,36 @@
         </div>
 
         <div class="hero-right">
-          <div class="hero-panel">
-            <h3>Get Weekly Growth Insights</h3>
-            <p>Practical SEO, AI, and web design tips for Canadian businesses — delivered free, once a week.</p>
-            <form>
+          <aside class="hero-panel" aria-label="Newsletter signup">
+            <span class="panel-tag">Free newsletter</span>
+            <h3>Get weekly growth insights</h3>
+            <p>Practical SEO, AI, and web design tips for Canadian businesses &mdash; delivered free, once a week.</p>
+            <form action="#" novalidate>
               <div class="form-group">
-                <input type="text" placeholder="Your Name" />
+                <label for="bn-name">Full name</label>
+                <input id="bn-name" type="text" placeholder="Jane Doe" autocomplete="name" />
               </div>
               <div class="form-group">
-                <input type="email" placeholder="Your Email" />
+                <label for="bn-email">Work email</label>
+                <input id="bn-email" type="email" placeholder="you@company.ca" autocomplete="email" />
               </div>
               <div class="form-group">
-                <select>
-                  <option value="">What are you focused on?</option>
+                <label for="bn-focus">What are you focused on?</label>
+                <select id="bn-focus">
+                  <option value="">Select a topic</option>
                   <option>Local SEO</option>
                   <option>Web Design</option>
                   <option>AI Automation</option>
                   <option>Digital Marketing</option>
                 </select>
               </div>
-              <button type="submit" class="btn btn-primary">Get Free Insights</button>
+              <button type="submit" class="btn btn-primary">
+                Get Free Insights
+                <span class="arrow" aria-hidden="true">&rarr;</span>
+              </button>
+              <p class="panel-note">No spam. Unsubscribe any time.</p>
             </form>
-            <p class="panel-note">No spam. Unsubscribe any time.</p>
-          </div>
+          </aside>
         </div>
 
       </div>
@@ -84,7 +107,10 @@
     <!-- ===== BLOG POSTS ===== -->
     <section class="blog-posts" id="blog-posts">
       <div class="blog-posts-inner">
-        <h2 class="section-title">Latest Articles</h2>
+        <div class="section-head">
+          <span class="eyebrow">Latest articles</span>
+          <h2 class="section-title">Field-tested guides for <span>Canadian growth</span>.</h2>
+        </div>
         <div class="posts-grid">
 
           <article class="post-card">
@@ -118,7 +144,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2026 ReformedTech.ca</p>
+    <p>&copy; 2026 ReformedTech.ca &mdash; Crafted in British Columbia, Canada.</p>
   </footer>
 
 </body>

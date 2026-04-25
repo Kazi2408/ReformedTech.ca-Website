@@ -283,6 +283,124 @@ nav .nav-cta.is-active::after { display: none; }
 }
 
 /* =========================================================
+   SHARED LAYOUT PRIMITIVES
+   Use on every inner page — derived from homepage patterns.
+   ========================================================= */
+
+/* Container — matches .hero-inner max width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.container--narrow { max-width: 800px; }
+.container--medium { max-width: 980px; }
+
+/* Section — three vertical rhythms */
+.section {
+  position: relative;
+  padding: 88px 24px;
+}
+.section--hero    { padding: 104px 24px 120px; }
+.section--compact { padding: 56px 24px; }
+.section--alt     { background: var(--bg-2); }
+
+/* Eyebrow — reusable section label (mirrors .hero-eyebrow without the live dot) */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  padding: 6px 14px;
+  border-radius: var(--r-full);
+  margin-bottom: 18px;
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Chip — small accent pill (matches .panel-tag) */
+.chip {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+}
+
+/* Section title — homepage-aligned (700, ink, tight tracking) */
+.section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 0 0 12px;
+  max-width: 22ch;
+}
+.section-title span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  font-size: 1.06em;
+  letter-spacing: -0.008em;
+}
+.section-lede {
+  font-size: 1.06rem;
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 0 36px;
+  line-height: 1.65;
+}
+.section-head { margin-bottom: 40px; }
+
+/* Card — the homepage recipe (hairline + shadow-sm + radius-lg + surface) */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-med), box-shadow var(--t-med), border-color var(--t-med);
+}
+.card--hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: #CBD5E1;
+}
+.card--feature {
+  padding: 32px;
+  border-radius: var(--r-xl);
+}
+
+/* Grid presets */
+.grid { display: grid; gap: 24px; }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 900px) {
+  .grid--3, .grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .section { padding: 64px 20px; }
+  .section--hero { padding: 72px 20px 80px; }
+  .section--compact { padding: 44px 20px; }
+}
+@media (max-width: 560px) {
+  .grid--2, .grid--3, .grid--4 { grid-template-columns: 1fr; }
+  .container { padding: 0 18px; }
+  .section { padding: 52px 18px; }
+}
+
+/* =========================================================
    FOOTER
    ========================================================= */
 footer {
@@ -295,6 +413,13 @@ footer {
 }
 
 footer p { margin: 0; }
+footer a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  transition: border-color var(--t-fast);
+}
+footer a:hover { border-color: var(--accent); }
 
 /* =========================================================
    HERO  (shared by home + blog)

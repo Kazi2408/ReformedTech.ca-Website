@@ -3,29 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services | ReformedTech.ca</title>
-  <meta name="description" content="ReformedTech.ca offers web design, SEO, digital marketing, and AI chat and agent solutions for Canadian businesses." />
+  <title>Services | Web Design, SEO &amp; AI for Canadian Businesses | ReformedTech.ca</title>
+  <meta name="description" content="ReformedTech.ca offers web design, SEO, digital marketing, and AI chatbot solutions engineered for Canadian small and mid-sized businesses." />
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
 </head>
 <body>
   <header>
-    <h1>Our Services</h1>
-    <nav>
+    <a href="index.html" class="brand" aria-label="ReformedTech home">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span class="brand-wordmark">ReformedTech<span class="brand-suffix">.ca</span></span>
+    </a>
+    <nav aria-label="Primary">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
+      <a href="about-us/">About</a>
+      <a href="services.html" class="is-active">Services</a>
+      <a href="blog/index.html">Blog</a>
       <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-cta">Start a Project</a>
     </nav>
   </header>
 
   <main>
-    <ul>
-      <li>Web Design</li>
-      <li>SEO</li>
-      <li>Digital Marketing</li>
-      <li>AI Chat and AI Agents</li>
-    </ul>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="services-hero-title">
+      <div class="hero-inner" style="grid-template-columns: 1fr;">
+        <div class="hero-left" style="max-width: 760px; margin: 0 auto; text-align: center;">
+          <span class="hero-eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            Accepting new projects &middot; Q2 2026
+          </span>
+          <h1 id="services-hero-title" class="hero-headline" style="max-width: 20ch; margin-left: auto; margin-right: auto;">
+            Services that turn websites into <span>revenue engines</span>.
+          </h1>
+          <p class="hero-sub" style="margin-left: auto; margin-right: auto;">
+            Premium web design, modern SEO, AI automation, and full-funnel marketing &mdash; built for Canadian businesses that want measurable growth, not vanity metrics.
+          </p>
+          <div class="hero-ctas" style="justify-content: center;">
+            <a href="contact.html" class="btn btn-primary">
+              Get a Free Quote
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="#services-grid" class="btn btn-secondary">
+              See All Services
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES GRID -->
+    <section class="section" id="services-grid">
+      <div class="container">
+        <div class="section-head" style="text-align: center;">
+          <span class="eyebrow">What we do</span>
+          <h2 class="section-title" style="margin-left: auto; margin-right: auto;">Four core services, <span>one cohesive system</span>.</h2>
+          <p class="section-lede" style="margin-left: auto; margin-right: auto;">Each service stands on its own &mdash; or they combine into a complete growth engine for your business.</p>
+        </div>
+
+        <div class="grid grid--2">
+
+          <article class="card card--feature card--hover">
+            <span class="chip">Web Design</span>
+            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--ink); margin: 14px 0 10px; letter-spacing: -0.018em;">High-converting websites</h3>
+            <p style="color: var(--muted); line-height: 1.7; margin: 0 0 18px;">Premium, mobile-first websites engineered to load fast, rank well, and turn visitors into customers. Full ownership, no lock-in.</p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 8px;">
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> Custom design &amp; brand-aligned UI</li>
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> Mobile-first, sub-2-second load</li>
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> SEO &amp; analytics built in</li>
+            </ul>
+            <a href="services/web-design/" class="btn btn-secondary">
+              Learn more
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+          <article class="card card--feature card--hover">
+            <span class="chip">SEO</span>
+            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--ink); margin: 14px 0 10px; letter-spacing: -0.018em;">Search &amp; AEO optimization</h3>
+            <p style="color: var(--muted); line-height: 1.7; margin: 0 0 18px;">Get found on Google &mdash; and on AI assistants. Local SEO, technical SEO, and Answer Engine Optimization tuned for the Canadian market.</p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 8px;">
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> Local SEO for BC &amp; Canada</li>
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> AEO for AI search visibility</li>
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> Monthly transparent reporting</li>
+            </ul>
+            <a href="contact.html" class="btn btn-secondary">
+              Get a quote
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+          <article class="card card--feature card--hover">
+            <span class="chip">AI &amp; Automation</span>
+            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--ink); margin: 14px 0 10px; letter-spacing: -0.018em;">AI chatbots &amp; agents</h3>
+            <p style="color: var(--muted); line-height: 1.7; margin: 0 0 18px;">PIPEDA-compliant AI assistants that capture leads 24/7, qualify customers, and book appointments &mdash; without replacing your team.</p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 8px;">
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> 24/7 lead capture &amp; qualification</li>
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> PIPEDA-compliant by design</li>
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> Booking &amp; CRM integration</li>
+            </ul>
+            <a href="services/ai-chatbots/" class="btn btn-secondary">
+              Learn more
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+          <article class="card card--feature card--hover">
+            <span class="chip">Digital Marketing</span>
+            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--ink); margin: 14px 0 10px; letter-spacing: -0.018em;">Full-funnel marketing</h3>
+            <p style="color: var(--muted); line-height: 1.7; margin: 0 0 18px;">Paid ads, email, content, and conversion optimization &mdash; aligned to a single revenue goal and reported on every month.</p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 8px;">
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> Google &amp; Meta ad campaigns</li>
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> Email &amp; lead nurture flows</li>
+              <li style="color: var(--text); font-size: 0.92rem; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">&#10003;</span> Conversion-rate optimization</li>
+            </ul>
+            <a href="contact.html" class="btn btn-secondary">
+              Get a quote
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head" style="text-align: center;">
+          <span class="eyebrow">How we work</span>
+          <h2 class="section-title" style="margin-left: auto; margin-right: auto;">A simple, <span>four-step process</span>.</h2>
+        </div>
+        <div class="grid grid--4">
+          <div class="card">
+            <span class="chip">Step 01</span>
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 14px 0 8px; letter-spacing: -0.012em;">Discover</h3>
+            <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin: 0;">Free 30-minute call to understand your goals, audience, and current funnel.</p>
+          </div>
+          <div class="card">
+            <span class="chip">Step 02</span>
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 14px 0 8px; letter-spacing: -0.012em;">Strategy</h3>
+            <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin: 0;">A clear scope, timeline, and measurable success criteria &mdash; before any work begins.</p>
+          </div>
+          <div class="card">
+            <span class="chip">Step 03</span>
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 14px 0 8px; letter-spacing: -0.012em;">Build</h3>
+            <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin: 0;">Design, develop, and ship in weeks &mdash; with weekly previews you can react to.</p>
+          </div>
+          <div class="card">
+            <span class="chip">Step 04</span>
+            <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 14px 0 8px; letter-spacing: -0.012em;">Grow</h3>
+            <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin: 0;">Monthly optimization based on real data &mdash; SEO, ads, and conversion experiments.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--compact">
+      <div class="container container--narrow" style="text-align: center;">
+        <h2 class="section-title" style="margin-left: auto; margin-right: auto;">Let&rsquo;s map out <span>your growth plan</span>.</h2>
+        <p class="section-lede" style="margin-left: auto; margin-right: auto;">Free consultation, no obligation. We&rsquo;ll reply within 24 hours.</p>
+        <div class="hero-ctas" style="justify-content: center; margin-bottom: 0;">
+          <a href="contact.html" class="btn btn-primary">
+            Start a Project
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="about-us/" class="btn btn-secondary">
+            About ReformedTech
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <footer>
+    <p>&copy; 2026 ReformedTech.ca &mdash; Crafted in British Columbia, Canada.</p>
+  </footer>
 </body>
 </html>

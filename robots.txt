@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /seo/
 Sitemap: https://reformedtech.ca/sitemap.xml

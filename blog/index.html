@@ -54,12 +54,12 @@
           </div>
           <div class="hero-stats">
             <div class="stat-card">
-              <span class="stat-number">50+</span>
-              <span class="stat-label">Articles &amp; Guides</span>
+              <span class="stat-number">Weekly</span>
+              <span class="stat-label">New Articles</span>
             </div>
             <div class="stat-card">
-              <span class="stat-number">3x</span>
-              <span class="stat-label">Avg. Lead Growth</span>
+              <span class="stat-number">BC</span>
+              <span class="stat-label">Canadian Perspective</span>
             </div>
             <div class="stat-card">
               <span class="stat-number">Free</span>
@@ -73,18 +73,21 @@
             <span class="panel-tag">Free newsletter</span>
             <h3>Get weekly growth insights</h3>
             <p>Practical SEO, AI, and web design tips for Canadian businesses &mdash; delivered free, once a week.</p>
-            <form action="#" novalidate>
+            <form action="https://formspree.io/f/mwvynbjp" method="POST">
+              <input type="hidden" name="_subject" value="New ReformedTech.ca newsletter signup" />
+              <input type="hidden" name="_next" value="https://reformedtech.ca/thank-you/" />
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
               <div class="form-group">
                 <label for="bn-name">Full name</label>
-                <input id="bn-name" type="text" placeholder="Jane Doe" autocomplete="name" />
+                <input id="bn-name" name="name" type="text" placeholder="Jane Doe" autocomplete="name" required />
               </div>
               <div class="form-group">
                 <label for="bn-email">Work email</label>
-                <input id="bn-email" type="email" placeholder="you@company.ca" autocomplete="email" />
+                <input id="bn-email" name="email" type="email" placeholder="you@company.ca" autocomplete="email" required />
               </div>
               <div class="form-group">
                 <label for="bn-focus">What are you focused on?</label>
-                <select id="bn-focus">
+                <select id="bn-focus" name="focus">
                   <option value="">Select a topic</option>
                   <option>Local SEO</option>
                   <option>Web Design</option>
@@ -122,19 +125,27 @@
           </article>
 
           <article class="post-card">
-            <div class="post-tag">AI</div>
-            <h3><a href="#">How AI Chatbots Help BC Businesses Convert More Website Visitors</a></h3>
-            <p>A well-placed AI assistant can answer questions 24/7 and move visitors closer to booking.</p>
+            <div class="post-tag">AEO</div>
+            <h3><a href="aeo-for-small-business-canada/">What Is AEO and Why Canadian Small Businesses Can&rsquo;t Ignore It in 2026</a></h3>
+            <p>Answer engines are reshaping search. Here&rsquo;s how Canadian businesses can stay visible.</p>
             <p class="post-author-line">By <a href="/author/kazi-hasnain/">Kazi Hasnain</a></p>
-            <a href="#" class="post-link">Read Article &rarr;</a>
+            <a href="aeo-for-small-business-canada/" class="post-link">Read Article &rarr;</a>
+          </article>
+
+          <article class="post-card">
+            <div class="post-tag">Local SEO</div>
+            <h3><a href="local-seo-kamloops-kelowna-vancouver/">The No-Fluff Guide to Local SEO in Kamloops, Kelowna &amp; Vancouver</a></h3>
+            <p>A practical local SEO playbook for small businesses across British Columbia &mdash; no fluff, no guesswork.</p>
+            <p class="post-author-line">By <a href="/author/kazi-hasnain/">Kazi Hasnain</a></p>
+            <a href="local-seo-kamloops-kelowna-vancouver/" class="post-link">Read Article &rarr;</a>
           </article>
 
           <article class="post-card">
             <div class="post-tag">Web Design</div>
-            <h3><a href="#">What Makes a High-Converting Website in 2026</a></h3>
-            <p>Speed, clarity, and trust signals — the three pillars of a website that actually brings in leads.</p>
+            <h3><a href="web-design-company-kamloops/">Best Web Design Company in Kamloops BC (2026 Guide)</a></h3>
+            <p>What to look for, what to avoid, and how much you should expect to pay in 2026.</p>
             <p class="post-author-line">By <a href="/author/kazi-hasnain/">Kazi Hasnain</a></p>
-            <a href="#" class="post-link">Read Article &rarr;</a>
+            <a href="web-design-company-kamloops/" class="post-link">Read Article &rarr;</a>
           </article>
 
         </div>

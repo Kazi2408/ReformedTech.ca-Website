@@ -35,12 +35,12 @@
         <div class="hero-left">
           <span class="hero-eyebrow">
             <span class="dot" aria-hidden="true"></span>
-            Accepting new projects · Q2 2026
+            Currently accepting new projects
           </span>
 
-          <h2 id="hero-title" class="hero-headline">
+          <h1 id="hero-title" class="hero-headline">
             Grow your business with <span>high-converting websites</span> &amp; AI marketing.
-          </h2>
+          </h1>
 
           <p class="hero-sub">
             We design premium websites and build AI-driven marketing systems for businesses across British Columbia and Canada &mdash; engineered to turn visitors into loyal customers.
@@ -58,24 +58,23 @@
           </div>
 
           <div class="hero-trust" aria-label="Trust indicators">
-            <span class="hero-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <span><strong>5.0</strong> average rating</span>
+            <span><strong>Canadian-owned</strong> &middot; BC-based agency</span>
             <span class="hero-trust-sep" aria-hidden="true"></span>
-            <span><strong>150+</strong> Canadian businesses served</span>
+            <span><strong>Founder-led</strong> projects</span>
           </div>
 
           <div class="hero-stats" role="list">
             <div class="stat-card" role="listitem">
-              <span class="stat-number">150+</span>
-              <span class="stat-label">Businesses served</span>
+              <span class="stat-number">BC</span>
+              <span class="stat-label">Based in Kamloops</span>
             </div>
             <div class="stat-card" role="listitem">
-              <span class="stat-number">3&times;</span>
-              <span class="stat-label">Avg. lead growth</span>
+              <span class="stat-number">24h</span>
+              <span class="stat-label">Reply time</span>
             </div>
             <div class="stat-card" role="listitem">
-              <span class="stat-number">98%</span>
-              <span class="stat-label">Client satisfaction</span>
+              <span class="stat-number">Free</span>
+              <span class="stat-label">Initial consultation</span>
             </div>
           </div>
         </div>
@@ -86,28 +85,31 @@
             <h3>Tell us about your project</h3>
             <p>Share a few details and we&rsquo;ll reply with next steps within 24 hours &mdash; no obligation.</p>
 
-            <form action="contact.html" novalidate>
+            <form action="https://formspree.io/f/xnjwbvrz" method="POST">
+              <input type="hidden" name="_subject" value="New ReformedTech.ca homepage enquiry" />
+              <input type="hidden" name="_next" value="https://reformedtech.ca/thank-you/" />
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
               <div class="form-group">
                 <label for="hp-name">Full name</label>
-                <input id="hp-name" type="text" placeholder="Jane Doe" autocomplete="name" />
+                <input id="hp-name" name="name" type="text" placeholder="Jane Doe" autocomplete="name" required />
               </div>
               <div class="form-group">
                 <label for="hp-email">Work email</label>
-                <input id="hp-email" type="email" placeholder="you@company.ca" autocomplete="email" />
+                <input id="hp-email" name="email" type="email" placeholder="you@company.ca" autocomplete="email" required />
               </div>
               <div class="form-group">
                 <label for="hp-service">What can we help with?</label>
-                <select id="hp-service">
+                <select id="hp-service" name="service">
                   <option value="">Select a service</option>
                   <option>Web Design &amp; Development</option>
-                  <option>Search Engine Optimization (SEO)</option>
+                  <option>Search Engine Optimisation (SEO)</option>
                   <option>Digital Marketing</option>
                   <option>AI &amp; Automation</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="hp-message">Project details</label>
-                <textarea id="hp-message" rows="3" placeholder="A short description of your goals..."></textarea>
+                <textarea id="hp-message" name="message" rows="3" placeholder="A short description of your goals..." required></textarea>
               </div>
               <button type="submit" class="btn btn-primary">
                 Send Message

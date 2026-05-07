@@ -68,10 +68,9 @@
           </div>
 
           <div class="hero-trust" aria-label="Trust indicators">
-            <span class="hero-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <span><strong>5.0</strong> average rating</span>
+            <span><strong>Canadian-owned</strong> &middot; BC-based agency</span>
             <span class="hero-trust-sep" aria-hidden="true"></span>
-            <span><strong>150+</strong> Canadian businesses served</span>
+            <span><strong>24-hour</strong> reply</span>
           </div>
         </div>
 
@@ -81,25 +80,28 @@
             <h3>Tell us about your project</h3>
             <p>Share a few details and we&rsquo;ll reply with next steps within 24 hours &mdash; no obligation.</p>
 
-            <form action="#" novalidate>
+            <form action="https://formspree.io/f/xnjwbvlz" method="POST">
+              <input type="hidden" name="_subject" value="New ReformedTech.ca contact enquiry" />
+              <input type="hidden" name="_next" value="https://reformedtech.ca/thank-you/" />
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
               <div class="form-group">
                 <label for="c-name">Full name</label>
-                <input id="c-name" type="text" placeholder="Jane Doe" autocomplete="name" />
+                <input id="c-name" name="name" type="text" placeholder="Jane Doe" autocomplete="name" required />
               </div>
               <div class="form-group">
                 <label for="c-email">Work email</label>
-                <input id="c-email" type="email" placeholder="you@company.ca" autocomplete="email" />
+                <input id="c-email" name="email" type="email" placeholder="you@company.ca" autocomplete="email" required />
               </div>
               <div class="form-group">
                 <label for="c-company">Company</label>
-                <input id="c-company" type="text" placeholder="Your business name" autocomplete="organization" />
+                <input id="c-company" name="company" type="text" placeholder="Your business name" autocomplete="organization" />
               </div>
               <div class="form-group">
                 <label for="c-service">What can we help with?</label>
-                <select id="c-service">
+                <select id="c-service" name="service">
                   <option value="">Select a service</option>
                   <option>Web Design &amp; Development</option>
-                  <option>Search Engine Optimization (SEO)</option>
+                  <option>Search Engine Optimisation (SEO)</option>
                   <option>Digital Marketing</option>
                   <option>AI &amp; Automation</option>
                   <option>Not sure yet &mdash; let&rsquo;s talk</option>
@@ -107,7 +109,7 @@
               </div>
               <div class="form-group">
                 <label for="c-message">Project details</label>
-                <textarea id="c-message" rows="4" placeholder="A short description of your goals, timeline, and budget if you have one..."></textarea>
+                <textarea id="c-message" name="message" rows="4" placeholder="A short description of your goals, timeline, and budget if you have one..." required></textarea>
               </div>
               <button type="submit" class="btn btn-primary">
                 Send Message

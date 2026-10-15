@@ -38,13 +38,14 @@
 .post-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
-  border-color: #CBD5E1;
+  border-color: var(--rt-teal);
 }
 
 .post-tag {
   display: inline-block;
   background: var(--accent-soft);
-  color: var(--accent);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--rt-teal);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -69,7 +70,13 @@
   transition: color var(--t-fast);
 }
 
-.post-card h3 a:hover { color: var(--accent); }
+/* Small headings: navy + teal underline on hover (teal text <18.66px fails AA) */
+.post-card h3 a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--rt-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
 
 .post-card p {
   font-size: 0.92rem;
@@ -84,15 +91,19 @@
   align-items: center;
   gap: 6px;
   font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--accent);
-  text-decoration: none;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--rt-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
   margin-top: auto;
   transition: gap var(--t-fast), color var(--t-fast);
 }
 
 .post-link:hover {
-  color: var(--accent-dark);
+  color: var(--ink);
+  text-decoration-color: var(--ink);
   gap: 10px;
 }
 
@@ -167,7 +178,7 @@
   gap: 6px;
   color: var(--ink);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   padding: 9px 16px;
   border: 1px solid var(--hairline);
@@ -178,7 +189,7 @@
 }
 
 .author-links a:hover {
-  border-color: #CBD5E1;
+  border-color: var(--rt-teal);
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);
 }
@@ -225,13 +236,18 @@
 .author-meta .author-name {
   display: block;
   font-size: 0.92rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
   text-decoration: none;
   transition: color var(--t-fast);
 }
 
-.author-meta .author-name:hover { color: var(--accent); }
+.author-meta .author-name:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--rt-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
 
 .author-meta .author-title {
   display: block;
@@ -249,12 +265,17 @@
 
 .post-author-line a {
   color: var(--ink);
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   transition: color var(--t-fast);
 }
 
-.post-author-line a:hover { color: var(--accent); }
+.post-author-line a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--rt-teal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
 
 @media (max-width: 560px) {
   .author-profile { padding: 56px 18px; }
@@ -310,7 +331,7 @@
 
 .faq-item dt {
   font-size: 1.02rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.005em;
   color: var(--ink);
   margin: 0 0 8px;

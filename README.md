@@ -16,3 +16,10 @@ Main pages:
 - about.html
 - services.html
 - contact.html
+
+## Cache busting
+Stylesheet links carry a version query (e.g. `css/style.css?v=20261015`) so
+browsers fetch fresh CSS after a deploy. When you change any file in `css/`,
+bump the version on every page in one go:
+
+    sed -i -E 's/\.css\?v=[0-9]+/.css?v=YYYYMMDD/g' $(git ls-files '*.html')

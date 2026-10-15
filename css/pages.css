@@ -439,6 +439,7 @@
 .post-body table {
   width: 100%;
   border-collapse: collapse;
+  border-color: var(--hairline);
   font-size: 0.95rem;
   line-height: 1.55;
 }
@@ -449,6 +450,9 @@
   text-align: left;
   padding: 12px 14px;
 }
+.post-body thead,
+.post-body tbody,
+.post-body tr { border-color: var(--hairline); }
 .post-body td {
   padding: 12px 14px;
   border-top: 1px solid var(--hairline);

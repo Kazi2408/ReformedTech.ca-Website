@@ -1,0 +1,2108 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Imam Mohammad Inam Ul Haq — Homepage prototype</title>
+<meta name="description" content="Homepage prototype (Direction C — Desert Dusk) for the personal website of Imam Mohammad Inam Ul Haq.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=El+Messiri:wght@500;600;700&family=Tajawal:wght@400;500;700;800&display=swap">
+<style>
+/* ---- Shared foundation (each concept sets the tokens and adds its own art direction) ---- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:1.0625rem;line-height:1.6;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure,blockquote{margin:0}
+ul[class],ol[class]{list-style:none;padding:0}
+.link-btn{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:start;cursor:pointer}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.5}
+[hidden]{display:none!important}
+main:focus{outline:none}
+section[id],[id="main"]{scroll-margin-top:var(--scroll-offset,88px)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;z-index:200;background:var(--fg);color:var(--bg);padding:10px 16px;text-decoration:none;font-weight:600}
+.skip:focus{top:12px}
+.proto-banner{font-size:.8125rem;line-height:1.45;padding:7px 16px;text-align:center}
+
+/* Arabic: never letter-space or upper-case, give lines more room */
+:root[lang="ar"] *{letter-spacing:0!important;text-transform:none!important}
+:root[lang="ar"] body{line-height:1.85}
+/* Mirror directional icons only */
+:root[dir="rtl"] .icon-dir{transform:scaleX(-1)}
+.asset-img{transform:none!important}
+
+/* Placeholders for supplied images */
+.ph-frame{position:relative;overflow:hidden}
+.ph-frame .asset-img{position:absolute;inset:0;width:100%;height:100%}
+.ph-frame.has-asset .ph{visibility:hidden}
+
+/* Forms */
+.field{display:grid;gap:6px;margin-bottom:18px}
+.field label,.fieldset-legend{font-weight:600;font-size:.9375rem}
+.field input,.field select,.field textarea{width:100%;padding:11px 13px;border:1px solid var(--field-line,var(--line));background:var(--field-bg,transparent);border-radius:var(--radius,2px);min-height:46px}
+.field textarea{min-height:130px;resize:vertical}
+.field input[type="email"]{direction:ltr}
+:root[dir="rtl"] .field input[type="email"]{text-align:right}
+.field.has-error input,.field.has-error select,.field.has-error textarea{border-color:var(--error);border-width:2px}
+.f-err{color:var(--error);font-size:.875rem;font-weight:600;min-height:0}
+.f-err:empty{display:none}
+fieldset{border:1px solid var(--line);border-radius:var(--radius,2px);padding:16px 16px 2px;margin:0 0 18px}
+legend{padding:0 6px;font-weight:600;font-size:.9375rem}
+.f-row{display:grid;gap:0 16px}
+@media (min-width:640px){.f-row{grid-template-columns:1fr 1fr}}
+.form-status{margin-top:14px;padding:12px 14px;border-inline-start:3px solid currentColor;font-weight:600}
+.form-status.is-ok{color:var(--ok)}
+.form-status.is-error{color:var(--error)}
+.form-status:focus{outline:2px solid var(--focus);outline-offset:2px}
+
+/* Archive results: shared skeleton, concepts restyle */
+.arc-item{position:relative}
+.arc-open{all:unset;cursor:pointer;color:inherit}
+.arc-open::after{content:"";position:absolute;inset:0}
+.arc-open:focus-visible{outline:none}
+.arc-item:has(.arc-open:focus-visible){outline:2px solid var(--focus);outline-offset:2px}
+.arc-icon svg{width:22px;height:22px}
+.arc-meta{display:flex;flex-wrap:wrap;gap:4px 12px}
+
+/* Prototype modal */
+.pm{border:0;padding:0;width:min(560px,calc(100% - 32px));max-height:calc(100% - 48px);background:var(--pm-bg,var(--bg));color:var(--pm-fg,var(--fg));border-radius:var(--radius,2px);box-shadow:0 18px 50px rgba(0,0,0,.22)}
+.pm::backdrop{background:rgba(12,14,20,.55)}
+.pm-inner{position:relative;padding:32px 28px 26px}
+.pm-label{font-size:.8125rem;font-weight:600;color:var(--pm-accent,var(--accent-ink));margin-bottom:8px}
+.pm-title{font-family:var(--font-display);font-size:1.5rem;line-height:1.25;margin-bottom:14px;padding-inline-end:36px}
+.pm-title:focus{outline:none}
+.pm-body p+p{margin-top:10px}
+.pm-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.pm-x{position:absolute;inset-inline-end:14px;top:14px;width:40px;height:40px;display:grid;place-items:center;background:none;border:1px solid transparent;border-radius:var(--radius,2px)}
+.pm-x:hover{border-color:var(--line)}
+.pm-action,.pm-close{min-height:44px;padding:10px 18px;border-radius:var(--radius,2px);font-weight:600}
+.pm-action{background:var(--pm-btn,var(--fg));color:var(--pm-btn-fg,var(--bg));border:1px solid var(--pm-btn,var(--fg))}
+.pm-close{background:transparent;border:1px solid var(--line)}
+body.modal-open{overflow:hidden}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* Newsletter row wraps rather than overflowing on narrow screens */
+.nl-form{min-width:0}
+.nl-row{display:flex;flex-wrap:wrap;gap:8px}
+.nl-row input{flex:1 1 200px;min-width:0}
+.nl-row .btn{flex:0 0 auto}
+/* Grid/flex children may shrink below their content width (prevents horizontal overflow) */
+[class*="-grid"]>*,[class*="-layout"]>*{min-width:0}
+
+/* ---- Motion system (only when JS runs; reduced motion shows everything immediately) ---- */
+.js [data-reveal]{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js [data-reveal="left"]{transform:translateX(-40px)}
+.js [data-reveal="right"]{transform:translateX(40px)}
+.js [data-reveal="scale"]{transform:scale(.92)}
+.js [data-reveal="flip"]{transform:perspective(1000px) rotateX(18deg) translateY(30px);transform-origin:50% 100%}
+.js [data-reveal].is-in{opacity:1;transform:none}
+[data-tilt]{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d;will-change:transform}
+[data-tilt].is-tilting{transition:transform .08s linear}
+.js [data-reveal][data-tilt].is-in{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+[data-parallax]{transform:translate3d(0,var(--py,0px),0)}
+.progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:300;transform:scaleX(0);transform-origin:left center;pointer-events:none}
+:root[dir="rtl"] .progress{transform-origin:right center}
+
+/* ---- 3D book (cover image drops in when supplied; never mirrored or distorted) ---- */
+.book3d{--bw:250px;--bh:370px;--bd:42px;width:var(--bw);height:var(--bh);perspective:1600px;margin-inline:auto}
+.book3d-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateY(-28deg) rotateX(6deg);animation:book-sway 10s ease-in-out infinite}
+@keyframes book-sway{0%,100%{transform:rotateY(-30deg) rotateX(7deg) translateY(0)}50%{transform:rotateY(-16deg) rotateX(3deg) translateY(-10px)}}
+.book3d:hover .book3d-inner{animation-play-state:paused}
+.b3-front,.b3-back,.b3-spine,.b3-pages{position:absolute;top:0}
+.b3-front{inset-inline-start:0;width:100%;height:100%;transform:translateZ(calc(var(--bd)/2));border-radius:2px 6px 6px 2px;background:linear-gradient(155deg,var(--cover-a,#33427d),var(--cover-b,#161d3d) 75%);color:#f2e7cf;overflow:hidden;box-shadow:inset 6px 0 10px -4px rgba(0,0,0,.45)}
+.b3-front .asset-img{object-fit:cover}
+.b3-front .ph{position:absolute;inset:0;padding:28px 24px;display:flex;flex-direction:column;justify-content:space-between}
+.b3-front .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.16) 46%,transparent 60%);pointer-events:none}
+.b3-t{font-family:var(--font-display);font-size:1.75rem;line-height:1.05;font-weight:600}
+.b3-s{font-family:var(--font-display);font-size:1.02rem;opacity:.85;margin-top:6px}
+.b3-c{font-size:.75rem;opacity:.85}
+.b3-ph{font-size:.6875rem;opacity:.75;border-top:1px solid rgba(242,231,207,.35);padding-top:8px;margin-top:8px}
+.b3-back{left:0;width:100%;height:100%;transform:translateZ(calc(var(--bd)/-2)) rotateY(180deg);background:var(--cover-b,#161d3d);border-radius:6px 2px 2px 6px;box-shadow:0 40px 60px -20px rgba(0,0,0,.55)}
+.b3-spine{left:0;width:var(--bd);height:100%;transform-origin:left center;transform:translateZ(calc(var(--bd)/2)) rotateY(-90deg);background:linear-gradient(90deg,var(--spine,#0f1530),var(--cover-b,#161d3d))}
+.b3-pages{left:calc(var(--bw) - var(--bd));width:var(--bd);height:calc(100% - 8px);top:4px;transform-origin:right center;transform:translateX(0) translateZ(calc(var(--bd)/2)) rotateY(90deg);background:repeating-linear-gradient(90deg,#f4efe2 0 2px,#e2dccb 2px 3px)}
+.book3d-shadow{width:calc(var(--bw)*.9);height:26px;margin:26px auto 0;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.45),transparent);filter:blur(4px);animation:book-shadow 10s ease-in-out infinite}
+@keyframes book-shadow{0%,100%{transform:scaleX(1);opacity:.8}50%{transform:scaleX(.86);opacity:.55}}
+@media (max-width:480px){.book3d{--bw:200px;--bh:296px;--bd:34px}}
+@media (prefers-reduced-motion:reduce){.book3d-inner,.book3d-shadow{animation:none}}
+/* Rotating/3D decoration never causes sideways scrolling */
+main>section,main>div,footer{overflow-x:clip}
+/* Narrow phones: wordmark may wrap, menu button keeps its accessible label but shows only the icon */
+@media (max-width:480px){
+  .brand{min-width:0}
+  .brand,.brand *{white-space:normal!important}
+  .menu-btn [data-menu-label]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .menu-btn{padding-inline:12px!important}
+}
+
+
+/* ===== Direction C — Desert Dusk ===== */
+:root{
+  --top:#24092C; --mid:#5A1A4A; --low:#A8405F; --horizon:#E88A63; --sun:#FFB27A; --accent:#FFC27D; --accent-ink-on:#2A0E05;
+  --cream:#FFF6EC; --cream2:#F7E8D9; --ink:#2B0D24; --ink-muted:#674859; --deep:#8F2E4C; --on-dark:#FFF6EE; --soft:#F1D7DA;
+  --bg:var(--cream); --fg:var(--ink); --line:rgba(43,13,36,.13); --line-d:rgba(255,246,238,.2); --line-d2:rgba(255,246,238,.42);
+  --focus:#8F2E4C; --error:#A3261B; --ok:#1F6B45; --accent-ink:var(--deep);
+  --font-display:"DM Serif Display",Georgia,serif; --font-body:"Tajawal","Segoe UI",Tahoma,sans-serif;
+  --radius:14px; --scroll-offset:88px; --field-bg:#fff;
+  --pm-bg:#FFF6EC; --pm-fg:#2B0D24; --pm-btn:#2B0D24; --pm-btn-fg:#FFF6EC; --pm-accent:#8F2E4C;
+  --cover-a:#5a2a5e; --cover-b:#2a0f30; --spine:#1c0920;
+}
+:root[lang="ar"]{--font-display:"El Messiri","Tajawal",serif}
+body{font-size:1.09rem}
+.wrap{width:min(1260px,100% - 32px);margin-inline:auto}
+@media (min-width:768px){.wrap{width:min(1260px,100% - 72px)}}
+.progress{background:linear-gradient(90deg,var(--deep),var(--horizon),var(--accent))}
+.proto-banner{background:#160519;color:var(--soft)}
+.dusk{background:linear-gradient(180deg,var(--top),var(--mid) 55%,var(--low));color:var(--on-dark)}
+.dusk :focus-visible,.hero :focus-visible{outline-color:var(--accent)}
+.sec{position:relative;padding-block:clamp(72px,9vw,124px)}
+.kicker{font-size:.85rem;font-weight:700;color:var(--deep)}
+.dusk .kicker{color:var(--accent)}
+.h2{font-family:var(--font-display);font-weight:400;font-size:clamp(2.3rem,1.4rem + 2.8vw,3.9rem);line-height:1.05;margin-top:12px}
+:root[lang="ar"] .h2{line-height:1.4}
+.h2 em{font-style:italic;color:var(--deep)}
+.dusk .h2 em{color:var(--accent)}
+:root[lang="ar"] .h2 em{font-style:normal}
+.lede{color:var(--ink-muted);font-size:1.15rem;line-height:1.7;max-width:60ch;margin-top:16px}
+.dusk .lede{color:var(--soft)}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:8px;background:var(--cream2);color:var(--deep)}
+.dusk .tag{background:rgba(255,255,255,.12);color:var(--on-dark)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:13px 26px;border-radius:12px;border:1px solid transparent;font-weight:700;font-size:1rem;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s}
+.btn-ink{background:var(--ink);color:var(--cream)}
+.btn-ink:hover{transform:translateY(-2px);box-shadow:0 16px 30px -18px var(--ink)}
+.btn-sun{background:var(--accent);color:var(--accent-ink-on)}
+.btn-sun:hover{transform:translateY(-2px);box-shadow:0 16px 34px -14px var(--accent)}
+.btn-ghost{border-color:currentColor;background:transparent;color:inherit}
+.btn-ghost:hover{background:rgba(127,127,127,.1)}
+.link{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:4px 0;background:none;border:0;border-bottom:2px solid var(--horizon);color:inherit;font-weight:700;text-decoration:none}
+.link:hover{color:var(--deep)}
+.dusk .link:hover{color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-top:30px}
+.center{text-align:center}.center .lede{margin-inline:auto}.center .actions{justify-content:center}
+.card{position:relative;border-radius:22px;background:#fff;border:1px solid var(--line);padding:28px;box-shadow:0 30px 60px -44px rgba(43,13,36,.55)}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),rgba(232,138,99,.18),transparent 45%);opacity:0;transition:opacity .4s;pointer-events:none}
+.card.is-tilting::after{opacity:1}
+
+/* ---------- Header ---------- */
+.site-head{position:sticky;top:0;z-index:60;transition:background .3s;color:var(--on-dark)}
+.is-scrolled .site-head{background:var(--top)}
+.head-row{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:80px}
+.brand{text-decoration:none;display:flex;flex-direction:column;line-height:1.1}
+.brand b{font-family:var(--font-display);font-weight:400;font-size:1.5rem;white-space:nowrap}
+.brand small{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-top:4px}
+.nav{display:flex;align-items:center}
+.nav-list{display:flex;align-items:center}
+.nav-list>li>a,.more-btn{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 11px;font-size:.98rem;font-weight:500;text-decoration:none;color:var(--on-dark);background:none;border:0;white-space:nowrap;position:relative}
+.nav-list>li>a::after{content:"";position:absolute;inset-inline:11px;bottom:6px;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .3s}
+.nav-list>li>a:hover::after{transform:scaleX(1)}
+.dropdown{position:relative}
+.more-menu{position:absolute;inset-inline-end:0;top:calc(100% + 10px);min-width:310px;padding:8px;border-radius:14px;background:var(--cream);border:1px solid var(--line);box-shadow:0 30px 60px -24px rgba(0,0,0,.5);z-index:70}
+.more-menu a,.more-menu button{display:block;width:100%;text-align:start;padding:11px 14px;border-radius:8px;text-decoration:none;font-size:.95rem;color:var(--ink)}
+.more-menu a:hover,.more-menu button:hover{background:var(--cream2)}
+.more-menu :focus-visible{outline-color:var(--deep)}
+.tools{display:flex;align-items:center;gap:8px}
+.pill-btn{min-height:44px;padding:8px 15px;border-radius:10px;border:1px solid var(--line-d);background:transparent;color:var(--on-dark);font-weight:700;font-size:.92rem}
+.tools .btn{min-height:44px;padding:8px 18px;font-size:.92rem;white-space:nowrap}
+.menu-btn{display:none}
+.nav-extra{display:none}
+@media (max-width:1200px){
+  .menu-btn{display:inline-flex;align-items:center;gap:8px}
+  .tools .btn-invite{display:none}
+  .nav{display:none;position:absolute;inset-inline:0;top:100%;background:var(--top);padding:10px 20px 24px;flex-direction:column;align-items:stretch;max-height:calc(100vh - 80px);overflow:auto;border-top:1px solid var(--line-d)}
+  .nav.is-open{display:flex}
+  .nav-list{flex-direction:column;align-items:stretch}
+  .nav-list>li>a,.more-btn{width:100%;min-height:52px;font-size:1.1rem;border-bottom:1px solid var(--line-d)}
+  .nav-list>li>a::after{display:none}
+  .more-menu{position:static;box-shadow:none;border:0;background:transparent;padding:0;min-width:0}
+  .more-menu a,.more-menu button{padding-inline:26px;color:var(--on-dark)}
+  .more-menu a:hover,.more-menu button:hover{background:rgba(255,255,255,.08)}
+  .nav-extra{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+}
+@media (max-width:420px){.brand b{font-size:1.2rem}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;margin-top:-80px;padding-top:80px;background:linear-gradient(180deg,var(--top) 0%,var(--mid) 50%,var(--low) 80%,var(--horizon) 100%);color:var(--on-dark)}
+.sun{position:absolute;left:50%;bottom:-420px;width:1000px;height:1000px;margin-left:-500px;border-radius:50%;background:radial-gradient(closest-side,var(--sun),transparent 70%);opacity:.75;pointer-events:none}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:.9}}
+.stars{position:absolute;inset:0 0 50% 0;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 12% 20%,#fff,transparent),radial-gradient(1px 1px at 28% 8%,#fff,transparent),radial-gradient(1.5px 1.5px at 44% 26%,#fff,transparent),radial-gradient(1px 1px at 63% 12%,#fff,transparent),radial-gradient(1.5px 1.5px at 78% 30%,#fff,transparent),radial-gradient(1px 1px at 90% 10%,#fff,transparent),radial-gradient(1px 1px at 6% 42%,#fff,transparent),radial-gradient(1.2px 1.2px at 52% 6%,#fff,transparent);animation:twinkle 6s ease-in-out infinite}
+.dunes{position:absolute;bottom:0;left:0;width:100%;height:220px;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.stars{animation:none}}
+.hero-in{position:relative;z-index:2;text-align:center;padding-block:60px 0}
+.hero .eyebrow{font-size:.95rem;font-weight:500;color:var(--soft)}
+.hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2.8rem,1.2rem + 5vw,5.8rem);line-height:1.04;max-width:1000px;margin:16px auto 0;letter-spacing:-.01em}
+:root[lang="ar"] .hero h1{line-height:1.35}
+.hero h1 em{font-style:italic;color:var(--accent)}
+:root[lang="ar"] .hero h1 em{font-style:normal}
+.hero .lede{color:var(--soft);margin-inline:auto;font-size:1.2rem}
+.hsearch{max-width:820px;margin:36px auto 0;text-align:start}
+.hsearch-row{display:flex;align-items:center;gap:10px;padding:8px;border-radius:18px;background:var(--cream);box-shadow:0 30px 60px -28px rgba(0,0,0,.6)}
+.hsearch-row svg{flex:none;margin-inline-start:12px;color:var(--ink)}
+.hsearch-row input{flex:1;min-width:0;min-height:54px;border:0;background:transparent;color:var(--ink);font-size:1.1rem}
+.hsearch-row input:focus-visible{outline:none}
+.hsearch-row:focus-within{box-shadow:0 0 0 3px var(--accent),0 30px 60px -28px rgba(0,0,0,.6)}
+.hsearch-row .btn{min-height:54px}
+.hchips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.hchip{min-height:40px;padding:7px 16px;border-radius:20px;border:1px solid var(--line-d2);background:transparent;color:var(--on-dark);font-weight:700;font-size:.92rem}
+.hchip:hover{background:var(--cream);color:var(--ink)}
+.fan{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:56px;padding-bottom:90px;perspective:1600px}
+@media (max-width:900px){.fan{grid-template-columns:1fr;max-width:460px;margin-inline:auto}}
+.fan-card{display:flex;gap:16px;align-items:center;padding:18px;border-radius:20px;background:var(--cream);color:var(--ink);text-align:start;text-decoration:none;box-shadow:0 40px 70px -40px rgba(0,0,0,.7);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+@media (min-width:901px){
+  .fan-card:nth-child(1){transform:rotateY(18deg) translateZ(-40px) translateY(18px)}
+  .fan-card:nth-child(3){transform:rotateY(-18deg) translateZ(-40px) translateY(18px)}
+  .fan:hover .fan-card{transform:none}
+}
+.fan-card.dash{background:rgba(36,9,44,.35);color:var(--on-dark);border:1px dashed var(--line-d2);flex-direction:column;align-items:flex-start;justify-content:center;gap:6px}
+.fan-ph{flex:none;width:78px;height:96px;border-radius:40px 40px 12px 12px;background:linear-gradient(170deg,var(--mid),var(--top));display:grid;place-items:center;color:#fff;overflow:hidden}
+.fan-ph .asset-img{object-fit:cover}
+.fan-ph .ph{display:none}
+.fan-mini{flex:none;width:62px;height:90px;border-radius:3px 6px 6px 3px;background:linear-gradient(160deg,#5a2a5e,#2a0f30);border-inline-start:6px solid #1c0920;display:flex;align-items:center;padding:6px;color:#f7e6d6;font-family:"DM Serif Display",serif;font-size:9.5px;line-height:1.1;transform:perspective(400px) rotateY(-16deg);box-shadow:6px 6px 12px -4px rgba(0,0,0,.4)}
+.fan-card small{display:block;font-size:.78rem;font-weight:700;color:var(--deep)}
+.fan-card.dash small{color:var(--accent)}
+.fan-card b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.25rem;line-height:1.2}
+.fan-card span{display:block;font-size:.9rem;opacity:.85}
+
+/* ---------- Archive ---------- */
+.arc-shell{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+@media (max-width:1000px){.arc-shell{grid-template-columns:1fr;gap:28px}}
+@media (min-width:1001px){.arc-intro{position:sticky;top:110px}}
+.arc-q-label{display:block;font-weight:700;margin-bottom:10px}
+.arc-q-row{position:relative}
+.arc-q-icon{position:absolute;inset-inline-start:16px;top:50%;transform:translateY(-50%);color:var(--ink-muted)}
+.arc-q-row input{width:100%;min-height:58px;padding:12px 16px 12px 48px;border-radius:14px;border:1px solid var(--line);background:#fff;font-size:1.08rem}
+:root[dir="rtl"] .arc-q-row input{padding:12px 48px 12px 16px}
+.arc-filters{display:flex;flex-wrap:wrap;align-items:end;gap:16px 22px;margin-top:18px}
+.arc-filter-label{display:block;font-size:.85rem;font-weight:700;color:var(--ink-muted);margin-bottom:8px}
+.arc-type-btns{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:42px;padding:7px 16px;border-radius:21px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+#arc-topic{min-height:42px;padding:7px 12px;border-radius:12px;border:1px solid var(--line);background:#fff}
+.arc-reset{min-height:42px;background:none;border:0;color:var(--deep);font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.arc-count{margin-top:24px;font-size:.92rem;color:var(--ink-muted)}
+.arc-list{margin-top:12px;display:grid;gap:12px}
+@keyframes rowin{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+.arc-item{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:center;padding:16px 18px;border-radius:16px;background:#fff;border:1px solid var(--line);transition:transform .3s,box-shadow .3s;animation:rowin .45s ease both}
+.arc-item:nth-child(2){animation-delay:.04s}.arc-item:nth-child(3){animation-delay:.08s}.arc-item:nth-child(4){animation-delay:.12s}.arc-item:nth-child(5){animation-delay:.16s}.arc-item:nth-child(6){animation-delay:.2s}.arc-item:nth-child(7){animation-delay:.24s}.arc-item:nth-child(8){animation-delay:.28s}
+.arc-item:hover{transform:translateX(6px);box-shadow:0 18px 36px -24px rgba(43,13,36,.5)}
+:root[dir="rtl"] .arc-item:hover{transform:translateX(-6px)}
+.arc-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(150deg,var(--low),var(--mid));color:#fff}
+.arc-meta{font-size:.78rem;color:var(--ink-muted)}
+.arc-type{color:var(--deep);font-weight:800}
+.arc-title{font-family:var(--font-display);font-weight:400;font-size:1.2rem;line-height:1.3;margin-top:2px}
+.arc-desc{font-size:.9rem;color:var(--ink-muted)}
+.arc-flag{font-size:.74rem;color:var(--deep);margin-top:4px;font-weight:500}
+.arc-empty{margin-top:12px;padding:32px;text-align:center;border-radius:16px;border:1px dashed var(--line);background:#fff}
+.arc-empty-t{font-family:var(--font-display);font-size:1.5rem}
+.arc-empty .btn{margin-top:14px}
+.arc-note{font-size:.88rem;color:var(--ink-muted);margin-top:16px}
+@media (prefers-reduced-motion:reduce){.arc-item{animation:none}}
+
+/* ---------- About ---------- */
+.about{background:var(--cream2)}
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
+@media (max-width:960px){.about-grid{grid-template-columns:1fr;gap:40px}}
+.arch{position:relative;max-width:400px;margin-inline:auto;width:100%}
+.arch-in{position:relative;aspect-ratio:4/5;border-radius:220px 220px 22px 22px;background:linear-gradient(175deg,var(--low),var(--mid) 60%,var(--top));display:grid;place-items:center;overflow:hidden;box-shadow:0 50px 80px -40px rgba(43,13,36,.7)}
+.arch-in .asset-img{object-fit:cover;object-position:50% 20%}
+.arch-in .sun-in{position:absolute;bottom:-30%;left:50%;width:120%;aspect-ratio:1;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(255,178,122,.8),transparent 70%)}
+.arch-in .sil{position:relative;width:46%;color:#fff;opacity:.35}
+.arch-in .ph{position:absolute;bottom:16px;padding:6px 12px;border-radius:12px;background:rgba(36,9,44,.5);color:#fff;font-size:.82rem}
+.has-asset .sil,.has-asset .sun-in{display:none}
+.arch::before{content:"";position:absolute;inset:-14px;border-radius:234px 234px 30px 30px;border:1px solid rgba(143,46,76,.35)}
+.about-body .lead{font-family:var(--font-display);font-size:clamp(1.5rem,1.1rem + 1.2vw,2.15rem);line-height:1.35;margin-top:16px}
+:root[lang="ar"] .about-body .lead{line-height:1.7}
+.about-body p.t{color:var(--ink-muted);line-height:1.8;margin-top:16px}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:26px}
+@media (max-width:620px){.facts{grid-template-columns:1fr}}
+.facts div{padding:16px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.facts dt{font-size:.78rem;font-weight:800;color:var(--deep)}
+.facts dd{font-size:.95rem;margin-top:4px;line-height:1.4}
+.note{font-size:.9rem;color:var(--ink-muted);margin-top:18px;padding-inline-start:12px;border-inline-start:3px solid var(--horizon)}
+
+/* ---------- Pathways ---------- */
+.p-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:44px}
+@media (max-width:1080px){.p-track{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.p-track{grid-template-columns:1fr}}
+.pcard{position:relative;display:flex;flex-direction:column;min-height:330px;padding:26px;border-radius:24px;color:var(--on-dark);text-decoration:none;overflow:hidden;box-shadow:0 40px 70px -40px rgba(43,13,36,.7)}
+.pcard:nth-child(1){background:linear-gradient(160deg,#E88A63,#A8405F 70%)}
+.pcard:nth-child(2){background:linear-gradient(160deg,#A8405F,#5A1A4A 70%)}
+.pcard:nth-child(3){background:linear-gradient(160deg,#5A1A4A,#24092C 80%)}
+.pcard:nth-child(4){background:linear-gradient(160deg,#3a1240,#160519 80%)}
+.pcard::before{content:"";position:absolute;width:240px;height:240px;inset-inline-end:-80px;top:-80px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,194,125,.45),transparent 70%);transform:translateZ(20px)}
+.pcard .n{font-family:var(--font-display);font-size:3.4rem;line-height:1;opacity:.9;transform:translateZ(40px)}
+.pcard h3{font-family:var(--font-display);font-weight:400;font-size:1.6rem;line-height:1.15;margin-top:auto;transform:translateZ(30px)}
+.pcard p{font-size:.96rem;opacity:.9;margin-top:8px}
+.pcard .go{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-weight:700;color:var(--accent)}
+.pcard:focus-visible{outline-color:var(--ink)}
+
+/* ---------- Featured lecture ---------- */
+.feat-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+@media (max-width:980px){.feat-grid{grid-template-columns:1fr;gap:40px}}
+.screen-wrap{perspective:1400px}
+.screen{position:relative;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#2a0b33,#6a2052 60%,#d77a5d);transform:rotateY(12deg) rotateX(5deg);transition:transform .8s cubic-bezier(.2,.7,.2,1);box-shadow:-30px 40px 80px -40px rgba(0,0,0,.8);display:grid;place-items:center}
+:root[dir="rtl"] .screen{transform:rotateY(-12deg) rotateX(5deg)}
+.screen-wrap:hover .screen{transform:none}
+.screen .s-sun{position:absolute;bottom:-40%;left:50%;width:70%;aspect-ratio:1;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,#ffc58f,transparent 70%)}
+.screen .play{position:relative;width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:var(--cream);color:var(--ink)}
+@keyframes ripple{0%{box-shadow:0 0 0 0 rgba(255,246,236,.5)}100%{box-shadow:0 0 0 28px rgba(255,246,236,0)}}
+.screen .play{animation:ripple 2.4s ease-out infinite}
+.screen .tag{position:absolute;top:16px;inset-inline-start:16px}
+@media (prefers-reduced-motion:reduce){.screen .play{animation:none}}
+.feat h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,1.3rem + 1.4vw,2.6rem);line-height:1.15;margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-size:.95rem;color:var(--soft)}
+.meta b{color:var(--on-dark)}
+
+/* ---------- Learn: staircase ---------- */
+.stairs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:end;margin-top:56px}
+@media (max-width:900px){.stairs{grid-template-columns:1fr}}
+.stair{display:flex;flex-direction:column}
+@media (min-width:901px){.stair:nth-child(1){margin-top:120px}.stair:nth-child(2){margin-top:60px}}
+.stair .top{font-family:var(--font-display);font-size:4rem;line-height:1;color:var(--horizon);margin-bottom:-14px;padding-inline-start:20px;position:relative;z-index:1}
+.stair .card{padding-top:34px}
+.stair .sn{font-size:.8rem;font-weight:800;color:var(--deep)}
+.stair h3{font-family:var(--font-display);font-weight:400;font-size:1.5rem;line-height:1.2;margin-top:4px}
+.stair p{color:var(--ink-muted);margin-top:8px}
+.stair:nth-child(3) .card{background:linear-gradient(160deg,var(--mid),var(--top));color:var(--on-dark);border:0}
+.stair:nth-child(3) .sn{color:var(--accent)}
+.stair:nth-child(3) p{color:var(--soft)}
+.learn-note{font-size:.9rem;color:var(--ink-muted);margin-top:16px}
+
+/* ---------- Book ---------- */
+.book-sec{overflow:hidden}
+.book-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
+@media (max-width:960px){.book-grid{grid-template-columns:1fr;gap:44px}}
+.book-stage{position:relative;padding:40px 0}
+.book-stage::before{content:"";position:absolute;inset:4%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,178,122,.55),transparent 70%)}
+.book-title{font-family:var(--font-display);font-weight:400;font-size:clamp(2.8rem,1.6rem + 3.4vw,4.6rem);line-height:1;margin-top:14px}
+.book-sub{font-family:var(--font-display);font-style:italic;font-size:1.6rem;color:var(--soft)}
+.book-by{font-weight:700;margin-top:14px;color:var(--accent)}
+.quote{margin-top:24px;padding:20px 22px;border-radius:16px;background:rgba(36,9,44,.35);border:1px solid var(--line-d)}
+.quote p{font-family:var(--font-display);font-size:1.4rem;line-height:1.4}
+.quote footer{font-size:.82rem;color:var(--soft);margin-top:6px}
+
+/* ---------- Articles ---------- */
+.art-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px}
+.art-list{margin-top:36px;border-top:2px solid var(--ink)}
+.art{display:grid;grid-template-columns:120px 1fr auto;gap:28px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line);transition:padding .35s}
+.art:hover{padding-inline-start:12px}
+@media (max-width:760px){.art{grid-template-columns:1fr;gap:8px}}
+.art .big{font-family:var(--font-display);font-size:4.2rem;line-height:1;background:linear-gradient(160deg,var(--horizon),var(--deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.art .cat{font-size:.8rem;font-weight:800;color:var(--deep)}
+.art h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.4rem,1.1rem + .8vw,1.9rem);line-height:1.2;margin-top:4px}
+.art p{color:var(--ink-muted);margin-top:6px}
+.art .tag{margin-top:10px}
+.cats{margin-top:22px;color:var(--ink-muted);font-size:.92rem}
+
+/* ---------- Events ---------- */
+.ev-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;margin-top:44px}
+@media (max-width:960px){.ev-grid{grid-template-columns:1fr}}
+.ev-panel h3{font-family:var(--font-display);font-weight:400;font-size:1.8rem}
+.ev-panel>p{color:var(--ink-muted);margin-top:6px}
+.ev-card{display:grid;grid-template-columns:96px 1fr;gap:16px;margin-top:20px;padding:16px;border-radius:16px;border:1px dashed var(--line);background:var(--cream)}
+.ev-cal{display:grid;place-items:center;text-align:center;border-radius:12px;background:linear-gradient(160deg,var(--horizon),var(--low));color:#fff;font-size:.8rem;font-weight:700;padding:10px;line-height:1.3}
+.ev-card h4{font-family:var(--font-display);font-weight:400;font-size:1.3rem;margin-top:8px}
+.ev-card p{font-size:.9rem;color:var(--ink-muted)}
+.speak{border-radius:22px;padding:32px 28px;background:linear-gradient(160deg,var(--low),var(--mid) 60%,var(--top));color:var(--on-dark);display:flex;flex-direction:column;box-shadow:0 40px 70px -40px rgba(43,13,36,.7)}
+.speak h3{font-family:var(--font-display);font-weight:400;font-size:2.1rem;line-height:1.1}
+.speak p{color:var(--soft);margin-top:10px;flex:1}
+.speak .btn{margin-top:22px;align-self:flex-start}
+.speak :focus-visible{outline-color:var(--accent)}
+
+/* ---------- Quran ---------- */
+.quran-arch{position:relative;max-width:860px;margin-inline:auto;padding:clamp(60px,8vw,96px) clamp(24px,6vw,72px) clamp(40px,5vw,60px);border-radius:430px 430px 32px 32px;background:linear-gradient(180deg,var(--top),var(--mid) 60%,var(--low));color:var(--on-dark);text-align:center;overflow:hidden}
+.quran-arch::before{content:"";position:absolute;bottom:-50%;left:50%;width:90%;aspect-ratio:1;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(255,178,122,.5),transparent 70%)}
+.quran-arch>*{position:relative}
+.quran-arch h2{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:clamp(2rem,1.4rem + 2vw,3.2rem);line-height:1.15;margin-top:16px}
+:root[lang="ar"] .quran-arch h2{font-style:normal;line-height:1.45}
+.quran-arch p{color:var(--soft);margin-top:14px}
+.quran-arch .status{color:var(--on-dark);font-weight:700}
+.quran-arch .tag{background:rgba(255,255,255,.14);color:var(--on-dark)}
+.quran-arch :focus-visible{outline-color:var(--accent)}
+@media (max-width:600px){.quran-arch{border-radius:200px 200px 24px 24px}}
+
+/* ---------- Resources ---------- */
+.res-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
+@media (max-width:900px){.res-grid{grid-template-columns:1fr}}
+.res h3{font-family:var(--font-display);font-weight:400;font-size:1.45rem;margin-top:14px}
+.res p{color:var(--ink-muted);font-size:.95rem;margin-top:4px}
+.res-ico{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(150deg,var(--horizon),var(--low));color:#fff;transform:translateZ(30px)}
+.res-ico svg{width:24px;height:24px}
+.res-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px}
+
+/* ---------- Contact / newsletter / footer ---------- */
+.contact{background:var(--cream2)}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px}
+@media (max-width:960px){.contact-grid{grid-template-columns:1fr;gap:36px}}
+.expect{margin-top:20px;padding:14px 18px;border-radius:14px;background:#fff;font-size:.95rem;color:var(--ink-muted)}
+.form-card{padding:clamp(20px,3vw,36px)}
+.enquiry-form .btn{background:var(--ink);color:var(--cream)}
+.nl{position:relative;overflow:hidden;padding-block:64px}
+.nl-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media (max-width:900px){.nl-grid{grid-template-columns:1fr;gap:24px}}
+.nl h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.7rem,1.3rem + 1.2vw,2.4rem);line-height:1.2;margin-top:10px}
+.nl-label{display:block;font-weight:700;margin-bottom:8px}
+.nl-row input{min-height:54px;padding:10px 16px;border-radius:12px;border:1px solid var(--line-d2);background:rgba(36,9,44,.35);color:var(--on-dark)}
+.nl-row input::placeholder{color:#e2bfc6}
+.nl-row input[aria-invalid="true"]{border:2px solid #ffd0c4}
+:root[dir="rtl"] .nl-row input{text-align:right}
+.nl-row .btn{min-height:54px}
+.nl .f-err{color:#ffe0d6}
+.nl .form-status.is-ok{color:#d4ffe3}
+.nl-note,.social{font-size:.88rem;color:var(--soft);margin-top:10px}
+.footer{background:#160519;color:var(--soft);padding-block:60px 30px;font-size:.96rem}
+.footer a,.footer .link-btn{color:var(--on-dark);text-decoration:none}
+.footer a:hover,.footer .link-btn:hover{color:var(--accent)}
+.footer :focus-visible{outline-color:var(--accent)}
+.ft-grid{display:grid;grid-template-columns:4fr 2fr 3fr 3fr;gap:32px}
+@media (max-width:900px){.ft-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.ft-grid{grid-template-columns:1fr}}
+.ft-name{font-family:var(--font-display);font-size:1.8rem;color:var(--on-dark)}
+.ft-mission{margin-top:10px;max-width:38ch}
+.ft-h{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.ft-list li+li{margin-top:8px}
+.ft-bottom{margin-top:44px;padding-top:20px;border-top:1px solid var(--line-d);display:grid;gap:8px;font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="progress" data-progress aria-hidden="true"></div>
+<a class="skip" href="#main" data-i18n="skip">Skip to main content</a>
+<p class="proto-banner" data-i18n="proto.banner">Prototype homepage for review.</p>
+
+<header class="site-head" id="top">
+  <div class="wrap head-row">
+    <a class="brand" href="#top"><b data-i18n="name.short">Mohammad Inam Ul Haq</b><small data-i18n="cC.imamLine">Imam · Calgary</small></a>
+    <nav class="nav" id="site-nav" data-i18n-aria="nav.primary" aria-label="Primary navigation">
+      <ul class="nav-list">
+        <li><a href="#top" data-i18n="nav.home">Home</a></li>
+<li><a href="#about" data-i18n="nav.about">About</a></li>
+<li><a href="#learn" data-i18n="nav.learn">Learn Arabic</a></li>
+<li><a href="#lectures" data-i18n="nav.lectures">Lectures</a></li>
+<li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
+<li><a href="#books" data-i18n="nav.books">Books</a></li>
+<li><a href="#events" data-i18n="nav.events">Events</a></li>
+<li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+
+        <li class="dropdown" data-dropdown>
+          <button type="button" class="more-btn" data-dropdown-toggle aria-expanded="false" aria-controls="more-menu"><span data-i18n="nav.more">More</span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="more-menu" id="more-menu" hidden><li><a href="#resources" data-i18n="nav.resources">Resources &amp; Downloads</a></li>
+<li><a href="#quran" data-i18n="nav.quran">Quran Translation Initiative — Future Vision</a></li>
+<li><button type="button" class="link-btn" data-modal="media" data-i18n="nav.media">Media &amp; Interviews</button></li>
+<li><a href="#newsletter" data-focus="#n-email" data-i18n="nav.newsletter">Newsletter</a></li>
+</ul>
+        </li>
+      </ul>
+      <div class="nav-extra"><button type="button" class="btn btn-sun" data-enquiry="speaking" data-i18n="nav.invite">Invite to Speak</button></div>
+    </nav>
+    <div class="tools">
+      <button type="button" class="pill-btn" data-lang-toggle lang="ar">العربية</button>
+      <button type="button" class="btn btn-sun btn-invite" data-enquiry="speaking" data-i18n="nav.invite">Invite to Speak</button>
+      <button type="button" class="pill-btn menu-btn" data-menu-toggle aria-controls="site-nav" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span data-menu-label data-i18n="nav.menu">Menu</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="stars" aria-hidden="true"></div>
+    <div class="sun" data-parallax="-0.15" aria-hidden="true"></div>
+    <svg class="dunes" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160 C 240 110, 420 150, 640 120 S 1040 70, 1440 130 L1440 220 L0 220 Z" fill="#3A0F30" opacity=".45"/><path d="M0 190 C 300 150, 560 200, 860 165 S 1260 140, 1440 175 L1440 220 L0 220 Z" fill="#24092C" opacity=".55"/></svg>
+    <div class="wrap hero-in">
+      <p class="eyebrow" data-reveal data-i18n="cC.eyebrow">Lectures · Arabic learning · Articles · Books</p>
+      <h1 id="hero-title" data-reveal style="--d:.1s"><span data-i18n="cC.h1a">Approximately three decades of teaching,</span> <em data-i18n="cC.h1b">gathered in one place.</em></h1>
+      <p class="lede" data-reveal style="--d:.2s" data-i18n="cC.lede"></p>
+      <form class="hsearch" role="search" data-search-forward data-reveal style="--d:.3s">
+        <label for="hero-q" class="sr-only" data-i18n="arc.label">Search lectures, articles, and resources</label>
+        <div class="hsearch-row">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input id="hero-q" type="search" autocomplete="off" data-i18n-ph="arc.ph" placeholder="Try “Arabic”">
+          <button type="submit" class="btn btn-ink" data-i18n="arc.submit">Search</button>
+        </div>
+        <div class="hchips" role="group" data-i18n-aria="arc.type" aria-label="Content type">
+          <button type="button" class="hchip" data-type-jump="video" data-i18n="typeS.video">Video</button>
+          <button type="button" class="hchip" data-type-jump="audio" data-i18n="typeS.audio">Audio</button>
+          <button type="button" class="hchip" data-type-jump="article" data-i18n="typeS.article">Articles</button>
+          <button type="button" class="hchip" data-type-jump="event" data-i18n="typeS.event">Event recordings</button>
+          <button type="button" class="hchip" data-type-jump="download" data-i18n="typeS.download">Downloads</button>
+        </div>
+      </form>
+      <div class="actions" data-reveal style="--d:.35s;justify-content:center">
+        <a class="btn btn-sun" href="#archive" data-i18n="cta.lectures">Explore Lectures</a>
+        <a class="btn btn-ghost" href="#learn" data-i18n="cta.learn">Learn Arabic</a>
+      </div>
+      <div class="fan" data-reveal="flip" style="--d:.45s">
+        <a class="fan-card" href="#about">
+          <figure class="fan-ph ph-frame" data-asset="assets/portrait.jpg" data-asset-alt="portrait.alt"><svg width="34" height="34" viewBox="0 0 100 120" aria-hidden="true" style="opacity:.55"><circle cx="50" cy="38" r="21" fill="none" stroke="currentColor" stroke-width="4"/><path d="M13 118c4-25 19-39 37-39s33 14 37 39" fill="none" stroke="currentColor" stroke-width="4"/></svg><figcaption class="ph" data-i18n="portrait.ph"></figcaption></figure>
+          <span><small data-i18n="about.kicker">About the Imam</small><b data-i18n="name.full">Imam Mohammad Inam Ul Haq</b><span data-i18n="portrait.ph"></span></span>
+        </a>
+        <a class="fan-card" href="#books">
+          <span class="fan-mini" aria-hidden="true" lang="en">Arabic Made Easy</span>
+          <span><small data-i18n="cC.pub">Featured publication</small><b lang="en">Arabic Made Easy</b><span lang="en">Towards Understanding</span></span>
+        </a>
+        <a class="fan-card dash" href="#events">
+          <small data-i18n="nav.events">Events</small><b data-i18n="ev.none.t">New events will be announced here</b><span data-i18n="cC.inviteLine">Invite him to speak at your community</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="archive" aria-labelledby="archive-title">
+    <div class="wrap arc-shell">
+      <div class="arc-intro" data-reveal="left">
+        <p class="kicker" data-i18n="arc.kicker">Lecture &amp; media archive</p>
+        <h2 class="h2" id="archive-title" data-i18n="arc.title">Search the archive</h2>
+        <p class="lede" data-i18n="arc.lede"></p>
+        <p class="arc-note" data-i18n="arc.note"></p>
+        <div class="actions"><button type="button" class="btn btn-ink" data-modal="lectures" data-i18n="arc.full">Open the full archive</button></div>
+      </div>
+      <div data-reveal="right">
+        <form class="arc-search" role="search" id="arc-form">
+  <label for="arc-q" class="arc-q-label" data-i18n="arc.label">Search lectures, articles, and resources</label>
+  <div class="arc-q-row">
+    <svg class="arc-q-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <input id="arc-q" name="q" type="search" autocomplete="off" data-i18n-ph="arc.ph" placeholder="Try “Arabic”, “Quran” or “قرآن”">
+  </div>
+</form>
+<div class="arc-filters">
+  <div class="arc-types" role="group" aria-labelledby="arc-type-label">
+    <span id="arc-type-label" class="arc-filter-label" data-i18n="arc.type">Content type</span>
+    <div class="arc-type-btns">
+      <button type="button" class="chip" data-arc-type="" aria-pressed="true" data-i18n="arc.all">All</button>
+      <button type="button" class="chip" data-arc-type="video" aria-pressed="false" data-i18n="typeS.video">Video</button>
+      <button type="button" class="chip" data-arc-type="audio" aria-pressed="false" data-i18n="typeS.audio">Audio</button>
+      <button type="button" class="chip" data-arc-type="article" aria-pressed="false" data-i18n="typeS.article">Articles</button>
+      <button type="button" class="chip" data-arc-type="event" aria-pressed="false" data-i18n="typeS.event">Event recordings</button>
+      <button type="button" class="chip" data-arc-type="download" aria-pressed="false" data-i18n="typeS.download">Downloads</button>
+    </div>
+  </div>
+  <div class="arc-topic-wrap">
+    <label for="arc-topic" class="arc-filter-label" data-i18n="arc.topic">Topic</label>
+    <select id="arc-topic" name="topic">
+      <option value="" data-i18n="arc.alltopics">All topics</option>
+      <option value="arabic" data-i18n="topic.arabic">Arabic learning</option>
+      <option value="quran" data-i18n="topic.quran">Quran reflections</option>
+      <option value="faith" data-i18n="topic.faith">Community &amp; faith</option>
+      <option value="resources" data-i18n="topic.resources">Learning resources</option>
+    </select>
+  </div>
+  <button type="button" id="arc-reset" class="arc-reset" data-i18n="arc.reset">Clear filters</button>
+</div>
+
+        <p id="arc-count" class="arc-count" aria-live="polite"></p>
+<ul id="arc-results" class="arc-list"></ul>
+<div id="arc-empty" class="arc-empty" hidden>
+  <p class="arc-empty-t" data-i18n="arc.empty.t">No matching records</p>
+  <p data-i18n="arc.empty.d">Try a different word, or clear the filters to see all sample records.</p>
+  <button type="button" class="btn btn-ghost" data-arc-reset data-i18n="arc.reset">Clear filters</button>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="sec about" id="about" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <div class="arch" data-reveal="scale">
+        <div data-tilt="6">
+          <figure class="arch-in ph-frame" data-asset="assets/portrait.jpg" data-asset-alt="portrait.alt">
+            <span class="sun-in" aria-hidden="true"></span>
+            <svg class="sil" viewBox="0 0 100 120" aria-hidden="true"><circle cx="50" cy="38" r="21" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 118c4-25 19-39 37-39s33 14 37 39" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <figcaption class="ph" data-i18n="portrait.ph"></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="about-body" data-reveal="right">
+        <p class="kicker" data-i18n="about.kicker">About the Imam</p>
+        <h2 class="h2" id="about-title" data-i18n="about.title"></h2>
+        <p class="lead" data-i18n="about.p2"></p>
+        <p class="t" data-i18n="about.p1"></p>
+        <dl class="facts">
+          <div><dt data-i18n="fact.1.k"></dt><dd data-i18n="fact.1.v"></dd></div>
+          <div><dt data-i18n="fact.2.k"></dt><dd data-i18n="fact.2.v"></dd></div>
+          <div><dt data-i18n="fact.3.k"></dt><dd data-i18n="fact.3.v"></dd></div>
+        </dl>
+        <p class="note" data-i18n="about.note"></p>
+        <div class="actions"><button type="button" class="btn btn-ink" data-modal="about" data-i18n="about.more">About the Imam</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="pathways" aria-labelledby="paths-title">
+    <div class="wrap">
+      <div class="center"><p class="kicker" data-reveal data-i18n="path.kicker">Where to begin</p><h2 class="h2" id="paths-title" data-reveal data-i18n="cC.pathsTitle">Choose your starting point</h2></div>
+      <div class="p-track">
+        <a class="pcard" href="#learn" data-tilt="10" data-reveal="flip"><span class="n" aria-hidden="true">01</span><h3 data-i18n="path.1.t"></h3><p data-i18n="path.1.d"></p><span class="go"><span data-i18n="path.go">Explore</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pcard" href="#archive" data-tilt="10" data-reveal="flip" style="--d:.1s"><span class="n" aria-hidden="true">02</span><h3 data-i18n="path.2.t"></h3><p data-i18n="path.2.d"></p><span class="go"><span data-i18n="path.go">Explore</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pcard" href="#articles" data-tilt="10" data-reveal="flip" style="--d:.2s"><span class="n" aria-hidden="true">03</span><h3 data-i18n="path.3.t"></h3><p data-i18n="path.3.d"></p><span class="go"><span data-i18n="path.go">Explore</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="pcard" href="#books" data-tilt="10" data-reveal="flip" style="--d:.3s"><span class="n" aria-hidden="true">04</span><h3 data-i18n="path.4.t"></h3><p data-i18n="path.4.d"></p><span class="go"><span data-i18n="path.go">Explore</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec dusk" id="lectures" aria-labelledby="feat-title">
+    <div class="wrap feat-grid feat">
+      <div class="screen-wrap" data-reveal="left">
+        <div class="screen" role="img" data-i18n-aria="feat.thumb" aria-label="Thumbnail placeholder">
+          <span class="s-sun" aria-hidden="true"></span>
+          <span class="tag" aria-hidden="true" data-i18n="feat.sample">Sample content</span>
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg></span>
+        </div>
+      </div>
+      <div data-reveal="right">
+        <p class="kicker" data-i18n="feat.kicker">Featured lecture</p>
+        <h2 class="sr-only" data-i18n="nav.lectures">Lectures</h2>
+        <h3 id="feat-title" data-i18n="feat.title"></h3>
+        <p class="meta"><span><b data-i18n="feat.catLabel">Category</b>: <span data-i18n="feat.cat"></span></span><span><b data-i18n="feat.langLabel">Language</b>: <span data-i18n="feat.lang"></span></span></p>
+        <p class="lede" data-i18n="feat.desc"></p>
+        <div class="actions"><button type="button" class="btn btn-sun" data-modal="preview" data-i18n="feat.preview">Preview lecture</button><a class="link" href="#archive"><span data-i18n="feat.archive">Browse the lecture archive</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="learn" aria-labelledby="learn-title">
+    <div class="wrap">
+      <div class="center">
+        <p class="kicker" data-reveal data-i18n="learn.kicker">Learn Arabic</p>
+        <h2 class="h2" id="learn-title" data-reveal data-i18n="learn.title"></h2>
+        <p class="lede" data-reveal data-i18n="learn.lede"></p>
+        <p data-reveal style="margin-top:14px"><span class="tag" data-i18n="learn.flag"></span></p>
+      </div>
+      <ol class="stairs">
+        <li class="stair" data-reveal><span class="top" aria-hidden="true" data-i18n="cC.n1">1</span><div class="card" data-tilt="6"><p class="sn" data-i18n="step.1.n"></p><h3 data-i18n="step.1.t"></h3><p data-i18n="step.1.d"></p></div></li>
+        <li class="stair" data-reveal style="--d:.15s"><span class="top" aria-hidden="true" data-i18n="cC.n2">2</span><div class="card" data-tilt="6"><p class="sn" data-i18n="step.2.n"></p><h3 data-i18n="step.2.t"></h3><p data-i18n="step.2.d"></p></div></li>
+        <li class="stair" data-reveal style="--d:.3s"><span class="top" aria-hidden="true" data-i18n="cC.n3">3</span><div class="card" data-tilt="6"><p class="sn" data-i18n="step.3.n"></p><h3 data-i18n="step.3.t"></h3><p data-i18n="step.3.d"></p></div></li>
+      </ol>
+      <div class="actions" data-reveal style="justify-content:center"><button type="button" class="btn btn-ink" data-modal="learn" data-i18n="learn.cta">Explore Arabic Learning</button><button type="button" class="link" data-enquiry="arabic"><span data-i18n="learn.interest">Register Interest in Classes</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      <p class="learn-note center" data-i18n="learn.note"></p>
+    </div>
+  </section>
+
+  <section class="sec dusk book-sec" id="books" aria-labelledby="book-title">
+    <div class="wrap book-grid">
+      <div class="book-stage" data-reveal="scale"><div class="book3d">
+  <div class="book3d-inner">
+    <div class="b3-back" aria-hidden="true"></div>
+    <div class="b3-pages" aria-hidden="true"></div>
+    <div class="b3-spine" aria-hidden="true"></div>
+    <div class="b3-front ph-frame" data-asset="assets/arabic-made-easy-cover.jpg" data-asset-alt="book.alt">
+      <div class="ph">
+        <div aria-hidden="true"><p class="b3-t" lang="en">Arabic Made Easy</p><p class="b3-s" lang="en">Towards Understanding</p></div>
+        <div><p class="b3-c" data-i18n="book.by">Compiled by Mohammad Inam Ul Haq</p><p class="b3-ph" data-i18n="book.ph">Cover image to be supplied</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="book3d-shadow" aria-hidden="true"></div>
+</div>
+      <div data-reveal="right">
+        <p class="kicker" data-i18n="book.kicker">Books &amp; publications</p>
+        <h2 class="book-title" id="book-title" lang="en" data-i18n="book.title">Arabic Made Easy</h2>
+        <p class="book-sub" lang="en" data-i18n="book.sub">Towards Understanding</p>
+        <p class="book-by" data-i18n="book.by"></p>
+        <blockquote class="quote"><p data-i18n="book.quote"></p><footer data-i18n="book.coverline"></footer></blockquote>
+        <p class="lede" data-i18n="book.desc"></p>
+        <div class="actions"><button type="button" class="btn btn-sun" data-modal="book" data-i18n="book.details">View Book Details</button><button type="button" class="link" data-enquiry="book"><span data-i18n="book.enquire">Enquire About Availability</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="articles" aria-labelledby="articles-title">
+    <div class="wrap">
+      <div class="art-head" data-reveal>
+        <div><p class="kicker" data-i18n="art.kicker">Articles &amp; reflections</p><h2 class="h2" id="articles-title" data-i18n="art.title"></h2></div>
+        <button type="button" class="link" data-modal="articles"><span data-i18n="art.all">View all articles</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="art-list">
+        <article class="art" data-reveal><span class="big" aria-hidden="true">01</span><div><p class="cat" data-i18n="topic.arabic"></p><h3 data-i18n="art.1.t"></h3><p data-i18n="art.1.d"></p><span class="tag" data-i18n="art.sample"></span></div><button type="button" class="link" data-modal="article" data-modal-heading="art.1.t"><span data-i18n="art.read">Read article</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></article>
+        <article class="art" data-reveal style="--d:.1s"><span class="big" aria-hidden="true">02</span><div><p class="cat" data-i18n="topic.resources"></p><h3 data-i18n="art.2.t"></h3><p data-i18n="art.2.d"></p><span class="tag" data-i18n="art.sample"></span></div><button type="button" class="link" data-modal="article" data-modal-heading="art.2.t"><span data-i18n="art.read">Read article</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></article>
+        <article class="art" data-reveal style="--d:.2s"><span class="big" aria-hidden="true">03</span><div><p class="cat" data-i18n="topic.quran"></p><h3 data-i18n="art.3.t"></h3><p data-i18n="art.3.d"></p><span class="tag" data-i18n="art.sample"></span></div><button type="button" class="link" data-modal="article" data-modal-heading="art.3.t"><span data-i18n="art.read">Read article</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></article>
+      </div>
+      <p class="cats" data-i18n="art.lede"></p>
+    </div>
+  </section>
+
+  <section class="sec" id="events" aria-labelledby="events-title" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker" data-reveal data-i18n="ev.kicker">Events &amp; speaking</p>
+      <h2 class="h2" id="events-title" data-reveal data-i18n="ev.title"></h2>
+      <div class="ev-grid">
+        <div class="card ev-panel" data-reveal="left">
+          <h3 data-i18n="ev.none.t"></h3>
+          <p data-i18n="ev.none.d"></p>
+          <div class="ev-card"><div class="ev-cal" data-i18n="ev.s.date"></div><div><span class="tag" data-i18n="ev.sample"></span><h4 data-i18n="ev.s.t"></h4><p data-i18n="ev.s.format"></p><p data-i18n="ev.s.place"></p></div></div>
+          <div class="actions"><button type="button" class="btn btn-ghost" data-modal="events" data-i18n="ev.view">View Events</button><button type="button" class="link" data-modal="past"><span data-i18n="ev.past">Explore Past Events</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+        </div>
+        <aside class="speak" data-tilt="5" data-reveal="right" aria-labelledby="speak-title">
+          <h3 id="speak-title" data-i18n="ev.speak.t"></h3>
+          <p data-i18n="ev.speak.d"></p>
+          <button type="button" class="btn btn-sun" data-enquiry="speaking" data-i18n="ev.invite">Invite Imam Mohammad Inam Ul Haq</button>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="quran" aria-labelledby="quran-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="quran-arch" data-reveal="scale">
+        <span class="tag" data-i18n="qt.label">Future initiative</span>
+        <h2 id="quran-title" data-i18n="qt.title"></h2>
+        <p data-i18n="qt.desc"></p>
+        <p class="status" data-i18n="qt.status"></p>
+        <div class="actions" style="justify-content:center"><button type="button" class="btn btn-sun" data-modal="quran" data-i18n="qt.cta">About the initiative</button><a class="link" href="#newsletter" data-focus="#n-email"><span data-i18n="qt.follow">Request updates</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="resources" aria-labelledby="res-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="res-head" data-reveal>
+        <div><p class="kicker" data-i18n="res.kicker">Resources &amp; downloads</p><h2 class="h2" id="res-title" data-i18n="res.title"></h2></div>
+        <span class="tag" data-i18n="res.flag"></span>
+      </div>
+      <ul class="res-grid">
+        <li class="card res" data-tilt="7" data-reveal><span class="res-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h8l4 4v13H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 12h6M9 15h6" stroke="currentColor" stroke-width="1.5"/></svg></span><h3 data-i18n="res.1.t"></h3><p data-i18n="res.1.d"></p></li>
+        <li class="card res" data-tilt="7" data-reveal style="--d:.12s"><span class="res-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.5h14v15H5z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 9h8M8 12h8M8 15h5" stroke="currentColor" stroke-width="1.5"/></svg></span><h3 data-i18n="res.2.t"></h3><p data-i18n="res.2.d"></p></li>
+        <li class="card res" data-tilt="7" data-reveal style="--d:.24s"><span class="res-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6c3-1.5 5.5-1.5 8 0v13c-2.5-1.5-5-1.5-8 0zM20 6c-3-1.5-5.5-1.5-8 0v13c2.5-1.5 5-1.5 8 0z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><h3 data-i18n="res.3.t"></h3><p data-i18n="res.3.d"></p></li>
+      </ul>
+      <div class="actions"><button type="button" class="btn btn-ink" data-modal="resources" data-i18n="res.explore">Explore Resources</button><a class="link" href="#newsletter" data-focus="#n-email"><span data-i18n="res.updates">Request Updates</span><svg class="icon-dir" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact-grid">
+      <div data-reveal="left"><p class="kicker" data-i18n="ct.kicker">Contact</p><h2 class="h2" id="contact-title" data-i18n="ct.title"></h2><p class="lede" data-i18n="ct.lede"></p><p class="expect" data-i18n="ct.expect"></p></div>
+      <div class="card form-card" data-reveal="right"><form id="enquiry-form" class="enquiry-form" novalidate>
+  <div class="f-row">
+    <div class="field">
+      <label for="f-name" data-i18n="f.name">Name</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+      <p class="f-err" id="f-name-err"></p>
+    </div>
+    <div class="field">
+      <label for="f-email" data-i18n="f.email">Email</label>
+      <input id="f-email" name="email" type="email" dir="ltr" inputmode="email" autocomplete="email" placeholder="name@example.com" required aria-describedby="f-email-err">
+      <p class="f-err" id="f-email-err"></p>
+    </div>
+  </div>
+  <div class="field">
+    <label for="f-type" data-i18n="f.type">Enquiry type</label>
+    <select id="f-type" name="type" required aria-describedby="f-type-err">
+      <option value="" data-i18n="f.choose">Select an option</option>
+      <option value="general" data-i18n="f.t.general">General enquiry</option>
+      <option value="arabic" data-i18n="f.t.arabic">Arabic learning</option>
+      <option value="book" data-i18n="f.t.book">Book availability</option>
+      <option value="speaking" data-i18n="f.t.speaking">Speaking invitation</option>
+      <option value="media" data-i18n="f.t.media">Media enquiry</option>
+    </select>
+    <p class="f-err" id="f-type-err"></p>
+  </div>
+  <fieldset id="f-speaking" hidden>
+    <legend data-i18n="f.speak.legend">Speaking invitation details</legend>
+    <div class="field">
+      <label for="f-org" data-i18n="f.org">Organisation</label>
+      <input id="f-org" name="organisation" type="text" autocomplete="organization" aria-describedby="f-org-err">
+      <p class="f-err" id="f-org-err"></p>
+    </div>
+    <div class="f-row">
+      <div class="field">
+        <label for="f-date" data-i18n="f.date">Proposed date (optional)</label>
+        <input id="f-date" name="date" type="date">
+      </div>
+      <div class="field">
+        <label for="f-format" data-i18n="f.format">Format</label>
+        <select id="f-format" name="format">
+          <option value="tbd" data-i18n="f.fmt.tbd">To be discussed</option>
+          <option value="in-person" data-i18n="f.fmt.inperson">In person</option>
+          <option value="online" data-i18n="f.fmt.online">Online</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="f-location" data-i18n="f.location">Location or online platform (optional)</label>
+      <input id="f-location" name="location" type="text">
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="f-msg" data-i18n="f.msg">Message</label>
+    <textarea id="f-msg" name="message" rows="5" required aria-describedby="f-msg-err"></textarea>
+    <p class="f-err" id="f-msg-err"></p>
+  </div>
+  <button type="submit" class="btn btn-primary f-submit" data-i18n="f.submit">Send enquiry</button>
+  <p class="form-status" id="enquiry-status" role="status" tabindex="-1" hidden></p>
+</form>
+</div>
+    </div>
+  </section>
+
+  <section class="nl dusk" id="newsletter" aria-labelledby="nl-title">
+    <div class="wrap nl-grid">
+      <div data-reveal><p class="kicker" data-i18n="nl.kicker">Newsletter</p><h2 id="nl-title" data-i18n="nl.title"></h2><p class="social"><strong data-i18n="social.t">Official channels</strong>: <span data-i18n="social.d"></span></p></div>
+      <div data-reveal style="--d:.1s"><form class="nl-form" data-newsletter novalidate>
+  <label for="n-email" class="nl-label" data-i18n="nl.label">Email address</label>
+  <div class="nl-row">
+    <input id="n-email" name="email" type="email" dir="ltr" inputmode="email" autocomplete="email" placeholder="name@example.com" aria-describedby="n-email-err n-email-note">
+    <button type="submit" class="btn nl-submit" data-i18n="nl.submit">Subscribe</button>
+  </div>
+  <p class="f-err" id="n-email-err"></p>
+  <p class="nl-note" id="n-email-note" data-i18n="nl.privacy">Demo only — no email address is collected.</p>
+  <p class="form-status" data-nl-status role="status" tabindex="-1" hidden></p>
+</form>
+</div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div><p class="ft-name" data-i18n="name.full"></p><p class="ft-mission" data-i18n="ft.mission"></p><p style="margin-top:16px"><button type="button" class="pill-btn" data-lang-toggle lang="ar">العربية</button></p></div>
+      <nav data-i18n-aria="ft.pages" aria-label="Pages"><p class="ft-h" data-i18n="ft.pages">Pages</p><ul class="ft-list"><li><a href="#top" data-i18n="nav.home">Home</a></li>
+<li><a href="#about" data-i18n="nav.about">About</a></li>
+<li><a href="#learn" data-i18n="nav.learn">Learn Arabic</a></li>
+<li><a href="#lectures" data-i18n="nav.lectures">Lectures</a></li>
+<li><a href="#articles" data-i18n="nav.articles">Articles</a></li>
+<li><a href="#books" data-i18n="nav.books">Books</a></li>
+<li><a href="#events" data-i18n="nav.events">Events</a></li>
+<li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+</ul></nav>
+      <div><p class="ft-h" data-i18n="ft.more">More</p><ul class="ft-list"><li><a href="#resources" data-i18n="nav.resources">Resources &amp; Downloads</a></li>
+<li><a href="#quran" data-i18n="nav.quran">Quran Translation Initiative — Future Vision</a></li>
+<li><button type="button" class="link-btn" data-modal="media" data-i18n="nav.media">Media &amp; Interviews</button></li>
+<li><a href="#newsletter" data-focus="#n-email" data-i18n="nav.newsletter">Newsletter</a></li>
+</ul></div>
+      <div><p class="ft-h" data-i18n="ft.contact">Contact</p><p data-i18n="ft.contactd"></p><p style="margin-top:10px"><button type="button" class="link-btn" data-enquiry="speaking" data-i18n="nav.invite">Invite to Speak</button></p><p class="ft-h" style="margin-top:22px" data-i18n="ft.legal">Legal</p><ul class="ft-list"><li><button type="button" class="link-btn" data-modal="privacy" data-i18n="nav.privacy">Privacy Policy</button></li>
+<li><button type="button" class="link-btn" data-modal="terms" data-i18n="nav.terms">Terms of Use</button></li>
+<li><button type="button" class="link-btn" data-modal="a11y" data-i18n="nav.a11y">Accessibility</button></li>
+</ul></div>
+    </div>
+    <div class="ft-bottom"><p data-i18n="ft.disclosure"></p><p data-i18n="ft.copy"></p></div>
+  </div>
+</footer>
+
+<script>
+/* Shared content for all five homepage prototypes.
+   - dict: translation dictionary (English + draft Modern Standard Arabic, pending client review)
+   - archive: clearly marked SAMPLE records used to demonstrate search and filtering
+   - modals: descriptions of future inner pages and prototype notes
+   Concept files may override any dictionary key through window.CONCEPT.dict. */
+window.SITE = {
+  dict: {
+    en: {
+      'meta.title': 'Imam Mohammad Inam Ul Haq — Homepage prototype',
+      'name.full': 'Imam Mohammad Inam Ul Haq',
+      'name.short': 'Mohammad Inam Ul Haq',
+      'name.imam': 'Imam',
+      'proto.banner': 'Prototype homepage for review. Sample content is labelled, and nothing on this page is sent or stored.',
+      'skip': 'Skip to main content',
+
+      'nav.primary': 'Primary navigation',
+      'nav.home': 'Home',
+      'nav.about': 'About',
+      'nav.learn': 'Learn Arabic',
+      'nav.lectures': 'Lectures',
+      'nav.articles': 'Articles',
+      'nav.books': 'Books',
+      'nav.events': 'Events',
+      'nav.contact': 'Contact',
+      'nav.more': 'More',
+      'nav.invite': 'Invite to Speak',
+      'nav.search': 'Search the archive',
+      'nav.searchShort': 'Search',
+      'nav.menu': 'Menu',
+      'nav.close': 'Close',
+      'nav.resources': 'Resources & Downloads',
+      'nav.quran': 'Quran Translation Initiative — Future Vision',
+      'nav.quranShort': 'Quran Translation Initiative',
+      'nav.media': 'Media & Interviews',
+      'nav.newsletter': 'Newsletter',
+      'nav.privacy': 'Privacy Policy',
+      'nav.terms': 'Terms of Use',
+      'nav.a11y': 'Accessibility',
+
+      'lang.switch': 'العربية',
+      'lang.en': 'EN',
+      'lang.ar': 'العربية',
+      'lang.group': 'Language',
+
+      'hero.eyebrow': 'Imam · Calgary, Alberta',
+      'hero.title': 'Learn with clarity. Connect through understanding.',
+      'hero.lede': 'Lectures, Arabic learning, and resources from Imam Mohammad Inam Ul Haq, shaped by approximately three decades of teaching and lectures.',
+      'cta.lectures': 'Explore Lectures',
+      'cta.learn': 'Learn Arabic',
+      'cta.invite': 'Invite to Speak',
+      'portrait.ph': 'Portrait to be supplied',
+      'portrait.alt': 'Portrait of Imam Mohammad Inam Ul Haq',
+
+      'about.kicker': 'About the Imam',
+      'about.title': 'Imam Mohammad Inam Ul Haq',
+      'about.p1': 'Imam Mohammad Inam Ul Haq is an Imam associated with the Muslim Council of Calgary in Calgary, Alberta. Over approximately three decades he has delivered lectures in various countries, and he continues to teach at different venues today.',
+      'about.p2': 'A central aim of his work is helping people learn Arabic through a clear, structured, and approachable method, moving from reading the Quran towards understanding its language.',
+      'about.note': 'This is a personal website. It is not operated by the Muslim Council of Calgary.',
+      'about.more': 'About the Imam',
+      'fact.1.k': 'Teaching',
+      'fact.1.v': 'Approximately three decades of lectures',
+      'fact.2.k': 'Community',
+      'fact.2.v': 'Associated with the Muslim Council of Calgary',
+      'fact.3.k': 'Focus',
+      'fact.3.v': 'Arabic learning and Quran lectures',
+      'fact.4.k': 'Publication',
+      'fact.4.v': 'Arabic Made Easy — Towards Understanding',
+
+      'path.kicker': 'Where to begin',
+      'path.title': 'Four ways into his work',
+      'path.1.t': 'Learn Arabic',
+      'path.1.d': 'A proposed step-by-step path from reading the Quran to understanding its language.',
+      'path.2.t': 'Quran & Islamic lectures',
+      'path.2.d': 'Recorded lectures, audio, and event recordings gathered in one searchable archive.',
+      'path.3.t': 'Articles & reflections',
+      'path.3.d': 'Written pieces on Arabic learning, Quran study, and community life.',
+      'path.4.t': 'Books & resources',
+      'path.4.d': 'The published Arabic primer and proposed study materials.',
+      'path.go': 'Explore',
+
+      'feat.kicker': 'Featured lecture',
+      'feat.sample': 'Sample content',
+      'feat.title': 'From Reading to Understanding: An Introduction to Quranic Arabic',
+      'feat.cat': 'Arabic learning',
+      'feat.catLabel': 'Category',
+      'feat.langLabel': 'Language',
+      'feat.lang': 'To be confirmed',
+      'feat.desc': 'A placeholder showing how a featured lecture or series will be presented. No recording is attached to this prototype.',
+      'feat.preview': 'Preview lecture',
+      'feat.archive': 'Browse the lecture archive',
+      'feat.thumb': 'Thumbnail placeholder',
+
+      'arc.kicker': 'Lecture & media archive',
+      'arc.title': 'Search the archive',
+      'arc.lede': 'This website is intended to become the central index of his lectures, writing, and resources. The records below are samples that demonstrate search and filtering.',
+      'arc.label': 'Search lectures, articles, and resources',
+      'arc.ph': 'Try “Arabic”, “Quran” or “قرآن”',
+      'arc.type': 'Content type',
+      'arc.topic': 'Topic',
+      'arc.all': 'All',
+      'arc.alltopics': 'All topics',
+      'arc.reset': 'Clear filters',
+      'arc.count': '{n} sample records',
+      'arc.countOne': '1 sample record',
+      'arc.countOf': 'Showing {n} of {m} matching sample records',
+      'arc.empty.t': 'No matching records',
+      'arc.empty.d': 'Try a different word, or clear the filters to see all sample records.',
+      'arc.sample': 'Sample record',
+      'arc.full': 'Open the full archive',
+      'arc.note': 'Long-term preservation is planned around original-file storage and backups, not embedded videos alone.',
+      'arc.submit': 'Search',
+
+      'type.video': 'Video lecture',
+      'type.audio': 'Audio',
+      'type.article': 'Article',
+      'type.event': 'Event recording',
+      'type.download': 'Download',
+      'typeS.video': 'Video',
+      'typeS.audio': 'Audio',
+      'typeS.article': 'Articles',
+      'typeS.event': 'Event recordings',
+      'typeS.download': 'Downloads',
+      'topic.arabic': 'Arabic learning',
+      'topic.quran': 'Quran reflections',
+      'topic.faith': 'Community & faith',
+      'topic.resources': 'Learning resources',
+
+      'art.kicker': 'Articles & reflections',
+      'art.title': 'Writing for learners',
+      'art.lede': 'Planned categories: Arabic Learning, Quran Reflections, Community & Faith, and Learning Resources.',
+      'art.sample': 'Sample article concept',
+      'art.read': 'Read article',
+      'art.all': 'View all articles',
+      'art.1.t': 'From Reading Arabic to Understanding Its Meaning',
+      'art.1.d': 'How a learner might move from recognising letters to grasping the meaning of what they read.',
+      'art.2.t': 'Building a Consistent Arabic Learning Routine',
+      'art.2.d': 'Practical considerations for keeping a steady, manageable study habit.',
+      'art.3.t': 'Making Time for Quran Study',
+      'art.3.d': 'Ideas for setting aside regular, unhurried time for reading and reflection.',
+
+      'learn.kicker': 'Learn Arabic',
+      'learn.title': 'A clear, structured way into Arabic',
+      'learn.lede': 'An approach inspired by al-Qa’idah al-Nuraniyyah: a step-by-step path from reading the Quran to understanding its language.',
+      'learn.flag': 'Proposed pathway — illustrative stages, not a published curriculum',
+      'step.1.n': 'Step 1',
+      'step.2.n': 'Step 2',
+      'step.3.n': 'Step 3',
+      'step.1.t': 'Build familiarity',
+      'step.1.d': 'Become comfortable with Arabic letters, sounds, and reading.',
+      'step.2.t': 'Understand words and patterns',
+      'step.2.d': 'Recognise frequently used words and the patterns that shape them.',
+      'step.3.t': 'Practise comprehension step by step',
+      'step.3.d': 'Apply what you know to understand passages gradually.',
+      'learn.cta': 'Explore Arabic Learning',
+      'learn.interest': 'Register Interest in Classes',
+      'learn.note': 'Classes are not open for enrolment. Registering interest simply helps gauge demand.',
+
+      'book.kicker': 'Books & publications',
+      'book.title': 'Arabic Made Easy',
+      'book.sub': 'Towards Understanding',
+      'book.by': 'Compiled by Mohammad Inam Ul Haq',
+      'book.coverline': 'From the cover',
+      'book.quote': '“A step-by-step path from reading the Qur’an to understanding its language.”',
+      'book.desc': 'The approach described on the cover is inspired by al-Qa’idah al-Nuraniyyah.',
+      'book.details': 'View Book Details',
+      'book.enquire': 'Enquire About Availability',
+      'book.ph': 'Cover image to be supplied',
+      'book.alt': 'Cover of Arabic Made Easy — Towards Understanding',
+
+      'ev.kicker': 'Events & speaking',
+      'ev.title': 'Upcoming lectures and appearances',
+      'ev.none.t': 'New events will be announced here',
+      'ev.none.d': 'Upcoming lectures, in-person sessions, and online sessions will be listed once confirmed.',
+      'ev.sample': 'Sample event — layout only',
+      'ev.s.t': 'Community lecture',
+      'ev.s.date': 'Date to be announced',
+      'ev.s.place': 'Venue or online link to be announced',
+      'ev.s.format': 'In person or online',
+      'ev.view': 'View Events',
+      'ev.invite': 'Invite Imam Mohammad Inam Ul Haq',
+      'ev.past': 'Explore Past Events',
+      'ev.speak.t': 'Invite him to speak',
+      'ev.speak.d': 'Organisations, mosques, schools, and community groups can send a speaking invitation with a proposed date and format.',
+
+      'qt.label': 'Future initiative',
+      'qt.title': 'A future commitment to careful Quran translation.',
+      'qt.desc': 'A planned initiative focused on care, clarity, and quality in conveying the Quran’s meaning.',
+      'qt.status': 'Details and approach will be shared when confirmed.',
+      'qt.cta': 'About the initiative',
+      'qt.follow': 'Request updates',
+
+      'res.kicker': 'Resources & downloads',
+      'res.title': 'Study materials in preparation',
+      'res.flag': 'Proposed resources — not yet available to download',
+      'res.1.t': 'Arabic practice sheets',
+      'res.1.d': 'Printable practice for letters, sounds, and reading.',
+      'res.2.t': 'Lecture notes',
+      'res.2.d': 'Companion notes to accompany selected lectures.',
+      'res.3.t': 'Study guides',
+      'res.3.d': 'Structured guides for independent or group study.',
+      'res.explore': 'Explore Resources',
+      'res.updates': 'Request Updates',
+
+      'ct.kicker': 'Contact',
+      'ct.title': 'Get in touch or send an invitation',
+      'ct.lede': 'Use this form for general questions, Arabic learning, book availability, speaking invitations, or media enquiries.',
+      'ct.expect': 'Please allow time for a reply, and do not include sensitive personal information.',
+      'f.name': 'Name',
+      'f.email': 'Email',
+      'f.type': 'Enquiry type',
+      'f.choose': 'Select an option',
+      'f.t.general': 'General enquiry',
+      'f.t.arabic': 'Arabic learning',
+      'f.t.book': 'Book availability',
+      'f.t.speaking': 'Speaking invitation',
+      'f.t.media': 'Media enquiry',
+      'f.msg': 'Message',
+      'f.speak.legend': 'Speaking invitation details',
+      'f.org': 'Organisation',
+      'f.date': 'Proposed date (optional)',
+      'f.format': 'Format',
+      'f.fmt.tbd': 'To be discussed',
+      'f.fmt.inperson': 'In person',
+      'f.fmt.online': 'Online',
+      'f.location': 'Location or online platform (optional)',
+      'f.submit': 'Send enquiry',
+      'err.name': 'Please enter your name.',
+      'err.email': 'Please enter a valid email address.',
+      'err.type': 'Please choose an enquiry type.',
+      'err.msg': 'Please write a message of at least 10 characters.',
+      'err.org': 'Please enter the organisation’s name.',
+      'err.summary': 'Please correct the highlighted fields.',
+      'form.proto': 'This is a prototype. Your enquiry has not been sent.',
+
+      'nl.kicker': 'Newsletter',
+      'nl.title': 'Updates on lectures, articles, classes, events, and publications',
+      'nl.label': 'Email address',
+      'nl.submit': 'Subscribe',
+      'nl.proto': 'This is a prototype. You have not been subscribed.',
+      'nl.privacy': 'Demo only — no email address is collected.',
+      'social.t': 'Official channels',
+      'social.d': 'Official channels will be added here.',
+
+      'ft.mission': 'A personal archive of lectures, Arabic learning, writing, and resources, gathered in one place for students and communities.',
+      'ft.pages': 'Pages',
+      'ft.more': 'More',
+      'ft.legal': 'Legal',
+      'ft.contact': 'Contact',
+      'ft.contactd': 'Questions and speaking invitations can be sent through the enquiry form.',
+      'ft.disclosure': 'Prototype homepage for client review. Sample records, articles, and events are placeholders. Arabic text is a draft translation pending review. This personal website is not owned, operated, or endorsed by the Muslim Council of Calgary.',
+      'ft.copy': '© Mohammad Inam Ul Haq',
+      'ft.top': 'Back to top',
+
+      'modal.close': 'Close',
+      'modal.page': 'Future page',
+      'modal.note': 'Prototype note'
+    },
+
+    ar: {
+      'meta.title': 'الإمام محمد إنعام الحق — نموذج الصفحة الرئيسية',
+      'name.full': 'الإمام محمد إنعام الحق',
+      'name.short': 'محمد إنعام الحق',
+      'name.imam': 'الإمام',
+      'proto.banner': 'صفحة رئيسية تجريبية للمراجعة. المحتوى النموذجي مُعلَّم بوضوح، ولا يُرسَل أو يُحفَظ أي شيء من هذه الصفحة.',
+      'skip': 'انتقل إلى المحتوى الرئيسي',
+
+      'nav.primary': 'التنقل الرئيسي',
+      'nav.home': 'الرئيسية',
+      'nav.about': 'نبذة',
+      'nav.learn': 'تعلّم العربية',
+      'nav.lectures': 'المحاضرات',
+      'nav.articles': 'المقالات',
+      'nav.books': 'الكتب',
+      'nav.events': 'الفعاليات',
+      'nav.contact': 'تواصل',
+      'nav.more': 'المزيد',
+      'nav.invite': 'دعوة لإلقاء محاضرة',
+      'nav.search': 'ابحث في الأرشيف',
+      'nav.searchShort': 'بحث',
+      'nav.menu': 'القائمة',
+      'nav.close': 'إغلاق',
+      'nav.resources': 'الموارد والتنزيلات',
+      'nav.quran': 'مبادرة ترجمة معاني القرآن — رؤية مستقبلية',
+      'nav.quranShort': 'مبادرة ترجمة معاني القرآن',
+      'nav.media': 'الإعلام والمقابلات',
+      'nav.newsletter': 'النشرة البريدية',
+      'nav.privacy': 'سياسة الخصوصية',
+      'nav.terms': 'شروط الاستخدام',
+      'nav.a11y': 'إمكانية الوصول',
+
+      'lang.switch': 'English',
+      'lang.en': 'EN',
+      'lang.ar': 'العربية',
+      'lang.group': 'اللغة',
+
+      'hero.eyebrow': 'إمام · كالغاري، ألبرتا',
+      'hero.title': 'تعلَّم بوضوح، وتواصَل عن فهم.',
+      'hero.lede': 'محاضرات وتعليم للغة العربية وموارد من الإمام محمد إنعام الحق، ثمرة ما يقارب ثلاثة عقود من التدريس وإلقاء المحاضرات.',
+      'cta.lectures': 'استكشف المحاضرات',
+      'cta.learn': 'تعلّم العربية',
+      'cta.invite': 'دعوة لإلقاء محاضرة',
+      'portrait.ph': 'الصورة الشخصية تُضاف لاحقًا',
+      'portrait.alt': 'صورة الإمام محمد إنعام الحق',
+
+      'about.kicker': 'عن الإمام',
+      'about.title': 'الإمام محمد إنعام الحق',
+      'about.p1': 'الإمام محمد إنعام الحق إمامٌ مرتبط بمجلس مسلمي كالغاري في مدينة كالغاري بمقاطعة ألبرتا. ألقى على مدى ما يقارب ثلاثة عقود محاضراتٍ في بلدانٍ مختلفة، ولا يزال يُلقي دروسه اليوم في أماكن متعددة.',
+      'about.p2': 'ومن أبرز غايات عمله مساعدةُ الناس على تعلّم العربية بمنهجٍ واضحٍ ومتدرّجٍ وميسَّر، ينتقل بهم من قراءة القرآن إلى فهم لغته.',
+      'about.note': 'هذا موقع شخصي، ولا يديره مجلس مسلمي كالغاري.',
+      'about.more': 'عن الإمام',
+      'fact.1.k': 'التدريس',
+      'fact.1.v': 'ما يقارب ثلاثة عقود من المحاضرات',
+      'fact.2.k': 'المجتمع',
+      'fact.2.v': 'مرتبط بمجلس مسلمي كالغاري',
+      'fact.3.k': 'الاهتمام',
+      'fact.3.v': 'تعليم العربية ومحاضرات القرآن',
+      'fact.4.k': 'منشور',
+      'fact.4.v': 'Arabic Made Easy — Towards Understanding',
+
+      'path.kicker': 'من أين تبدأ',
+      'path.title': 'أربعة مداخل إلى أعماله',
+      'path.1.t': 'تعلّم العربية',
+      'path.1.d': 'مسارٌ متدرّج مقترح من قراءة القرآن إلى فهم لغته.',
+      'path.2.t': 'محاضرات القرآن والعلوم الإسلامية',
+      'path.2.d': 'محاضرات مسجّلة ومواد صوتية وتسجيلات فعاليات في أرشيف واحد قابل للبحث.',
+      'path.3.t': 'مقالات وتأملات',
+      'path.3.d': 'كتابات حول تعلّم العربية ودراسة القرآن والحياة المجتمعية.',
+      'path.4.t': 'الكتب والموارد',
+      'path.4.d': 'كتاب تعليم العربية المنشور ومواد دراسية مقترحة.',
+      'path.go': 'استكشف',
+
+      'feat.kicker': 'محاضرة مختارة',
+      'feat.sample': 'محتوى نموذجي',
+      'feat.title': 'من القراءة إلى الفهم: مدخل إلى عربية القرآن',
+      'feat.cat': 'تعلّم العربية',
+      'feat.catLabel': 'التصنيف',
+      'feat.langLabel': 'اللغة',
+      'feat.lang': 'تُحدَّد لاحقًا',
+      'feat.desc': 'عنصر مؤقت يوضّح طريقة عرض المحاضرة أو السلسلة المختارة. لا يتضمن هذا النموذج أي تسجيل.',
+      'feat.preview': 'معاينة المحاضرة',
+      'feat.archive': 'تصفّح أرشيف المحاضرات',
+      'feat.thumb': 'مكان مؤقت للصورة المصغّرة',
+
+      'arc.kicker': 'أرشيف المحاضرات والوسائط',
+      'arc.title': 'ابحث في الأرشيف',
+      'arc.lede': 'يُراد لهذا الموقع أن يكون الفهرس المركزي لمحاضراته وكتاباته وموارده. السجلات أدناه نماذج توضّح البحث والتصفية.',
+      'arc.label': 'ابحث في المحاضرات والمقالات والموارد',
+      'arc.ph': 'جرّب «العربية» أو «القرآن» أو Quran',
+      'arc.type': 'نوع المحتوى',
+      'arc.topic': 'الموضوع',
+      'arc.all': 'الكل',
+      'arc.alltopics': 'جميع الموضوعات',
+      'arc.reset': 'مسح عوامل التصفية',
+      'arc.count': 'عدد السجلات النموذجية: {n}',
+      'arc.countOne': 'سجل نموذجي واحد',
+      'arc.countOf': 'عرض {n} من أصل {m} من السجلات النموذجية المطابقة',
+      'arc.empty.t': 'لا توجد سجلات مطابقة',
+      'arc.empty.d': 'جرّب كلمة أخرى، أو امسح عوامل التصفية لعرض جميع السجلات النموذجية.',
+      'arc.sample': 'سجل نموذجي',
+      'arc.full': 'افتح الأرشيف الكامل',
+      'arc.note': 'يُخطَّط للحفظ طويل الأمد بالاعتماد على تخزين الملفات الأصلية ونسخها الاحتياطية، لا على مقاطع الفيديو المضمّنة وحدها.',
+      'arc.submit': 'بحث',
+
+      'type.video': 'محاضرة مرئية',
+      'type.audio': 'مادة صوتية',
+      'type.article': 'مقالة',
+      'type.event': 'تسجيل فعالية',
+      'type.download': 'ملف للتنزيل',
+      'typeS.video': 'مرئي',
+      'typeS.audio': 'صوتي',
+      'typeS.article': 'مقالات',
+      'typeS.event': 'تسجيلات الفعاليات',
+      'typeS.download': 'تنزيلات',
+      'topic.arabic': 'تعلّم العربية',
+      'topic.quran': 'تأملات قرآنية',
+      'topic.faith': 'المجتمع والإيمان',
+      'topic.resources': 'موارد تعليمية',
+
+      'art.kicker': 'مقالات وتأملات',
+      'art.title': 'كتابات للمتعلّمين',
+      'art.lede': 'التصنيفات المخطَّط لها: تعلّم العربية، وتأملات قرآنية، والمجتمع والإيمان، والموارد التعليمية.',
+      'art.sample': 'فكرة مقالة نموذجية',
+      'art.read': 'اقرأ المقالة',
+      'art.all': 'عرض جميع المقالات',
+      'art.1.t': 'من قراءة العربية إلى فهم معانيها',
+      'art.1.d': 'كيف ينتقل المتعلّم من التعرّف على الحروف إلى إدراك معنى ما يقرؤه.',
+      'art.2.t': 'بناء روتين منتظم لتعلّم العربية',
+      'art.2.d': 'اعتبارات عملية للمحافظة على عادة دراسية ثابتة وميسّرة.',
+      'art.3.t': 'تخصيص وقت لدراسة القرآن',
+      'art.3.d': 'أفكار لتخصيص وقت منتظم وهادئ للقراءة والتدبّر.',
+
+      'learn.kicker': 'تعلّم العربية',
+      'learn.title': 'مدخلٌ واضح ومتدرّج إلى العربية',
+      'learn.lede': 'منهجٌ مستوحى من القاعدة النورانية: مسارٌ متدرّج من قراءة القرآن إلى فهم لغته.',
+      'learn.flag': 'مسار مقترح — مراحل توضيحية وليست منهجًا منشورًا',
+      'step.1.n': 'الخطوة ١',
+      'step.2.n': 'الخطوة ٢',
+      'step.3.n': 'الخطوة ٣',
+      'step.1.t': 'بناء الألفة',
+      'step.1.d': 'الاعتياد على الحروف العربية وأصواتها وقراءتها.',
+      'step.2.t': 'فهم الكلمات والأوزان',
+      'step.2.d': 'التعرّف على الكلمات الأكثر تداولًا والأوزان التي تُبنى عليها.',
+      'step.3.t': 'التدرّب على الفهم خطوةً خطوة',
+      'step.3.d': 'توظيف ما تعلّمته لفهم النصوص بالتدريج.',
+      'learn.cta': 'استكشف تعلّم العربية',
+      'learn.interest': 'سجّل اهتمامك بالدروس',
+      'learn.note': 'الدروس غير مفتوحة للتسجيل حاليًا، وتسجيل الاهتمام يساعد فقط على تقدير الإقبال.',
+
+      'book.kicker': 'الكتب والمنشورات',
+      'book.title': 'Arabic Made Easy',
+      'book.sub': 'Towards Understanding',
+      'book.by': 'جمع وإعداد: محمد إنعام الحق',
+      'book.coverline': 'من الغلاف (ترجمة مبدئية)',
+      'book.quote': '«مسارٌ متدرّج من قراءة القرآن إلى فهم لغته.»',
+      'book.desc': 'المنهج الموصوف على الغلاف مستوحى من القاعدة النورانية.',
+      'book.details': 'عرض تفاصيل الكتاب',
+      'book.enquire': 'استفسر عن توفّر الكتاب',
+      'book.ph': 'صورة الغلاف تُضاف لاحقًا',
+      'book.alt': 'غلاف كتاب Arabic Made Easy — Towards Understanding',
+
+      'ev.kicker': 'الفعاليات والمحاضرات',
+      'ev.title': 'المحاضرات واللقاءات القادمة',
+      'ev.none.t': 'سيُعلَن عن الفعاليات الجديدة هنا',
+      'ev.none.d': 'ستُدرَج المحاضرات القادمة والجلسات الحضورية والجلسات عبر الإنترنت فور تأكيدها.',
+      'ev.sample': 'فعالية نموذجية — لعرض التصميم فقط',
+      'ev.s.t': 'محاضرة مجتمعية',
+      'ev.s.date': 'يُعلَن الموعد لاحقًا',
+      'ev.s.place': 'يُعلَن المكان أو رابط البث لاحقًا',
+      'ev.s.format': 'حضوري أو عبر الإنترنت',
+      'ev.view': 'عرض الفعاليات',
+      'ev.invite': 'ادعُ الإمام محمد إنعام الحق',
+      'ev.past': 'استكشف الفعاليات السابقة',
+      'ev.speak.t': 'ادعُه لإلقاء محاضرة',
+      'ev.speak.d': 'يمكن للمؤسسات والمساجد والمدارس والمجموعات المجتمعية إرسال دعوة لإلقاء محاضرة مع الموعد والصيغة المقترحين.',
+
+      'qt.label': 'مبادرة مستقبلية',
+      'qt.title': 'التزامٌ مستقبلي بترجمةٍ متأنّية لمعاني القرآن.',
+      'qt.desc': 'مبادرة مُخطَّط لها تُعنى بالعناية والوضوح والجودة في نقل معاني القرآن الكريم.',
+      'qt.status': 'ستُعلَن التفاصيل والمنهج عند تأكيدها.',
+      'qt.cta': 'عن المبادرة',
+      'qt.follow': 'اطلب التحديثات',
+
+      'res.kicker': 'الموارد والتنزيلات',
+      'res.title': 'مواد دراسية قيد الإعداد',
+      'res.flag': 'موارد مقترحة — غير متاحة للتنزيل بعد',
+      'res.1.t': 'أوراق تدريب على العربية',
+      'res.1.d': 'تمارين قابلة للطباعة للحروف والأصوات والقراءة.',
+      'res.2.t': 'ملاحظات المحاضرات',
+      'res.2.d': 'ملاحظات مرافقة لمحاضرات مختارة.',
+      'res.3.t': 'أدلة دراسية',
+      'res.3.d': 'أدلة منظّمة للدراسة الفردية أو الجماعية.',
+      'res.explore': 'استكشف الموارد',
+      'res.updates': 'اطلب التحديثات',
+
+      'ct.kicker': 'تواصل',
+      'ct.title': 'تواصَل معنا أو أرسل دعوة',
+      'ct.lede': 'استخدم هذا النموذج للأسئلة العامة، أو تعلّم العربية، أو توفّر الكتاب، أو دعوات المحاضرات، أو الاستفسارات الإعلامية.',
+      'ct.expect': 'يُرجى إتاحة بعض الوقت للرد، وعدم تضمين أي معلومات شخصية حساسة.',
+      'f.name': 'الاسم',
+      'f.email': 'البريد الإلكتروني',
+      'f.type': 'نوع الاستفسار',
+      'f.choose': 'اختر نوعًا',
+      'f.t.general': 'استفسار عام',
+      'f.t.arabic': 'تعلّم العربية',
+      'f.t.book': 'توفّر الكتاب',
+      'f.t.speaking': 'دعوة لإلقاء محاضرة',
+      'f.t.media': 'استفسار إعلامي',
+      'f.msg': 'الرسالة',
+      'f.speak.legend': 'تفاصيل دعوة المحاضرة',
+      'f.org': 'الجهة',
+      'f.date': 'الموعد المقترح (اختياري)',
+      'f.format': 'الصيغة',
+      'f.fmt.tbd': 'تُناقَش لاحقًا',
+      'f.fmt.inperson': 'حضوري',
+      'f.fmt.online': 'عبر الإنترنت',
+      'f.location': 'المكان أو منصة البث (اختياري)',
+      'f.submit': 'إرسال الاستفسار',
+      'err.name': 'يُرجى إدخال اسمك.',
+      'err.email': 'يُرجى إدخال بريد إلكتروني صحيح.',
+      'err.type': 'يُرجى اختيار نوع الاستفسار.',
+      'err.msg': 'يُرجى كتابة رسالة لا تقل عن عشرة أحرف.',
+      'err.org': 'يُرجى إدخال اسم الجهة.',
+      'err.summary': 'يُرجى تصحيح الحقول المشار إليها.',
+      'form.proto': 'هذه نسخة تجريبية. لم يُرسَل استفسارك.',
+
+      'nl.kicker': 'النشرة البريدية',
+      'nl.title': 'مستجدات المحاضرات والمقالات والدروس والفعاليات والمنشورات',
+      'nl.label': 'البريد الإلكتروني',
+      'nl.submit': 'اشترك',
+      'nl.proto': 'هذه نسخة تجريبية. لم يتم اشتراكك.',
+      'nl.privacy': 'للعرض فقط — لا يُجمَع أي بريد إلكتروني.',
+      'social.t': 'القنوات الرسمية',
+      'social.d': 'ستُضاف القنوات الرسمية هنا.',
+
+      'ft.mission': 'أرشيف شخصي للمحاضرات وتعليم العربية والكتابات والموارد، مجموعٌ في مكان واحد للطلاب والمجتمعات.',
+      'ft.pages': 'الصفحات',
+      'ft.more': 'المزيد',
+      'ft.legal': 'معلومات قانونية',
+      'ft.contact': 'تواصل',
+      'ft.contactd': 'يمكن إرسال الأسئلة ودعوات المحاضرات عبر نموذج الاستفسار.',
+      'ft.disclosure': 'صفحة رئيسية تجريبية لمراجعة العميل. السجلات والمقالات والفعاليات النموذجية عناصر مؤقتة، والنص العربي ترجمة مبدئية بانتظار المراجعة. هذا الموقع الشخصي ليس مملوكًا لمجلس مسلمي كالغاري، ولا يديره المجلس ولا يعتمده.',
+      'ft.copy': '© محمد إنعام الحق',
+      'ft.top': 'العودة إلى الأعلى',
+
+      'modal.close': 'إغلاق',
+      'modal.page': 'صفحة مستقبلية',
+      'modal.note': 'ملاحظة حول النموذج'
+    }
+  },
+
+  /* SAMPLE archive records — placeholders only, not real lectures or publications. */
+  archive: [
+    { id: 'r01', type: 'video', topic: 'arabic',
+      en: { t: 'Reading the Quran: First Steps with Arabic Letters', d: 'Sample record showing how an introductory video lecture would be catalogued.' },
+      ar: { t: 'قراءة القرآن: الخطوات الأولى مع الحروف العربية', d: 'سجل نموذجي يوضّح طريقة فهرسة محاضرة مرئية تمهيدية.' } },
+    { id: 'r02', type: 'video', topic: 'quran',
+      en: { t: 'Approaching the Quran with Reflection', d: 'Sample record for a lecture on reading with attention and reflection.' },
+      ar: { t: 'الإقبال على القرآن بالتدبّر', d: 'سجل نموذجي لمحاضرة حول القراءة بانتباه وتدبّر.' } },
+    { id: 'r03', type: 'audio', topic: 'faith',
+      en: { t: 'Faith and Community Life', d: 'Sample audio record from a community talk.' },
+      ar: { t: 'الإيمان والحياة المجتمعية', d: 'سجل صوتي نموذجي من كلمة مجتمعية.' } },
+    { id: 'r04', type: 'audio', topic: 'arabic',
+      en: { t: 'Common Word Patterns in Quranic Arabic', d: 'Sample audio record for a lesson on recognising patterns.' },
+      ar: { t: 'الأوزان الشائعة في عربية القرآن', d: 'سجل صوتي نموذجي لدرس حول التعرّف على الأوزان.' } },
+    { id: 'r05', type: 'article', topic: 'arabic',
+      en: { t: 'From Reading Arabic to Understanding Its Meaning', d: 'Sample article concept on moving from reading to comprehension.' },
+      ar: { t: 'من قراءة العربية إلى فهم معانيها', d: 'فكرة مقالة نموذجية حول الانتقال من القراءة إلى الفهم.' } },
+    { id: 'r06', type: 'article', topic: 'resources',
+      en: { t: 'Building a Consistent Arabic Learning Routine', d: 'Sample article concept on sustainable study habits.' },
+      ar: { t: 'بناء روتين منتظم لتعلّم العربية', d: 'فكرة مقالة نموذجية حول عادات الدراسة المستدامة.' } },
+    { id: 'r07', type: 'article', topic: 'quran',
+      en: { t: 'Making Time for Quran Study', d: 'Sample article concept on regular reading and reflection.' },
+      ar: { t: 'تخصيص وقت لدراسة القرآن', d: 'فكرة مقالة نموذجية حول القراءة والتدبّر بانتظام.' } },
+    { id: 'r08', type: 'event', topic: 'faith',
+      en: { t: 'Community Lecture Recording', d: 'Sample record showing how a recorded public lecture would appear.' },
+      ar: { t: 'تسجيل محاضرة مجتمعية', d: 'سجل نموذجي يوضّح طريقة ظهور محاضرة عامة مسجّلة.' } },
+    { id: 'r09', type: 'event', topic: 'quran',
+      en: { t: 'Evening Study Circle Recording', d: 'Sample record for a recorded study circle.' },
+      ar: { t: 'تسجيل حلقة دراسية مسائية', d: 'سجل نموذجي لحلقة دراسية مسجّلة.' } },
+    { id: 'r10', type: 'download', topic: 'arabic',
+      en: { t: 'Arabic Letter Practice Sheet (proposed)', d: 'Proposed resource. No file is available in this prototype.' },
+      ar: { t: 'ورقة تدريب على الحروف العربية (مقترحة)', d: 'مورد مقترح. لا يتوفر أي ملف في هذا النموذج.' } },
+    { id: 'r11', type: 'download', topic: 'resources',
+      en: { t: 'Lecture Notes Companion (proposed)', d: 'Proposed resource. No file is available in this prototype.' },
+      ar: { t: 'ملاحظات مرافقة للمحاضرات (مقترحة)', d: 'مورد مقترح. لا يتوفر أي ملف في هذا النموذج.' } },
+    { id: 'r12', type: 'download', topic: 'quran',
+      en: { t: 'Quran Study Guide (proposed)', d: 'Proposed resource. No file is available in this prototype.' },
+      ar: { t: 'دليل لدراسة القرآن (مقترح)', d: 'مورد مقترح. لا يتوفر أي ملف في هذا النموذج.' } },
+    { id: 'r13', type: 'video', topic: 'faith',
+      en: { t: 'Character and Everyday Faith', d: 'Sample record for a lecture on faith in daily life.' },
+      ar: { t: 'الأخلاق والإيمان في الحياة اليومية', d: 'سجل نموذجي لمحاضرة حول الإيمان في الحياة اليومية.' } }
+  ],
+
+  /* Future inner pages and prototype notes. kind: 'page' = future page, 'note' = prototype explanation. */
+  modals: {
+    about: { kind: 'page',
+      en: { t: 'About the Imam', b: ['This future page will present a fuller, client-approved biography, his teaching approach, and his public work.', 'Only details confirmed by the client will be published.'] },
+      ar: { t: 'عن الإمام', b: ['ستعرض هذه الصفحة المستقبلية سيرةً أوفى يعتمدها العميل، إلى جانب منهجه في التدريس وأعماله العامة.', 'لن يُنشَر إلا ما يؤكّده العميل من معلومات.'] } },
+    learn: { kind: 'page',
+      en: { t: 'Learn Arabic', b: ['This future page will explain the proposed step-by-step approach, connect it to the published book, and let visitors register interest.', 'No classes, fees, or certificates are offered at this stage.'] },
+      ar: { t: 'تعلّم العربية', b: ['ستشرح هذه الصفحة المستقبلية المنهج المتدرّج المقترح، وتربطه بالكتاب المنشور، وتتيح للزوار تسجيل اهتمامهم.', 'لا تُقدَّم في هذه المرحلة دروس أو رسوم أو شهادات.'] },
+      action: { label: 'learn.interest', enquiry: 'arabic' } },
+    lectures: { kind: 'page',
+      en: { t: 'Lecture & Media Archive', b: ['This future page will be the full searchable index of video lectures, audio, and event recordings.', 'The production plan includes preserving original files in long-term storage with backups, rather than relying on embedded videos alone.'] },
+      ar: { t: 'أرشيف المحاضرات والوسائط', b: ['ستكون هذه الصفحة المستقبلية الفهرس الكامل القابل للبحث للمحاضرات المرئية والمواد الصوتية وتسجيلات الفعاليات.', 'تتضمن خطة التنفيذ حفظ الملفات الأصلية في تخزين طويل الأمد مع نسخ احتياطية، بدل الاعتماد على مقاطع الفيديو المضمّنة وحدها.'] } },
+    articles: { kind: 'page',
+      en: { t: 'Articles & Reflections', b: ['This future page will list articles by category: Arabic Learning, Quran Reflections, Community & Faith, and Learning Resources.'] },
+      ar: { t: 'مقالات وتأملات', b: ['ستعرض هذه الصفحة المستقبلية المقالات حسب التصنيف: تعلّم العربية، وتأملات قرآنية، والمجتمع والإيمان، والموارد التعليمية.'] } },
+    books: { kind: 'page',
+      en: { t: 'Books & Publications', b: ['This future page will present Arabic Made Easy — Towards Understanding, and any further publications once confirmed by the client.'] },
+      ar: { t: 'الكتب والمنشورات', b: ['ستعرض هذه الصفحة المستقبلية كتاب Arabic Made Easy — Towards Understanding، وأي منشورات أخرى بعد أن يؤكّدها العميل.'] } },
+    book: { kind: 'page',
+      en: { t: 'Arabic Made Easy — Towards Understanding', b: ['Compiled by Mohammad Inam Ul Haq. The cover describes a step-by-step path from reading the Qur’an to understanding its language, with an approach inspired by al-Qa’idah al-Nuraniyyah.', 'Edition, format, and availability details will be added once the client confirms them.'] },
+      ar: { t: 'Arabic Made Easy — Towards Understanding', b: ['جمع وإعداد: محمد إنعام الحق. يصف الغلاف مسارًا متدرّجًا من قراءة القرآن إلى فهم لغته، بمنهج مستوحى من القاعدة النورانية.', 'ستُضاف تفاصيل الطبعة والصيغة والتوفّر بعد أن يؤكّدها العميل.'] },
+      action: { label: 'book.enquire', enquiry: 'book' } },
+    events: { kind: 'page',
+      en: { t: 'Events & Speaking', b: ['This future page will list confirmed lectures and sessions, both in person and online.', 'No events are confirmed in this prototype.'] },
+      ar: { t: 'الفعاليات والمحاضرات', b: ['ستعرض هذه الصفحة المستقبلية المحاضرات والجلسات المؤكّدة، الحضورية منها وعبر الإنترنت.', 'لا توجد فعاليات مؤكّدة في هذا النموذج.'] },
+      action: { label: 'cta.invite', enquiry: 'speaking' } },
+    past: { kind: 'page',
+      en: { t: 'Past Events', b: ['This future page will gather recordings and notes from past lectures and appearances as they are added to the archive.'] },
+      ar: { t: 'الفعاليات السابقة', b: ['ستجمع هذه الصفحة المستقبلية تسجيلات المحاضرات واللقاءات السابقة وملاحظاتها مع إضافتها إلى الأرشيف.'] } },
+    resources: { kind: 'page',
+      en: { t: 'Resources & Downloads', b: ['This future page will host study materials once they are prepared and approved.', 'No files are available to download in this prototype.'] },
+      ar: { t: 'الموارد والتنزيلات', b: ['ستستضيف هذه الصفحة المستقبلية المواد الدراسية بعد إعدادها واعتمادها.', 'لا تتوفر أي ملفات للتنزيل في هذا النموذج.'] } },
+    quran: { kind: 'page',
+      en: { t: 'Quran Translation Initiative — Future Vision', b: ['A planned initiative focused on care, clarity, and quality in conveying the Quran’s meaning.', 'Details and approach will be shared when confirmed. No translation samples are shown.'] },
+      ar: { t: 'مبادرة ترجمة معاني القرآن — رؤية مستقبلية', b: ['مبادرة مُخطَّط لها تُعنى بالعناية والوضوح والجودة في نقل معاني القرآن الكريم.', 'ستُعلَن التفاصيل والمنهج عند تأكيدها، ولا تُعرَض أي نماذج للترجمة.'] } },
+    media: { kind: 'page',
+      en: { t: 'Media & Interviews', b: ['This future page will collect interviews and media appearances once available, and offer a route for media enquiries.'] },
+      ar: { t: 'الإعلام والمقابلات', b: ['ستجمع هذه الصفحة المستقبلية المقابلات والظهور الإعلامي عند توفّرها، وتتيح وسيلة للاستفسارات الإعلامية.'] },
+      action: { label: 'f.t.media', enquiry: 'media' } },
+    privacy: { kind: 'page',
+      en: { t: 'Privacy Policy', b: ['A privacy policy will be prepared before launch, describing what information is collected through forms and how it is handled.'] },
+      ar: { t: 'سياسة الخصوصية', b: ['ستُعَدّ سياسة للخصوصية قبل الإطلاق، توضّح المعلومات التي تُجمَع عبر النماذج وكيفية التعامل معها.'] } },
+    terms: { kind: 'page',
+      en: { t: 'Terms of Use', b: ['Terms of use will be prepared before launch, including how lectures, articles, and resources may be shared.'] },
+      ar: { t: 'شروط الاستخدام', b: ['ستُعَدّ شروط الاستخدام قبل الإطلاق، بما في ذلك كيفية مشاركة المحاضرات والمقالات والموارد.'] } },
+    a11y: { kind: 'page',
+      en: { t: 'Accessibility', b: ['An accessibility statement will describe the standards the website aims to meet and how to report a barrier.'] },
+      ar: { t: 'إمكانية الوصول', b: ['سيوضّح بيان إمكانية الوصول المعايير التي يسعى الموقع إلى تحقيقها، وكيفية الإبلاغ عن أي عائق.'] } },
+    record: { kind: 'note',
+      en: { t: 'Archive record', b: ['In the full website, each record will have its own page with the recording or text, a description, topic, language, and related material.', 'This is a sample record. No media is attached.'] },
+      ar: { t: 'سجل الأرشيف', b: ['في الموقع الكامل، سيكون لكل سجل صفحته الخاصة التي تضم التسجيل أو النص، مع الوصف والموضوع واللغة والمواد ذات الصلة.', 'هذا سجل نموذجي، ولا تُرفَق به أي وسائط.'] } },
+    article: { kind: 'note',
+      en: { t: 'Sample article concept', b: ['This sample article concept demonstrates the layout only.', 'Its full text has not been written, reviewed, or endorsed by the Imam.'] },
+      ar: { t: 'فكرة مقالة نموذجية', b: ['تهدف فكرة المقالة النموذجية هذه إلى توضيح التصميم فقط.', 'لم يُكتَب نصها الكامل، ولم يراجعه الإمام أو يعتمده.'] } },
+    preview: { kind: 'note',
+      en: { t: 'Lecture preview', b: ['No recording is attached to this prototype.', 'In the full website, a player will load only when a visitor chooses to play it. Nothing plays automatically.'] },
+      ar: { t: 'معاينة المحاضرة', b: ['لا يتضمن هذا النموذج أي تسجيل.', 'في الموقع الكامل، لن يُحمَّل المشغّل إلا عندما يختار الزائر التشغيل، ولن يُشغَّل أي شيء تلقائيًا.'] } }
+  }
+};
+</script>
+<script>
+window.CONCEPT = {
+  archiveLimit: 5,
+  dict: {
+    en: {
+      'meta.title': 'Imam Mohammad Inam Ul Haq — Direction C: Desert Dusk',
+      'cC.imamLine': 'Imam · Calgary',
+      'cC.eyebrow': 'Lectures · Arabic learning · Articles · Books',
+      'cC.h1a': 'Approximately three decades of teaching,', 'cC.h1b': 'gathered in one place.',
+      'cC.lede': 'Search the lectures, articles, and learning resources of Imam Mohammad Inam Ul Haq, or start learning Arabic step by step.',
+      'cC.pub': 'Featured publication', 'cC.inviteLine': 'Invite him to speak at your community',
+      'cC.pathsTitle': 'Choose your starting point',
+      'cC.n1': '1', 'cC.n2': '2', 'cC.n3': '3'
+    },
+    ar: {
+      'meta.title': 'الإمام محمد إنعام الحق — الاتجاه C: غسق الصحراء',
+      'cC.imamLine': 'إمام · كالغاري',
+      'cC.eyebrow': 'محاضرات · تعلّم العربية · مقالات · كتب',
+      'cC.h1a': 'ما يقارب ثلاثة عقود من التدريس،', 'cC.h1b': 'مجموعة في مكان واحد.',
+      'cC.lede': 'ابحث في محاضرات الإمام محمد إنعام الحق ومقالاته وموارده التعليمية، أو ابدأ تعلّم العربية خطوةً خطوة.',
+      'cC.pub': 'منشور مختار', 'cC.inviteLine': 'ادعُه لإلقاء محاضرة في مجتمعك',
+      'cC.pathsTitle': 'اختر نقطة البداية',
+      'cC.n1': '١', 'cC.n2': '٢', 'cC.n3': '٣'
+    }
+  }
+};
+</script>
+<script>
+/* Shared prototype behaviour: language switching, navigation, modals, archive search, forms.
+   Vanilla JS, no dependencies. User input is only ever written with textContent / value. */
+(function () {
+  'use strict';
+
+  var SITE = window.SITE;
+  var C = window.CONCEPT || {};
+  var cdict = C.dict || {};
+  var dict = {
+    en: Object.assign({}, SITE.dict.en, cdict.en || {}),
+    ar: Object.assign({}, SITE.dict.ar, cdict.ar || {})
+  };
+  var root = document.documentElement;
+  var STORE_KEY = 'imih-proto-lang';
+  var lang = 'en';
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function num(n) { return Number(n).toLocaleString(lang === 'ar' ? 'ar' : 'en'); }
+  function t(key, vars) {
+    var s = dict[lang][key];
+    if (s == null) s = dict.en[key];
+    if (s == null) s = key;
+    if (vars) s = s.replace(/\{(\w+)\}/g, function (m, v) { return vars[v] != null ? vars[v] : m; });
+    return s;
+  }
+  function scrollToEl(target) {
+    if (!target) return;
+    target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  }
+  function focusSoon(node) {
+    if (!node) return;
+    window.setTimeout(function () { node.focus({ preventScroll: true }); }, reduceMotion ? 0 : 350);
+  }
+
+  /* ---------- Language ---------- */
+  function applyLang(next) {
+    lang = next === 'ar' ? 'ar' : 'en';
+    root.lang = lang;
+    root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    $$('[data-i18n]').forEach(function (n) { n.textContent = t(n.getAttribute('data-i18n')); });
+    $$('[data-i18n-ph]').forEach(function (n) { n.setAttribute('placeholder', t(n.getAttribute('data-i18n-ph'))); });
+    $$('[data-i18n-aria]').forEach(function (n) { n.setAttribute('aria-label', t(n.getAttribute('data-i18n-aria'))); });
+    $$('[data-i18n-alt]').forEach(function (n) { n.setAttribute('alt', t(n.getAttribute('data-i18n-alt'))); });
+    document.title = t('meta.title');
+    $$('[data-lang-toggle]').forEach(function (b) {
+      b.textContent = t('lang.switch');
+      b.setAttribute('lang', lang === 'en' ? 'ar' : 'en');
+    });
+    $$('[data-lang-set]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === lang));
+    });
+    $$('[data-err-key]').forEach(function (n) {
+      var k = n.getAttribute('data-err-key');
+      n.textContent = k ? t(k) : '';
+    });
+    $$('[data-status-key]').forEach(function (n) {
+      var k = n.getAttribute('data-status-key');
+      n.textContent = k ? t(k) : '';
+    });
+    renderArchive();
+    try { window.localStorage.setItem(STORE_KEY, lang); } catch (e) { /* storage unavailable: ignore */ }
+  }
+
+  function initialLang() {
+    var m = /[?&]lang=(en|ar)\b/.exec(window.location.search);
+    if (m) return m[1];
+    try { return window.localStorage.getItem(STORE_KEY) || 'en'; } catch (e) { return 'en'; }
+  }
+
+  /* ---------- Menus & dropdowns ---------- */
+  function setMenu(btn, panel, open, restoreFocus) {
+    btn.setAttribute('aria-expanded', String(open));
+    panel.classList.toggle('is-open', open);
+    document.body.classList.toggle('menu-open', open);
+    var label = $('[data-menu-label]', btn);
+    if (label) {
+      label.setAttribute('data-i18n', open ? 'nav.close' : 'nav.menu');
+      label.textContent = t(open ? 'nav.close' : 'nav.menu');
+    }
+    if (open) {
+      var first = $('a, button', panel);
+      if (first && panel.hasAttribute('data-menu-drawer')) focusSoon(first);
+    } else if (restoreFocus) {
+      btn.focus();
+    }
+  }
+  var menus = $$('[data-menu-toggle]').map(function (btn) {
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    btn.addEventListener('click', function () {
+      setMenu(btn, panel, btn.getAttribute('aria-expanded') !== 'true', false);
+    });
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest('a[href^="#"], [data-modal], [data-enquiry], [data-search-jump], [data-lang-toggle], [data-lang-set], [data-menu-close]')) {
+        setMenu(btn, panel, false, !!e.target.closest('[data-menu-close]'));
+      }
+    });
+    if (panel.hasAttribute('data-menu-drawer')) {
+      document.addEventListener('focusin', function (e) {
+        if (btn.getAttribute('aria-expanded') === 'true' && !panel.contains(e.target) && e.target !== btn) {
+          setMenu(btn, panel, false, false);
+        }
+      });
+    }
+    return { btn: btn, panel: panel };
+  });
+
+  function closeDropdowns(except) {
+    $$('[data-dropdown-toggle]').forEach(function (b) {
+      if (b === except) return;
+      b.setAttribute('aria-expanded', 'false');
+      var m = document.getElementById(b.getAttribute('aria-controls'));
+      if (m) m.hidden = true;
+    });
+  }
+  $$('[data-dropdown-toggle]').forEach(function (b) {
+    var m = document.getElementById(b.getAttribute('aria-controls'));
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = b.getAttribute('aria-expanded') !== 'true';
+      closeDropdowns(b);
+      b.setAttribute('aria-expanded', String(open));
+      m.hidden = !open;
+      if (open) { var f = $('a, button', m); if (f) f.focus(); }
+    });
+    m.addEventListener('click', function (e) {
+      if (e.target.closest('a, button')) { b.setAttribute('aria-expanded', 'false'); m.hidden = true; }
+    });
+    m.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      var items = $$('a, button', m);
+      var i = items.indexOf(document.activeElement);
+      e.preventDefault();
+      var next = e.key === 'ArrowDown' ? (i + 1) % items.length : (i - 1 + items.length) % items.length;
+      items[next].focus();
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('[data-dropdown]')) closeDropdowns();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    $$('[data-dropdown-toggle][aria-expanded="true"]').forEach(function (b) {
+      closeDropdowns(); b.focus();
+    });
+    menus.forEach(function (m) {
+      if (m.btn.getAttribute('aria-expanded') === 'true') setMenu(m.btn, m.panel, false, true);
+    });
+  });
+  window.addEventListener('focusin', function (e) {
+    $$('[data-dropdown]').forEach(function (d) {
+      if (!d.contains(e.target)) {
+        var b = $('[data-dropdown-toggle]', d);
+        if (b && b.getAttribute('aria-expanded') === 'true') closeDropdowns();
+      }
+    });
+  });
+
+  /* ---------- Modal (native dialog: focus containment + Escape) ---------- */
+  var dlg = null, lastTrigger = null;
+  /* A trigger inside a menu that has since closed is not focusable; fall back to the control that opened that menu. */
+  function resolveFocus(node) {
+    if (!node || !document.contains(node)) return null;
+    if (node.getClientRects().length) return node;
+    var dd = node.closest('[data-dropdown]');
+    var ddBtn = dd && $('[data-dropdown-toggle]', dd);
+    if (ddBtn && ddBtn.getClientRects().length) return ddBtn;
+    for (var i = 0; i < menus.length; i++) {
+      if (menus[i].panel.contains(node)) return menus[i].btn;
+    }
+    return null;
+  }
+  function buildDialog() {
+    dlg = el('dialog', 'pm');
+    dlg.setAttribute('aria-labelledby', 'pm-title');
+    dlg.setAttribute('aria-describedby', 'pm-body');
+    var inner = el('div', 'pm-inner');
+    var label = el('p', 'pm-label'); label.id = 'pm-label';
+    var title = el('h2', 'pm-title'); title.id = 'pm-title'; title.tabIndex = -1;
+    var body = el('div', 'pm-body'); body.id = 'pm-body';
+    var actions = el('div', 'pm-actions');
+    var action = el('button', 'pm-action'); action.type = 'button'; action.id = 'pm-action';
+    var close = el('button', 'pm-close'); close.type = 'button'; close.id = 'pm-close';
+    var x = el('button', 'pm-x'); x.type = 'button'; x.id = 'pm-x';
+    x.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>';
+    actions.appendChild(action); actions.appendChild(close);
+    inner.appendChild(x); inner.appendChild(label); inner.appendChild(title); inner.appendChild(body); inner.appendChild(actions);
+    dlg.appendChild(inner);
+    document.body.appendChild(dlg);
+    close.addEventListener('click', function () { dlg.close(); });
+    x.addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', function () {
+      document.body.classList.remove('modal-open');
+      var target = resolveFocus(lastTrigger);
+      if (target) target.focus();
+    });
+    action.addEventListener('click', function () {
+      var type = action.getAttribute('data-enquiry-target');
+      lastTrigger = null;
+      dlg.close();
+      presetEnquiry(type);
+    });
+  }
+  function openModal(key, trigger, headingOverride) {
+    var def = SITE.modals[key];
+    if (!def) return;
+    if (!dlg) buildDialog();
+    var c = def[lang] || def.en;
+    lastTrigger = trigger || null;
+    $('#pm-label').textContent = t(def.kind === 'page' ? 'modal.page' : 'modal.note');
+    $('#pm-title').textContent = headingOverride || c.t;
+    var body = $('#pm-body');
+    body.textContent = '';
+    c.b.forEach(function (p) { body.appendChild(el('p', null, p)); });
+    var action = $('#pm-action');
+    if (def.action) {
+      action.hidden = false;
+      action.textContent = t(def.action.label);
+      action.setAttribute('data-enquiry-target', def.action.enquiry);
+    } else {
+      action.hidden = true;
+    }
+    $('#pm-close').textContent = t('modal.close');
+    $('#pm-x').setAttribute('aria-label', t('modal.close'));
+    document.body.classList.add('modal-open');
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+    $('#pm-title').focus();
+  }
+
+  /* ---------- Archive ---------- */
+  var ICONS = {
+    video: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg>',
+    audio: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 14v-2a8 8 0 0116 0v2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3.5" y="13" width="4" height="6.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="16.5" y="13" width="4" height="6.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
+    article: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3.5h8l4 4v13H6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 11h6M9 14h6M9 17h4" stroke="currentColor" stroke-width="1.5"/></svg>',
+    event: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.5"/></svg>',
+    download: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4.5 19.5h15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  };
+  var TYPES = ['video', 'audio', 'article', 'event', 'download'];
+  var TOPICS = ['arabic', 'quran', 'faith', 'resources'];
+  var state = { q: '', type: '', topic: '' };
+
+  function norm(s) {
+    return String(s || '').toLowerCase()
+      .replace(/[ً-ٰٟـ]/g, '')
+      .replace(/[أإآٱ]/g, 'ا')
+      .replace(/ة/g, 'ه')
+      .replace(/ى/g, 'ي')
+      .replace(/[’'`‘]/g, '')
+      .replace(/\s+/g, ' ').trim();
+  }
+  var haystacks = {};
+  SITE.archive.forEach(function (it) {
+    haystacks[it.id] = norm([
+      it.en.t, it.ar.t, it.en.d, it.ar.d,
+      dict.en['type.' + it.type], dict.ar['type.' + it.type], dict.en['typeS.' + it.type], dict.ar['typeS.' + it.type],
+      dict.en['topic.' + it.topic], dict.ar['topic.' + it.topic]
+    ].join(' '));
+  });
+  function matches(it, ignoreType) {
+    if (!ignoreType && state.type && it.type !== state.type) return false;
+    if (state.topic && it.topic !== state.topic) return false;
+    var q = norm(state.q);
+    if (!q) return true;
+    var hay = haystacks[it.id];
+    return q.split(' ').every(function (tok) { return hay.indexOf(tok) !== -1; });
+  }
+  function buildItem(it) {
+    var li = el('li', 'arc-item arc-' + it.type);
+    var icon = el('span', 'arc-icon');
+    icon.innerHTML = ICONS[it.type];
+    var body = el('div', 'arc-body');
+    var meta = el('p', 'arc-meta');
+    meta.appendChild(el('span', 'arc-type', t('type.' + it.type)));
+    meta.appendChild(el('span', 'arc-topic', t('topic.' + it.topic)));
+    var h = el(C.archiveHeading || 'h3', 'arc-title');
+    var btn = el('button', 'arc-open', it[lang].t);
+    btn.type = 'button';
+    btn.setAttribute('data-modal', 'record');
+    btn.setAttribute('data-record', it.id);
+    h.appendChild(btn);
+    body.appendChild(meta);
+    body.appendChild(h);
+    body.appendChild(el('p', 'arc-desc', it[lang].d));
+    body.appendChild(el('p', 'arc-flag', t('arc.sample')));
+    li.appendChild(icon);
+    li.appendChild(body);
+    return li;
+  }
+  function renderArchive() {
+    var list = $('#arc-results');
+    if (!list) return;
+    var found = SITE.archive.filter(function (it) { return matches(it, false); });
+    var limit = C.archiveLimit || found.length;
+    list.textContent = '';
+    found.slice(0, limit).forEach(function (it) { list.appendChild(buildItem(it)); });
+    var count = $('#arc-count');
+    if (count) {
+      if (found.length > limit) count.textContent = t('arc.countOf', { n: num(limit), m: num(found.length) });
+      else if (found.length === 1) count.textContent = t('arc.countOne');
+      else count.textContent = t('arc.count', { n: num(found.length) });
+    }
+    var empty = $('#arc-empty');
+    if (empty) empty.hidden = found.length > 0;
+    list.hidden = found.length === 0;
+    $$('[data-arc-type]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-arc-type') === state.type));
+    });
+    $$('[data-arc-count-for]').forEach(function (n) {
+      var ty = n.getAttribute('data-arc-count-for');
+      var c = SITE.archive.filter(function (it) { return matches(it, true) && (!ty || it.type === ty); }).length;
+      n.textContent = num(c);
+    });
+    var topicSel = $('#arc-topic');
+    if (topicSel) topicSel.value = state.topic;
+    var reset = $('#arc-reset');
+    if (reset) reset.disabled = !(state.q || state.type || state.topic);
+  }
+  function initArchive() {
+    var q = $('#arc-q');
+    if (!q) return;
+    q.addEventListener('input', function () { state.q = q.value; renderArchive(); });
+    var form = q.form;
+    if (form) form.addEventListener('submit', function (e) { e.preventDefault(); state.q = q.value; renderArchive(); });
+    $$('[data-arc-type]').forEach(function (b) {
+      b.addEventListener('click', function () { state.type = b.getAttribute('data-arc-type'); renderArchive(); });
+    });
+    var topic = $('#arc-topic');
+    if (topic) topic.addEventListener('change', function () { state.topic = topic.value; renderArchive(); });
+    $$('#arc-reset, [data-arc-reset]').forEach(function (r) {
+      r.addEventListener('click', function () {
+        state = { q: '', type: '', topic: '' };
+        q.value = '';
+        renderArchive();
+        q.focus();
+      });
+    });
+  }
+  function jumpToArchive(focusSearch) {
+    scrollToEl($('#archive'));
+    if (focusSearch) focusSoon($('#arc-q'));
+  }
+
+  /* ---------- Forms ---------- */
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function setErr(field, key) {
+    var err = document.getElementById(field.id + '-err');
+    field.setAttribute('aria-invalid', key ? 'true' : 'false');
+    if (err) { err.setAttribute('data-err-key', key || ''); err.textContent = key ? t(key) : ''; }
+    var wrap = field.closest('.field');
+    if (wrap) wrap.classList.toggle('has-error', !!key);
+  }
+  function setStatus(node, key, kind) {
+    if (!node) return;
+    node.setAttribute('data-status-key', key || '');
+    node.textContent = key ? t(key) : '';
+    node.classList.toggle('is-error', kind === 'error');
+    node.classList.toggle('is-ok', kind === 'ok');
+    node.hidden = !key;
+  }
+  function syncSpeaking() {
+    var type = $('#f-type'), box = $('#f-speaking');
+    if (!type || !box) return;
+    var on = type.value === 'speaking';
+    box.hidden = !on;
+    $$('input, select', box).forEach(function (n) { n.disabled = !on; });
+    if (!on) setErr($('#f-org'), '');
+  }
+  function validateContact(field) {
+    var v = (field.value || '').trim();
+    switch (field.id) {
+      case 'f-name': return v.length >= 2 ? '' : 'err.name';
+      case 'f-email': return EMAIL_RE.test(v) ? '' : 'err.email';
+      case 'f-type': return v ? '' : 'err.type';
+      case 'f-msg': return v.length >= 10 ? '' : 'err.msg';
+      case 'f-org': return field.disabled || v.length >= 2 ? '' : 'err.org';
+      default: return '';
+    }
+  }
+  function initContact() {
+    var form = $('#enquiry-form');
+    if (!form) return;
+    var fields = ['f-name', 'f-email', 'f-type', 'f-msg', 'f-org'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    var status = $('#enquiry-status');
+    $('#f-type').addEventListener('change', syncSpeaking);
+    syncSpeaking();
+    fields.forEach(function (f) {
+      var ev = f.tagName === 'SELECT' ? 'change' : 'input';
+      f.addEventListener(ev, function () { if (f.getAttribute('aria-invalid') === 'true') setErr(f, validateContact(f)); });
+      f.addEventListener('blur', function () { if (form.classList.contains('was-submitted')) setErr(f, validateContact(f)); });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.classList.add('was-submitted');
+      var firstBad = null;
+      fields.forEach(function (f) {
+        var k = validateContact(f);
+        setErr(f, k);
+        if (k && !firstBad) firstBad = f;
+      });
+      if (firstBad) {
+        setStatus(status, 'err.summary', 'error');
+        firstBad.focus();
+        return;
+      }
+      form.reset();
+      form.classList.remove('was-submitted');
+      syncSpeaking();
+      setStatus(status, 'form.proto', 'ok');
+      status.focus();
+    });
+  }
+  function initNewsletter() {
+    $$('form[data-newsletter]').forEach(function (form) {
+      var input = $('input[type="email"]', form);
+      var status = $('[data-nl-status]', form);
+      input.addEventListener('input', function () { if (input.getAttribute('aria-invalid') === 'true') setErr(input, EMAIL_RE.test(input.value.trim()) ? '' : 'err.email'); });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!EMAIL_RE.test(input.value.trim())) {
+          setErr(input, 'err.email');
+          setStatus(status, '', null);
+          input.focus();
+          return;
+        }
+        setErr(input, '');
+        form.reset();
+        setStatus(status, 'nl.proto', 'ok');
+        status.focus();
+      });
+    });
+  }
+  function presetEnquiry(type) {
+    var sel = $('#f-type');
+    if (sel && type) { sel.value = type; syncSpeaking(); setErr(sel, ''); }
+    scrollToEl($('#contact'));
+    focusSoon($('#f-name'));
+  }
+
+  /* ---------- Delegated actions ---------- */
+  document.addEventListener('click', function (e) {
+    var m = e.target.closest('[data-modal]');
+    if (m) {
+      e.preventDefault();
+      var heading = null;
+      var rec = m.getAttribute('data-record');
+      if (rec) {
+        var it = SITE.archive.filter(function (r) { return r.id === rec; })[0];
+        if (it) heading = it[lang].t;
+      }
+      var hk = m.getAttribute('data-modal-heading');
+      if (hk) heading = t(hk);
+      openModal(m.getAttribute('data-modal'), m, heading);
+      return;
+    }
+    var enq = e.target.closest('[data-enquiry]');
+    if (enq) { e.preventDefault(); presetEnquiry(enq.getAttribute('data-enquiry')); return; }
+    var sj = e.target.closest('[data-search-jump]');
+    if (sj) { e.preventDefault(); jumpToArchive(true); return; }
+    var tj = e.target.closest('[data-topic-jump], [data-type-jump]');
+    if (tj && $('#arc-q')) {
+      e.preventDefault();
+      if (tj.hasAttribute('data-topic-jump')) state.topic = tj.getAttribute('data-topic-jump');
+      if (tj.hasAttribute('data-type-jump')) state.type = tj.getAttribute('data-type-jump');
+      renderArchive();
+      jumpToArchive(false);
+      return;
+    }
+    var lt = e.target.closest('[data-lang-toggle]');
+    if (lt) { applyLang(lang === 'en' ? 'ar' : 'en'); return; }
+    var ls = e.target.closest('[data-lang-set]');
+    if (ls) { applyLang(ls.getAttribute('data-lang-set')); return; }
+    var fa = e.target.closest('a[data-focus]');
+    if (fa) {
+      var target = document.querySelector(fa.getAttribute('href'));
+      if (target) { e.preventDefault(); scrollToEl(target); focusSoon($(fa.getAttribute('data-focus'))); }
+    }
+  });
+  $$('form[data-search-forward]').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = $('input', f).value;
+      var q = $('#arc-q');
+      if (!q) return;
+      q.value = v; state.q = v; renderArchive();
+      jumpToArchive(true);
+    });
+  });
+
+  /* ---------- Supplied assets (portrait, book cover) ---------- */
+  $$('[data-asset]').forEach(function (fig) {
+    var img = new Image();
+    img.onload = function () {
+      img.className = 'asset-img';
+      img.setAttribute('data-i18n-alt', fig.getAttribute('data-asset-alt'));
+      img.alt = t(fig.getAttribute('data-asset-alt'));
+      fig.appendChild(img);
+      fig.classList.add('has-asset');
+    };
+    img.src = fig.getAttribute('data-asset');
+  });
+
+  /* ---------- Motion: reveal on scroll, 3D tilt, parallax, header state, progress ---------- */
+  function initMotion() {
+    var reveal = $$('[data-reveal]');
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      reveal.forEach(function (n) { n.classList.add('is-in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+      reveal.forEach(function (n) { io.observe(n); });
+    }
+    var finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+    if (!reduceMotion && finePointer) {
+      $$('[data-tilt]').forEach(function (card) {
+        var max = parseFloat(card.getAttribute('data-tilt')) || 8;
+        card.addEventListener('pointermove', function (e) {
+          var r = card.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          card.style.setProperty('--ry', (x * max).toFixed(2) + 'deg');
+          card.style.setProperty('--rx', (-y * max).toFixed(2) + 'deg');
+          card.style.setProperty('--mx', ((x + 0.5) * 100).toFixed(1) + '%');
+          card.style.setProperty('--my', ((y + 0.5) * 100).toFixed(1) + '%');
+          card.classList.add('is-tilting');
+        });
+        card.addEventListener('pointerleave', function () {
+          card.style.setProperty('--rx', '0deg');
+          card.style.setProperty('--ry', '0deg');
+          card.classList.remove('is-tilting');
+        });
+      });
+    }
+    var par = reduceMotion ? [] : $$('[data-parallax]');
+    var progress = $('[data-progress]');
+    var ticking = false;
+    function onScroll() {
+      ticking = false;
+      var y = window.scrollY || window.pageYOffset;
+      document.body.classList.toggle('is-scrolled', y > 24);
+      if (progress) {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, y / h) : 0).toFixed(4) + ')';
+      }
+      var vh = window.innerHeight;
+      par.forEach(function (n) {
+        var r = n.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        var speed = parseFloat(n.getAttribute('data-parallax')) || 0.1;
+        var offset = (r.top + r.height / 2 - vh / 2) * -speed;
+        n.style.setProperty('--py', offset.toFixed(1) + 'px');
+      });
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    onScroll();
+  }
+
+  initMotion();
+  initArchive();
+  initContact();
+  initNewsletter();
+  applyLang(initialLang());
+  root.classList.add('js');
+})();
+</script>
+</body>
+</html>

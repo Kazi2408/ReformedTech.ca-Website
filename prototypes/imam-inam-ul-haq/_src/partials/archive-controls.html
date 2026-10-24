@@ -1,0 +1,31 @@
+<form class="arc-search" role="search" id="arc-form">
+  <label for="arc-q" class="arc-q-label" data-i18n="arc.label">Search lectures, articles, and resources</label>
+  <div class="arc-q-row">
+    <svg class="arc-q-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <input id="arc-q" name="q" type="search" autocomplete="off" data-i18n-ph="arc.ph" placeholder="Try “Arabic”, “Quran” or “قرآن”">
+  </div>
+</form>
+<div class="arc-filters">
+  <div class="arc-types" role="group" aria-labelledby="arc-type-label">
+    <span id="arc-type-label" class="arc-filter-label" data-i18n="arc.type">Content type</span>
+    <div class="arc-type-btns">
+      <button type="button" class="chip" data-arc-type="" aria-pressed="true" data-i18n="arc.all">All</button>
+      <button type="button" class="chip" data-arc-type="video" aria-pressed="false" data-i18n="typeS.video">Video</button>
+      <button type="button" class="chip" data-arc-type="audio" aria-pressed="false" data-i18n="typeS.audio">Audio</button>
+      <button type="button" class="chip" data-arc-type="article" aria-pressed="false" data-i18n="typeS.article">Articles</button>
+      <button type="button" class="chip" data-arc-type="event" aria-pressed="false" data-i18n="typeS.event">Event recordings</button>
+      <button type="button" class="chip" data-arc-type="download" aria-pressed="false" data-i18n="typeS.download">Downloads</button>
+    </div>
+  </div>
+  <div class="arc-topic-wrap">
+    <label for="arc-topic" class="arc-filter-label" data-i18n="arc.topic">Topic</label>
+    <select id="arc-topic" name="topic">
+      <option value="" data-i18n="arc.alltopics">All topics</option>
+      <option value="arabic" data-i18n="topic.arabic">Arabic learning</option>
+      <option value="quran" data-i18n="topic.quran">Quran reflections</option>
+      <option value="faith" data-i18n="topic.faith">Community &amp; faith</option>
+      <option value="resources" data-i18n="topic.resources">Learning resources</option>
+    </select>
+  </div>
+  <button type="button" id="arc-reset" class="arc-reset" data-i18n="arc.reset">Clear filters</button>
+</div>

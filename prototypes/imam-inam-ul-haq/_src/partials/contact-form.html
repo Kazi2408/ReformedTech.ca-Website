@@ -1,0 +1,59 @@
+<form id="enquiry-form" class="enquiry-form" novalidate>
+  <div class="f-row">
+    <div class="field">
+      <label for="f-name" data-i18n="f.name">Name</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+      <p class="f-err" id="f-name-err"></p>
+    </div>
+    <div class="field">
+      <label for="f-email" data-i18n="f.email">Email</label>
+      <input id="f-email" name="email" type="email" dir="ltr" inputmode="email" autocomplete="email" placeholder="name@example.com" required aria-describedby="f-email-err">
+      <p class="f-err" id="f-email-err"></p>
+    </div>
+  </div>
+  <div class="field">
+    <label for="f-type" data-i18n="f.type">Enquiry type</label>
+    <select id="f-type" name="type" required aria-describedby="f-type-err">
+      <option value="" data-i18n="f.choose">Select an option</option>
+      <option value="general" data-i18n="f.t.general">General enquiry</option>
+      <option value="arabic" data-i18n="f.t.arabic">Arabic learning</option>
+      <option value="book" data-i18n="f.t.book">Book availability</option>
+      <option value="speaking" data-i18n="f.t.speaking">Speaking invitation</option>
+      <option value="media" data-i18n="f.t.media">Media enquiry</option>
+    </select>
+    <p class="f-err" id="f-type-err"></p>
+  </div>
+  <fieldset id="f-speaking" hidden>
+    <legend data-i18n="f.speak.legend">Speaking invitation details</legend>
+    <div class="field">
+      <label for="f-org" data-i18n="f.org">Organisation</label>
+      <input id="f-org" name="organisation" type="text" autocomplete="organization" aria-describedby="f-org-err">
+      <p class="f-err" id="f-org-err"></p>
+    </div>
+    <div class="f-row">
+      <div class="field">
+        <label for="f-date" data-i18n="f.date">Proposed date (optional)</label>
+        <input id="f-date" name="date" type="date">
+      </div>
+      <div class="field">
+        <label for="f-format" data-i18n="f.format">Format</label>
+        <select id="f-format" name="format">
+          <option value="tbd" data-i18n="f.fmt.tbd">To be discussed</option>
+          <option value="in-person" data-i18n="f.fmt.inperson">In person</option>
+          <option value="online" data-i18n="f.fmt.online">Online</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="f-location" data-i18n="f.location">Location or online platform (optional)</label>
+      <input id="f-location" name="location" type="text">
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="f-msg" data-i18n="f.msg">Message</label>
+    <textarea id="f-msg" name="message" rows="5" required aria-describedby="f-msg-err"></textarea>
+    <p class="f-err" id="f-msg-err"></p>
+  </div>
+  <button type="submit" class="btn btn-primary f-submit" data-i18n="f.submit">Send enquiry</button>
+  <p class="form-status" id="enquiry-status" role="status" tabindex="-1" hidden></p>
+</form>

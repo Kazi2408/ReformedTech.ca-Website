@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Imam Mohammad Inam Ul Haq — Homepage prototype</title>
+<meta name="description" content="Homepage prototype (Direction D — Gilded Noir) for the personal website of Imam Mohammad Inam Ul Haq.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600&family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&display=swap">
+<style>
+/*@BASE_CSS@*/
+
+/* ===== Direction D — Gilded Noir ===== */
+:root{
+  --bg:#0A0A0C; --panel:#131210; --panel2:#1B1A16; --gold:#C99A45; --gold2:#E2C07A; --on-gold:#1A1205;
+  --foil:linear-gradient(100deg,#A9772F 0%,#F4D98F 28%,#C08F3E 52%,#FBE7B0 74%,#B98635 100%);
+  --fg:#F5F1E8; --muted:#ABA595; --hair:rgba(226,192,122,.18); --hair2:rgba(226,192,122,.38);
+  --line:var(--hair); --focus:#E2C07A; --error:#FF9F92; --ok:#9FE0B4; --accent-ink:#E2C07A;
+  --font-display:"Bodoni Moda",Didot,Georgia,serif; --font-body:"Alexandria","Segoe UI",Tahoma,sans-serif;
+  --radius:4px; --scroll-offset:84px; --field-bg:#131210; --field-line:rgba(226,192,122,.3);
+  --pm-bg:#141311; --pm-fg:#F5F1E8; --pm-btn:#E2C07A; --pm-btn-fg:#1A1205; --pm-accent:#E2C07A;
+  --cover-a:#2b2a26; --cover-b:#121110; --spine:#0a0a09;
+}
+:root[lang="ar"]{--font-display:"Amiri","Alexandria",serif}
+body{font-size:1.04rem;font-weight:300}
+.wrap{width:min(1320px,100% - 32px);margin-inline:auto}
+@media (min-width:768px){.wrap{width:min(1320px,100% - 80px)}}
+.progress{background:var(--foil)}
+.proto-banner{background:#050506;color:var(--muted);border-bottom:1px solid var(--hair)}
+select option{background:#131210;color:var(--fg)}
+.sec{position:relative;padding-block:clamp(80px,10vw,140px)}
+.label{display:flex;align-items:center;gap:14px;font-size:.78rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--gold2)}
+.label::before{content:"";width:44px;height:1px;background:var(--gold2)}
+.h2{font-family:var(--font-display);font-weight:400;font-size:clamp(2.4rem,1.4rem + 3vw,4.2rem);line-height:1.04;letter-spacing:-.02em;margin-top:20px}
+:root[lang="ar"] .h2{line-height:1.35}
+.h2 em{font-style:italic;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[lang="ar"] .h2 em{font-style:normal}
+.lede{color:var(--muted);font-size:1.08rem;line-height:1.8;max-width:58ch;margin-top:18px}
+.tag{display:inline-block;font-size:.72rem;font-weight:400;letter-spacing:.08em;padding:5px 11px;border:1px solid var(--hair2);color:var(--gold2);border-radius:20px}
+:root[lang="ar"] .tag{letter-spacing:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:14px 30px;border-radius:30px;border:1px solid transparent;font-weight:500;font-size:.95rem;text-decoration:none;transition:transform .3s,box-shadow .3s,background-position .6s}
+.btn-gold{background:var(--foil);background-size:180% 100%;color:var(--on-gold);box-shadow:0 14px 40px -16px var(--gold)}
+.btn-gold:hover{background-position:100% 0;transform:translateY(-2px)}
+.btn-ghost{border-color:var(--hair2);background:transparent;color:var(--fg)}
+.btn-ghost:hover{border-color:var(--gold2);color:var(--gold2)}
+.link{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:4px 0;background:none;border:0;border-bottom:1px solid var(--gold);color:var(--fg);font-weight:400;text-decoration:none;letter-spacing:.02em}
+.link:hover{color:var(--gold2)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:34px}
+.center{text-align:center}.center .lede{margin-inline:auto}.center .actions{justify-content:center}.center .label{justify-content:center}
+.center .label::after{content:"";width:44px;height:1px;background:var(--gold2)}
+.gold-card{position:relative;padding:30px;background:var(--panel);border:1px solid var(--hair);border-radius:4px;transition:border-color .4s}
+.gold-card:hover,.gold-card.is-tilting{border-color:var(--hair2)}
+.gold-card::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(226,192,122,.12),transparent 45%);opacity:0;transition:opacity .4s;pointer-events:none}
+.gold-card.is-tilting::before{opacity:1}
+.gold-card>*{position:relative}
+.corner{position:absolute;width:14px;height:14px;border-color:var(--gold2);border-style:solid;opacity:.7}
+.c-tl{top:-1px;inset-inline-start:-1px;border-width:1px 0 0 1px}.c-br{bottom:-1px;inset-inline-end:-1px;border-width:0 1px 1px 0}
+:root[dir="rtl"] .c-tl{border-width:1px 1px 0 0}:root[dir="rtl"] .c-br{border-width:0 0 1px 1px}
+
+/* Rosette that draws itself */
+.rosette .d{stroke-dasharray:1;stroke-dashoffset:1}
+.is-in .rosette .d,.rosette.draw .d{animation:draw 3.2s cubic-bezier(.6,.1,.2,1) forwards}
+.rosette .d2{animation-delay:.5s!important}.rosette .d3{animation-delay:1s!important}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes spin{to{rotate:360deg}}
+.rotor{transform-origin:50% 50%;animation:spin 120s linear infinite}
+@media (prefers-reduced-motion:reduce){.rosette .d{stroke-dashoffset:0;animation:none!important}.rotor{animation:none}}
+
+/* ---------- Header ---------- */
+.site-head{position:sticky;top:0;z-index:60;transition:background .3s;border-bottom:1px solid var(--hair)}
+.is-scrolled .site-head{background:rgba(10,10,12,.97)}
+.head-row{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px}
+.brand{font-family:var(--font-display);font-size:1.4rem;font-weight:500;text-decoration:none;white-space:nowrap}
+.nav{display:flex;align-items:center}
+.nav-list{display:flex;align-items:center}
+.nav-list>li>a,.more-btn{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 10px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--muted);background:none;border:0;white-space:nowrap}
+:root[lang="ar"] .nav-list>li>a,:root[lang="ar"] .more-btn{font-size:.95rem}
+.nav-list>li>a:hover,.more-btn:hover{color:var(--gold2)}
+.dropdown{position:relative}
+.more-menu{position:absolute;inset-inline-end:0;top:calc(100% + 12px);min-width:320px;padding:10px;background:var(--panel);border:1px solid var(--hair2);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);z-index:70}
+.more-menu a,.more-menu button{display:block;width:100%;text-align:start;padding:12px 14px;text-decoration:none;font-size:.92rem;color:var(--fg)}
+.more-menu a:hover,.more-menu button:hover{background:var(--panel2);color:var(--gold2)}
+.tools{display:flex;align-items:center;gap:10px}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--hair);background:transparent;color:var(--fg)}
+.pill-btn{min-height:44px;padding:8px 15px;border-radius:22px;border:1px solid var(--hair);background:transparent;color:var(--fg);font-size:.85rem}
+.invite-btn{min-height:44px;padding:8px 20px;border-radius:22px;border:1px solid var(--gold2);background:transparent;color:var(--gold2);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+:root[lang="ar"] .invite-btn{font-size:.9rem}
+.invite-btn:hover{background:var(--gold2);color:var(--on-gold)}
+.menu-btn{display:none}
+.nav-extra{display:none}
+@media (max-width:1240px){
+  .menu-btn{display:inline-flex;align-items:center;gap:8px}
+  .tools .invite-btn{display:none}
+  .nav{display:none;position:absolute;inset-inline:0;top:100%;background:var(--bg);padding:10px 22px 26px;flex-direction:column;align-items:stretch;max-height:calc(100vh - 76px);overflow:auto;border-bottom:1px solid var(--hair)}
+  .nav.is-open{display:flex}
+  .nav-list{flex-direction:column;align-items:stretch}
+  .nav-list>li>a,.more-btn{width:100%;min-height:56px;font-family:var(--font-display);font-size:1.45rem;letter-spacing:0;text-transform:none;color:var(--fg);border-bottom:1px solid var(--hair)}
+  .more-menu{position:static;box-shadow:none;border:0;background:transparent;padding:0;min-width:0}
+  .more-menu a,.more-menu button{padding-inline:24px}
+  .nav-extra{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+}
+@media (max-width:420px){.tools .icon-btn{display:none}.brand{font-size:1.15rem}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;background:radial-gradient(1200px 700px at 78% 30%,rgba(201,154,69,.16),transparent 60%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:end;padding-top:40px}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr;gap:24px}}
+.hero-text{padding-bottom:70px}
+.hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(3.2rem,1.2rem + 5.8vw,6.8rem);line-height:.96;letter-spacing:-.025em;margin-top:26px}
+:root[lang="ar"] .hero h1{line-height:1.25;letter-spacing:0}
+.hero h1 .im{display:block;font-size:.34em;font-style:italic;color:var(--muted);letter-spacing:0;margin-bottom:10px}
+:root[lang="ar"] .hero h1 .im{font-style:normal}
+@keyframes sheen{to{background-position:220% 50%}}
+.foil{display:block;background:var(--foil);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;animation:sheen 7s linear infinite}
+:root[lang="ar"] .foil{font-style:normal}
+@media (prefers-reduced-motion:reduce){.foil{animation:none}}
+.tagline{font-family:var(--font-display);font-size:clamp(1.3rem,1rem + .9vw,1.75rem);line-height:1.35;margin-top:30px}
+.hero .lede{max-width:520px}
+.hlinks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:52px;border-top:1px solid var(--hair)}
+@media (max-width:560px){.hlinks{grid-template-columns:1fr}}
+.hlinks a,.hlinks button{display:block;text-align:start;padding:18px 16px 4px 0;background:none;border:0;color:var(--fg);text-decoration:none}
+.hlinks .n{display:block;font-family:var(--font-display);font-style:italic;color:var(--gold2);font-size:.95rem}
+.hlinks .l{display:block;margin-top:6px;font-weight:400}
+.hlinks .d{display:block;margin-top:2px;font-size:.85rem;color:var(--muted)}
+.hlinks a:hover .l,.hlinks button:hover .l{color:var(--gold2)}
+.arch-wrap{position:relative;max-width:560px;margin-inline:auto;width:100%}
+.arch-wrap .rosette{position:absolute;width:118%;left:-9%;top:-70px;color:var(--gold);opacity:.9;pointer-events:none}
+.arch{position:relative;height:700px;border-radius:320px 320px 0 0;overflow:hidden;background:linear-gradient(175deg,#1d1b17 0%,var(--bg) 92%);border:1px solid var(--hair2);border-bottom:0;display:grid;place-items:center}
+@media (max-width:980px){.arch{height:520px}}
+@media (max-width:480px){.arch{height:420px}}
+.arch .asset-img{object-fit:cover;object-position:50% 18%}
+.arch .sil{width:44%;opacity:.2;color:var(--fg)}
+.arch .ph{position:absolute;bottom:30%;font-size:.8rem;letter-spacing:.08em;color:var(--muted)}
+.has-asset .sil{display:none}
+.float-book{position:absolute;bottom:40px;inset-inline-start:-36px;display:flex;gap:16px;align-items:center;padding:16px 20px 16px 16px;background:#141311;border:1px solid var(--hair2);box-shadow:0 30px 60px -30px rgba(0,0,0,.9);max-width:330px;text-decoration:none}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.float-book{animation:bob 7s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.float-book{animation:none}}
+@media (max-width:560px){.float-book{position:relative;inset:auto;margin:-60px 12px 24px;max-width:none}}
+.float-book i{flex:none;width:56px;height:80px;border-radius:2px 5px 5px 2px;background:linear-gradient(160deg,#2b2a26,#121110);border-inline-start:6px solid #0a0a09;box-shadow:6px 6px 0 -2px rgba(0,0,0,.4),inset 0 0 0 1px rgba(226,192,122,.3);transform:perspective(400px) rotateY(-16deg)}
+.float-book small{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2)}
+.float-book b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.15rem;margin-top:4px}
+.float-book span{display:block;font-size:.8rem;color:var(--muted)}
+
+/* Marquee */
+.marquee{position:relative;border-block:1px solid var(--hair);overflow:hidden;padding:18px 0;background:var(--bg)}
+.mq-track{display:flex;width:max-content;animation:mq 42s linear infinite}
+:root[dir="rtl"] .mq-track{animation-name:mq-rtl}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes mq-rtl{to{transform:translateX(50%)}}
+.mq-track span{display:inline-flex;align-items:center;gap:30px;padding-inline-end:30px;font-family:var(--font-display);font-style:italic;font-size:1.5rem;color:var(--muted);white-space:nowrap}
+:root[lang="ar"] .mq-track span{font-style:normal}
+.mq-track span::after{content:"";width:7px;height:7px;rotate:45deg;background:var(--gold)}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none}}
+
+/* ---------- About ---------- */
+.about-grid{display:grid;grid-template-columns:.35fr 1fr;gap:64px}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:20px}}
+.chapter{font-family:var(--font-display);font-style:italic;font-size:7rem;line-height:.8;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.statement{font-family:var(--font-display);font-size:clamp(1.7rem,1.1rem + 1.8vw,2.7rem);line-height:1.3;font-weight:400;margin-top:20px}
+:root[lang="ar"] .statement{line-height:1.7}
+.about-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:36px;color:var(--muted);line-height:1.85}
+@media (max-width:760px){.about-cols{grid-template-columns:1fr;gap:16px}}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:48px;border-top:1px solid var(--hair)}
+@media (max-width:760px){.facts{grid-template-columns:1fr}}
+.facts div{padding:22px 20px 22px 0}
+.facts dt{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
+.facts dd{font-family:var(--font-display);font-size:1.3rem;line-height:1.3;margin-top:8px}
+
+/* ---------- Index (pathways) ---------- */
+.index{margin-top:44px;border-top:1px solid var(--hair)}
+.index a{position:relative;display:grid;grid-template-columns:110px 1fr 1fr 60px;gap:24px;align-items:center;padding:30px 0;border-bottom:1px solid var(--hair);text-decoration:none;overflow:hidden}
+@media (max-width:860px){.index a{grid-template-columns:70px 1fr 44px}.index .ix-d{display:none}}
+.index a::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(226,192,122,.1),transparent 70%);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+:root[dir="rtl"] .index a::before{transform-origin:right;background:linear-gradient(-90deg,rgba(226,192,122,.1),transparent 70%)}
+.index a:hover::before,.index a:focus-visible::before{transform:scaleX(1)}
+.index .ix-n{font-family:var(--font-display);font-style:italic;font-size:2.4rem;color:var(--gold2);position:relative}
+.index .ix-t{font-family:var(--font-display);font-size:clamp(1.5rem,1.1rem + 1.2vw,2.3rem);line-height:1.15;position:relative;transition:transform .5s}
+.index a:hover .ix-t{transform:translateX(10px)}
+:root[dir="rtl"] .index a:hover .ix-t{transform:translateX(-10px)}
+.index .ix-d{color:var(--muted);position:relative}
+.index .ix-a{position:relative;width:52px;height:52px;border-radius:50%;border:1px solid var(--hair2);display:grid;place-items:center;color:var(--gold2);transition:background .4s,color .4s}
+.index a:hover .ix-a{background:var(--gold2);color:var(--on-gold)}
+
+/* ---------- Featured ---------- */
+.cine-wrap{perspective:1600px;margin-top:48px}
+.cine{position:relative;aspect-ratio:21/9;border:1px solid var(--hair2);background:radial-gradient(70% 90% at 50% 40%,#25221c,#0b0b0c 75%);display:grid;place-items:center;transform:rotateX(10deg) scale(.96);transition:transform 1s cubic-bezier(.2,.7,.2,1);box-shadow:0 60px 100px -50px rgba(0,0,0,.9)}
+.cine-wrap.is-in .cine,.cine-wrap:hover .cine{transform:none}
+@media (max-width:700px){.cine{aspect-ratio:16/10}}
+.cine .play{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;background:var(--foil);color:var(--on-gold)}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(226,192,122,.45)}100%{box-shadow:0 0 0 34px rgba(226,192,122,0)}}
+.cine .play{animation:ring 2.6s ease-out infinite}
+@media (prefers-reduced-motion:reduce){.cine .play{animation:none}}
+.cine .tag{position:absolute;top:18px;inset-inline-start:18px}
+.cine .corner{width:22px;height:22px}
+.feat-row{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;margin-top:40px;align-items:start}
+@media (max-width:900px){.feat-row{grid-template-columns:1fr;gap:16px}}
+.feat-row h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,1.3rem + 1.6vw,2.8rem);line-height:1.15}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:.88rem;color:var(--muted)}
+.meta b{color:var(--gold2);font-weight:400}
+
+/* ---------- Archive ---------- */
+.arc-panel{margin-top:44px;padding:clamp(18px,3vw,34px);background:var(--panel);border:1px solid var(--hair)}
+.arc-q-label{display:block;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px}
+:root[lang="ar"] .arc-q-label{font-size:.95rem}
+.arc-q-row{position:relative;border-bottom:1px solid var(--hair2)}
+.arc-q-icon{position:absolute;inset-inline-start:0;top:50%;transform:translateY(-50%);color:var(--gold2)}
+.arc-q-row input{width:100%;min-height:64px;padding:12px 4px 12px 36px;border:0;background:transparent;color:var(--fg);font-family:var(--font-display);font-size:1.6rem}
+:root[dir="rtl"] .arc-q-row input{padding:12px 36px 12px 4px}
+.arc-q-row input::placeholder{color:#6f6a5f}
+.arc-q-row input:focus-visible{outline:none}
+.arc-q-row:focus-within{border-bottom-color:var(--gold2);box-shadow:0 1px 0 0 var(--gold2)}
+.arc-filters{display:flex;flex-wrap:wrap;align-items:end;gap:16px 22px;margin-top:22px}
+.arc-filter-label{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+:root[lang="ar"] .arc-filter-label{font-size:.9rem}
+.arc-type-btns{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:42px;padding:7px 16px;border-radius:21px;border:1px solid var(--hair2);background:transparent;color:var(--fg);font-size:.85rem}
+.chip:hover{border-color:var(--gold2)}
+.chip[aria-pressed="true"]{background:var(--gold2);color:var(--on-gold);border-color:var(--gold2)}
+#arc-topic{min-height:42px;padding:7px 12px;border-radius:21px;border:1px solid var(--hair2);background:var(--panel);color:var(--fg)}
+.arc-reset{min-height:42px;background:none;border:0;color:var(--gold2);text-decoration:underline;text-underline-offset:4px}
+.arc-count{margin-top:28px;font-size:.85rem;color:var(--muted)}
+.arc-list{margin-top:10px;border-top:1px solid var(--hair)}
+@keyframes rowin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.arc-item{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:center;padding:20px 4px;border-bottom:1px solid var(--hair);transition:background .3s,padding .3s;animation:rowin .45s ease both}
+.arc-item:nth-child(2){animation-delay:.05s}.arc-item:nth-child(3){animation-delay:.1s}.arc-item:nth-child(4){animation-delay:.15s}.arc-item:nth-child(5){animation-delay:.2s}
+.arc-item:hover{background:rgba(226,192,122,.05);padding-inline-start:14px}
+.arc-icon{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--hair2);color:var(--gold2)}
+.arc-meta{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+:root[lang="ar"] .arc-meta{font-size:.85rem}
+.arc-type{color:var(--gold2)}
+.arc-title{font-family:var(--font-display);font-weight:400;font-size:1.3rem;line-height:1.3;margin-top:4px}
+.arc-desc{font-size:.88rem;color:var(--muted)}
+.arc-flag{font-size:.72rem;color:#8f887a;margin-top:4px}
+@media (min-width:760px){.arc-item{grid-template-columns:44px 1fr auto}.arc-body{display:contents}.arc-meta{grid-column:2;grid-row:1}.arc-title{grid-column:2;grid-row:2}.arc-desc{grid-column:2;grid-row:3}.arc-flag{grid-column:3;grid-row:1/4}.arc-icon{grid-row:1/4}}
+.arc-empty{margin-top:14px;padding:36px;text-align:center;border:1px dashed var(--hair2)}
+.arc-empty-t{font-family:var(--font-display);font-size:1.6rem}
+.arc-empty .btn{margin-top:16px}
+.arc-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;margin-top:26px}
+.arc-note{font-size:.84rem;color:var(--muted);max-width:62ch}
+@media (prefers-reduced-motion:reduce){.arc-item{animation:none}}
+
+/* ---------- Learn ---------- */
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:56px}
+@media (max-width:900px){.pillars{grid-template-columns:1fr}}
+.pillar{min-height:380px;display:flex;flex-direction:column;border-radius:200px 200px 4px 4px;padding:56px 30px 32px;text-align:center}
+.pillar .rn{font-family:var(--font-display);font-style:italic;font-size:4rem;line-height:1;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent;transform:translateZ(40px)}
+.pillar .sn{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);margin-top:auto}
+:root[lang="ar"] .pillar .sn{font-size:.9rem}
+.pillar h3{font-family:var(--font-display);font-weight:400;font-size:1.55rem;line-height:1.2;margin-top:10px}
+.pillar p{color:var(--muted);margin-top:10px;font-size:.95rem}
+.learn-note{font-size:.86rem;color:var(--muted);margin-top:16px}
+
+/* ---------- Book ---------- */
+.book-sec{overflow:hidden;background:radial-gradient(900px 600px at 30% 50%,rgba(201,154,69,.14),transparent 65%)}
+.book-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:72px;align-items:center}
+@media (max-width:960px){.book-grid{grid-template-columns:1fr;gap:44px}}
+.book-stage{position:relative;padding:60px 0}
+.book-stage .rosette{position:absolute;inset:-6% 0;width:100%;height:112%;color:var(--gold);opacity:.55}
+.book-stage .book3d{position:relative}
+.book3d{--cover-a:#2f2d28;--cover-b:#121110}
+.b3-front{box-shadow:inset 0 0 0 1px rgba(226,192,122,.35),inset 6px 0 10px -4px rgba(0,0,0,.6)}
+.b3-t,.b3-s{color:#F4D98F}
+.book-title{font-family:var(--font-display);font-weight:400;font-size:clamp(3rem,1.6rem + 4vw,5.2rem);line-height:.98;margin-top:18px}
+.book-sub{font-family:var(--font-display);font-style:italic;font-size:1.6rem;color:var(--muted);margin-top:6px}
+.book-by{color:var(--gold2);margin-top:16px}
+.quote{margin-top:28px;padding:22px 26px;border-inline-start:1px solid var(--gold2);background:linear-gradient(90deg,rgba(226,192,122,.06),transparent)}
+:root[dir="rtl"] .quote{background:linear-gradient(-90deg,rgba(226,192,122,.06),transparent)}
+.quote p{font-family:var(--font-display);font-style:italic;font-size:1.5rem;line-height:1.4}
+:root[lang="ar"] .quote p{font-style:normal}
+.quote footer{font-size:.78rem;letter-spacing:.08em;color:var(--muted);margin-top:8px}
+
+/* ---------- Articles ---------- */
+.art-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px}
+.art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:48px}
+@media (max-width:960px){.art-grid{grid-template-columns:1fr}}
+.art{display:flex;flex-direction:column;min-height:330px}
+.art .n{font-family:var(--font-display);font-style:italic;font-size:3rem;line-height:1;color:var(--gold2);opacity:.9}
+.art .cat{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);margin-top:auto;padding-top:24px}
+:root[lang="ar"] .art .cat{font-size:.88rem}
+.art h3{font-family:var(--font-display);font-weight:400;font-size:1.55rem;line-height:1.2;margin-top:10px}
+.art p{color:var(--muted);font-size:.94rem;margin-top:10px}
+.art-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-top:22px}
+.cats{margin-top:24px;color:var(--muted);font-size:.9rem}
+
+/* ---------- Events ---------- */
+.ev-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;margin-top:48px}
+@media (max-width:960px){.ev-grid{grid-template-columns:1fr}}
+.ev-empty h3{font-family:var(--font-display);font-weight:400;font-size:1.8rem}
+.ev-empty>p{color:var(--muted);margin-top:8px}
+.ev-card{display:grid;grid-template-columns:100px 1fr;gap:18px;margin-top:22px;padding:18px;border:1px dashed var(--hair2)}
+.ev-cal{display:grid;place-items:center;text-align:center;border:1px solid var(--hair2);color:var(--gold2);font-size:.75rem;letter-spacing:.06em;padding:10px;line-height:1.35}
+.ev-card h4{font-family:var(--font-display);font-weight:400;font-size:1.3rem;margin-top:8px}
+.ev-card p{font-size:.88rem;color:var(--muted)}
+.speak{position:relative;padding:36px 30px;background:var(--foil);color:var(--on-gold);display:flex;flex-direction:column;overflow:hidden}
+.speak::after{content:"";position:absolute;width:300px;height:300px;inset-inline-end:-120px;bottom:-120px;border-radius:50%;border:1px solid rgba(26,18,5,.25);box-shadow:0 0 0 30px rgba(26,18,5,.05),0 0 0 60px rgba(26,18,5,.04)}
+.speak h3{font-family:var(--font-display);font-weight:400;font-size:2.3rem;line-height:1.08}
+.speak p{margin-top:12px;flex:1;font-weight:400}
+.speak .btn{margin-top:24px;align-self:flex-start;background:var(--on-gold);color:var(--gold2);box-shadow:none}
+.speak :focus-visible{outline-color:var(--on-gold)}
+
+/* ---------- Quran ---------- */
+.quran .inner{position:relative;max-width:860px;margin-inline:auto;padding:40px 0}
+.quran .rosette{position:absolute;left:50%;top:50%;width:min(760px,130%);translate:-50% -50%;color:var(--gold);opacity:.32;pointer-events:none}
+.quran .inner>*:not(.rosette){position:relative}
+.quran h2{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:clamp(2.2rem,1.4rem + 2.6vw,3.8rem);line-height:1.1;margin-top:20px}
+:root[lang="ar"] .quran h2{font-style:normal;line-height:1.45}
+.quran p{color:var(--muted);margin-top:16px}
+.quran .status{color:var(--fg)}
+
+/* ---------- Resources ---------- */
+.res-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:44px}
+@media (max-width:900px){.res-grid{grid-template-columns:1fr}}
+.res h3{font-family:var(--font-display);font-weight:400;font-size:1.45rem;margin-top:16px}
+.res p{color:var(--muted);font-size:.93rem;margin-top:6px}
+.res-ico{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--hair2);color:var(--gold2);transform:translateZ(30px)}
+.res-ico svg{width:24px;height:24px}
+.res-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px}
+
+/* ---------- Contact / newsletter / footer ---------- */
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px}
+@media (max-width:960px){.contact-grid{grid-template-columns:1fr;gap:36px}}
+.expect{margin-top:24px;padding:14px 18px;border:1px solid var(--hair);font-size:.92rem;color:var(--muted)}
+.form-card{padding:clamp(22px,3vw,40px)}
+.field label{font-weight:400;letter-spacing:.02em}
+.field input,.field select,.field textarea{color:var(--fg)}
+.field input::placeholder{color:#6f6a5f}
+.enquiry-form .btn{margin-top:6px}
+.nl{padding-block:72px;border-top:1px solid var(--hair);background:var(--panel)}
+.nl-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media (max-width:900px){.nl-grid{grid-template-columns:1fr;gap:24px}}
+.nl h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.7rem,1.3rem + 1.2vw,2.5rem);line-height:1.2;margin-top:16px}
+.nl-label{display:block;margin-bottom:8px}
+.nl-row input{min-height:56px;padding:10px 20px;border-radius:28px;border:1px solid var(--hair2);background:var(--bg);color:var(--fg)}
+.nl-row input::placeholder{color:#6f6a5f}
+.nl-row input[aria-invalid="true"]{border:2px solid var(--error)}
+:root[dir="rtl"] .nl-row input{text-align:right}
+.nl-row .btn{min-height:56px}
+.nl-note,.social{font-size:.84rem;color:var(--muted);margin-top:10px}
+.footer{background:#050506;color:var(--muted);padding-block:64px 30px;font-size:.92rem;border-top:1px solid var(--hair)}
+.footer a,.footer .link-btn{color:var(--fg);text-decoration:none}
+.footer a:hover,.footer .link-btn:hover{color:var(--gold2)}
+.ft-grid{display:grid;grid-template-columns:4fr 2fr 3fr 3fr;gap:32px}
+@media (max-width:900px){.ft-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.ft-grid{grid-template-columns:1fr}}
+.ft-name{font-family:var(--font-display);font-size:1.9rem;color:var(--fg)}
+.ft-name em{font-style:italic;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ft-mission{margin-top:12px;max-width:38ch}
+.ft-h{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);margin-bottom:14px}
+.ft-list li+li{margin-top:9px}
+.ft-bottom{margin-top:48px;padding-top:20px;border-top:1px solid var(--hair);display:grid;gap:8px;font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="progress" data-progress aria-hidden="true"></div>
+<a class="skip" href="#main" data-i18n="skip">Skip to main content</a>
+<p class="proto-banner" data-i18n="proto.banner">Prototype homepage for review.</p>
+
+<header class="site-head" id="top">
+  <div class="wrap head-row">
+    <a class="brand" href="#top" data-i18n="name.short">Mohammad Inam Ul Haq</a>
+    <nav class="nav" id="site-nav" data-i18n-aria="nav.primary" aria-label="Primary navigation">
+      <ul class="nav-list">
+        <!--@include nav-items@-->
+        <li class="dropdown" data-dropdown>
+          <button type="button" class="more-btn" data-dropdown-toggle aria-expanded="false" aria-controls="more-menu"><span data-i18n="nav.more">More</span><!--@include caret@--></button>
+          <ul class="more-menu" id="more-menu" hidden><!--@include more-items@--></ul>
+        </li>
+      </ul>
+      <div class="nav-extra"><button type="button" class="btn btn-gold" data-enquiry="speaking" data-i18n="nav.invite">Invite to Speak</button><button type="button" class="btn btn-ghost" data-search-jump data-i18n="nav.search">Search the archive</button></div>
+    </nav>
+    <div class="tools">
+      <button type="button" class="icon-btn" data-search-jump data-i18n-aria="nav.search" aria-label="Search the archive"><!--@include search-icon@--></button>
+      <button type="button" class="pill-btn" data-lang-toggle lang="ar">العربية</button>
+      <button type="button" class="invite-btn" data-enquiry="speaking" data-i18n="nav.invite">Invite to Speak</button>
+      <button type="button" class="pill-btn menu-btn" data-menu-toggle aria-controls="site-nav" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span data-menu-label data-i18n="nav.menu">Menu</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="label" data-reveal data-i18n="cD.place">Calgary, Alberta</p>
+        <h1 id="hero-title" data-reveal style="--d:.1s"><span class="im" data-i18n="name.imam">Imam</span><span style="display:block" data-i18n="cD.first">Mohammad</span><span class="foil" data-i18n="cD.last">Inam Ul Haq</span></h1>
+        <p class="tagline" data-reveal style="--d:.2s" data-i18n="hero.title">Learn with clarity. Connect through understanding.</p>
+        <p class="lede" data-reveal style="--d:.25s" data-i18n="cD.lede"></p>
+        <div class="actions" data-reveal style="--d:.3s">
+          <a class="btn btn-gold" href="#lectures"><span data-i18n="cta.lectures">Explore Lectures</span><!--@include arrow@--></a>
+          <a class="btn btn-ghost" href="#learn" data-i18n="cta.learn">Learn Arabic</a>
+        </div>
+        <div class="hlinks" data-reveal style="--d:.4s">
+          <a href="#archive"><span class="n">I</span><span class="l" data-i18n="cD.l1">Lecture archive</span><span class="d" data-i18n="cD.l1d">Search every lecture</span></a>
+          <a href="#learn"><span class="n">II</span><span class="l" data-i18n="cD.l2">Arabic, step by step</span><span class="d" data-i18n="cD.l2d">A proposed learning path</span></a>
+          <button type="button" data-enquiry="speaking"><span class="n">III</span><span class="l" data-i18n="cta.invite">Invite to Speak</span><span class="d" data-i18n="cD.l3d">Lectures and programmes</span></button>
+        </div>
+      </div>
+      <div class="arch-wrap" data-reveal="scale" style="--d:.15s">
+        <svg class="rosette draw" viewBox="0 0 400 400" aria-hidden="true"><g class="rotor" fill="none" stroke="currentColor" stroke-width=".7"><rect class="d" pathLength="1" x="80" y="80" width="240" height="240"/><rect class="d d2" pathLength="1" x="80" y="80" width="240" height="240" transform="rotate(45 200 200)"/><rect class="d d2" pathLength="1" x="80" y="80" width="240" height="240" transform="rotate(22.5 200 200)"/><rect class="d d3" pathLength="1" x="80" y="80" width="240" height="240" transform="rotate(67.5 200 200)"/><circle class="d" pathLength="1" cx="200" cy="200" r="190"/><circle class="d d3" pathLength="1" cx="200" cy="200" r="120"/></g></svg>
+        <div data-tilt="4">
+          <figure class="arch ph-frame" data-asset="assets/portrait.jpg" data-asset-alt="portrait.alt">
+            <svg class="sil" viewBox="0 0 100 120" aria-hidden="true"><circle cx="50" cy="38" r="21" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M13 118c4-25 19-39 37-39s33 14 37 39" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <figcaption class="ph" data-i18n="portrait.ph">Portrait to be supplied</figcaption>
+          </figure>
+        </div>
+        <a class="float-book" href="#books"><i aria-hidden="true"></i><span><small data-i18n="cD.pub">Featured publication</small><b lang="en">Arabic Made Easy</b><span lang="en">Towards Understanding</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="mq-track" id="mq1"></div>
+  </div>
+
+  <section class="sec" id="about" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <div data-reveal="left"><p class="chapter" aria-hidden="true">I</p><p class="label" style="margin-top:18px" data-i18n="about.kicker">About the Imam</p></div>
+      <div data-reveal="right">
+        <h2 class="sr-only" id="about-title" data-i18n="about.title"></h2>
+        <p class="statement" data-i18n="about.p2"></p>
+        <div class="about-cols"><p data-i18n="about.p1"></p><p data-i18n="about.note"></p></div>
+        <dl class="facts">
+          <div><dt data-i18n="fact.1.k"></dt><dd data-i18n="fact.1.v"></dd></div>
+          <div><dt data-i18n="fact.2.k"></dt><dd data-i18n="fact.2.v"></dd></div>
+          <div><dt data-i18n="fact.3.k"></dt><dd data-i18n="fact.3.v"></dd></div>
+        </dl>
+        <div class="actions"><button type="button" class="link" data-modal="about"><span data-i18n="cD.aboutMore">Read his full introduction</span><!--@include arrow@--></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="pathways" aria-labelledby="paths-title" style="padding-top:0">
+    <div class="wrap">
+      <p class="label" data-reveal data-i18n="path.kicker">Where to begin</p>
+      <h2 class="h2" id="paths-title" data-reveal><span data-i18n="cD.pathsA">An index to</span> <em data-i18n="cD.pathsB">his work</em></h2>
+      <div class="index">
+        <a href="#learn" data-reveal><span class="ix-n" aria-hidden="true">I</span><span class="ix-t" data-i18n="path.1.t"></span><span class="ix-d" data-i18n="path.1.d"></span><span class="ix-a" aria-hidden="true"><!--@include arrow@--></span></a>
+        <a href="#archive" data-reveal style="--d:.08s"><span class="ix-n" aria-hidden="true">II</span><span class="ix-t" data-i18n="path.2.t"></span><span class="ix-d" data-i18n="path.2.d"></span><span class="ix-a" aria-hidden="true"><!--@include arrow@--></span></a>
+        <a href="#articles" data-reveal style="--d:.16s"><span class="ix-n" aria-hidden="true">III</span><span class="ix-t" data-i18n="path.3.t"></span><span class="ix-d" data-i18n="path.3.d"></span><span class="ix-a" aria-hidden="true"><!--@include arrow@--></span></a>
+        <a href="#books" data-reveal style="--d:.24s"><span class="ix-n" aria-hidden="true">IV</span><span class="ix-t" data-i18n="path.4.t"></span><span class="ix-d" data-i18n="path.4.d"></span><span class="ix-a" aria-hidden="true"><!--@include arrow@--></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="lectures" aria-labelledby="feat-title" style="padding-top:0">
+    <div class="wrap">
+      <p class="label" data-reveal data-i18n="feat.kicker">Featured lecture</p>
+      <h2 class="sr-only" data-i18n="nav.lectures">Lectures</h2>
+      <div class="cine-wrap" data-reveal="flip">
+        <div class="cine" role="img" data-i18n-aria="feat.thumb" aria-label="Thumbnail placeholder">
+          <span class="corner c-tl" aria-hidden="true"></span><span class="corner c-br" aria-hidden="true"></span>
+          <span class="tag" aria-hidden="true" data-i18n="feat.sample">Sample content</span>
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg></span>
+        </div>
+      </div>
+      <div class="feat-row" data-reveal>
+        <div><h3 id="feat-title" data-i18n="feat.title"></h3><p class="meta"><span><b data-i18n="feat.catLabel">Category</b> · <span data-i18n="feat.cat"></span></span><span><b data-i18n="feat.langLabel">Language</b> · <span data-i18n="feat.lang"></span></span></p></div>
+        <div><p class="lede" style="margin-top:0" data-i18n="feat.desc"></p><div class="actions"><button type="button" class="btn btn-gold" data-modal="preview" data-i18n="feat.preview">Preview lecture</button><a class="link" href="#archive"><span data-i18n="feat.archive">Browse the lecture archive</span><!--@include arrow@--></a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="archive" aria-labelledby="archive-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="center"><p class="label" data-reveal data-i18n="arc.kicker">Lecture &amp; media archive</p><h2 class="h2" id="archive-title" data-reveal data-i18n="arc.title">Search the archive</h2><p class="lede" data-reveal data-i18n="arc.lede"></p></div>
+      <div class="arc-panel" data-reveal="scale">
+        <!--@include archive-controls@-->
+        <!--@include archive-results@-->
+        <div class="arc-foot"><p class="arc-note" data-i18n="arc.note"></p><button type="button" class="btn btn-ghost" data-modal="lectures" data-i18n="arc.full">Open the full archive</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="learn" aria-labelledby="learn-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="center"><p class="label" data-reveal data-i18n="learn.kicker">Learn Arabic</p><h2 class="h2" id="learn-title" data-reveal data-i18n="learn.title"></h2><p class="lede" data-reveal data-i18n="learn.lede"></p><p data-reveal style="margin-top:16px"><span class="tag" data-i18n="learn.flag"></span></p></div>
+      <ol class="pillars">
+        <li class="gold-card pillar" data-tilt="7" data-reveal="flip"><span class="rn" aria-hidden="true">I</span><p class="sn" data-i18n="step.1.n"></p><h3 data-i18n="step.1.t"></h3><p data-i18n="step.1.d"></p></li>
+        <li class="gold-card pillar" data-tilt="7" data-reveal="flip" style="--d:.12s"><span class="rn" aria-hidden="true">II</span><p class="sn" data-i18n="step.2.n"></p><h3 data-i18n="step.2.t"></h3><p data-i18n="step.2.d"></p></li>
+        <li class="gold-card pillar" data-tilt="7" data-reveal="flip" style="--d:.24s"><span class="rn" aria-hidden="true">III</span><p class="sn" data-i18n="step.3.n"></p><h3 data-i18n="step.3.t"></h3><p data-i18n="step.3.d"></p></li>
+      </ol>
+      <div class="actions" data-reveal style="justify-content:center"><button type="button" class="btn btn-gold" data-modal="learn" data-i18n="learn.cta">Explore Arabic Learning</button><button type="button" class="btn btn-ghost" data-enquiry="arabic" data-i18n="learn.interest">Register Interest in Classes</button></div>
+      <p class="learn-note center" data-i18n="learn.note"></p>
+    </div>
+  </section>
+
+  <section class="sec book-sec" id="books" aria-labelledby="book-title">
+    <div class="wrap book-grid">
+      <div class="book-stage" data-reveal="scale">
+        <svg class="rosette" viewBox="0 0 400 400" aria-hidden="true"><g class="rotor" fill="none" stroke="currentColor" stroke-width=".6"><rect class="d" pathLength="1" x="90" y="90" width="220" height="220"/><rect class="d d2" pathLength="1" x="90" y="90" width="220" height="220" transform="rotate(45 200 200)"/><circle class="d d3" pathLength="1" cx="200" cy="200" r="180"/></g></svg>
+        <!--@include book-3d@-->
+      </div>
+      <div data-reveal="right">
+        <p class="label" data-i18n="book.kicker">Books &amp; publications</p>
+        <h2 class="book-title" id="book-title" lang="en" data-i18n="book.title">Arabic Made Easy</h2>
+        <p class="book-sub" lang="en" data-i18n="book.sub">Towards Understanding</p>
+        <p class="book-by" data-i18n="book.by"></p>
+        <blockquote class="quote"><p data-i18n="book.quote"></p><footer data-i18n="book.coverline"></footer></blockquote>
+        <p class="lede" data-i18n="book.desc"></p>
+        <div class="actions"><button type="button" class="btn btn-gold" data-modal="book" data-i18n="book.details">View Book Details</button><button type="button" class="link" data-enquiry="book"><span data-i18n="book.enquire">Enquire About Availability</span><!--@include arrow@--></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="articles" aria-labelledby="articles-title">
+    <div class="wrap">
+      <div class="art-head" data-reveal><div><p class="label" data-i18n="art.kicker">Articles &amp; reflections</p><h2 class="h2" id="articles-title" data-i18n="art.title"></h2></div><button type="button" class="link" data-modal="articles"><span data-i18n="art.all">View all articles</span><!--@include arrow@--></button></div>
+      <div class="art-grid">
+        <article class="gold-card art" data-tilt="6" data-reveal><span class="corner c-tl" aria-hidden="true"></span><span class="corner c-br" aria-hidden="true"></span><span class="n" aria-hidden="true">01</span><p class="cat" data-i18n="topic.arabic"></p><h3 data-i18n="art.1.t"></h3><p data-i18n="art.1.d"></p><div class="art-foot"><span class="tag" data-i18n="art.sample"></span><button type="button" class="link" data-modal="article" data-modal-heading="art.1.t"><span data-i18n="art.read">Read article</span><!--@include arrow@--></button></div></article>
+        <article class="gold-card art" data-tilt="6" data-reveal style="--d:.12s"><span class="corner c-tl" aria-hidden="true"></span><span class="corner c-br" aria-hidden="true"></span><span class="n" aria-hidden="true">02</span><p class="cat" data-i18n="topic.resources"></p><h3 data-i18n="art.2.t"></h3><p data-i18n="art.2.d"></p><div class="art-foot"><span class="tag" data-i18n="art.sample"></span><button type="button" class="link" data-modal="article" data-modal-heading="art.2.t"><span data-i18n="art.read">Read article</span><!--@include arrow@--></button></div></article>
+        <article class="gold-card art" data-tilt="6" data-reveal style="--d:.24s"><span class="corner c-tl" aria-hidden="true"></span><span class="corner c-br" aria-hidden="true"></span><span class="n" aria-hidden="true">03</span><p class="cat" data-i18n="topic.quran"></p><h3 data-i18n="art.3.t"></h3><p data-i18n="art.3.d"></p><div class="art-foot"><span class="tag" data-i18n="art.sample"></span><button type="button" class="link" data-modal="article" data-modal-heading="art.3.t"><span data-i18n="art.read">Read article</span><!--@include arrow@--></button></div></article>
+      </div>
+      <p class="cats" data-i18n="art.lede"></p>
+    </div>
+  </section>
+
+  <section class="sec" id="events" aria-labelledby="events-title" style="padding-top:0">
+    <div class="wrap">
+      <p class="label" data-reveal data-i18n="ev.kicker">Events &amp; speaking</p>
+      <h2 class="h2" id="events-title" data-reveal data-i18n="ev.title"></h2>
+      <div class="ev-grid">
+        <div class="gold-card ev-empty" data-reveal="left">
+          <h3 data-i18n="ev.none.t"></h3><p data-i18n="ev.none.d"></p>
+          <div class="ev-card"><div class="ev-cal" data-i18n="ev.s.date"></div><div><span class="tag" data-i18n="ev.sample"></span><h4 data-i18n="ev.s.t"></h4><p data-i18n="ev.s.format"></p><p data-i18n="ev.s.place"></p></div></div>
+          <div class="actions"><button type="button" class="btn btn-ghost" data-modal="events" data-i18n="ev.view">View Events</button><button type="button" class="link" data-modal="past"><span data-i18n="ev.past">Explore Past Events</span><!--@include arrow@--></button></div>
+        </div>
+        <aside class="speak" data-tilt="5" data-reveal="right" aria-labelledby="speak-title">
+          <h3 id="speak-title" data-i18n="ev.speak.t"></h3><p data-i18n="ev.speak.d"></p>
+          <button type="button" class="btn" data-enquiry="speaking" data-i18n="ev.invite">Invite Imam Mohammad Inam Ul Haq</button>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec quran center" id="quran" aria-labelledby="quran-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="inner" data-reveal>
+        <svg class="rosette" viewBox="0 0 400 400" aria-hidden="true"><g class="rotor" fill="none" stroke="currentColor" stroke-width=".5"><rect class="d" pathLength="1" x="80" y="80" width="240" height="240"/><rect class="d d2" pathLength="1" x="80" y="80" width="240" height="240" transform="rotate(45 200 200)"/><rect class="d d2" pathLength="1" x="80" y="80" width="240" height="240" transform="rotate(22.5 200 200)"/><rect class="d d3" pathLength="1" x="80" y="80" width="240" height="240" transform="rotate(67.5 200 200)"/><circle class="d d3" pathLength="1" cx="200" cy="200" r="190"/></g></svg>
+        <span class="tag" data-i18n="qt.label">Future initiative</span>
+        <h2 id="quran-title" data-i18n="qt.title"></h2>
+        <p data-i18n="qt.desc"></p>
+        <p class="status" data-i18n="qt.status"></p>
+        <div class="actions"><button type="button" class="btn btn-ghost" data-modal="quran" data-i18n="qt.cta">About the initiative</button><a class="link" href="#newsletter" data-focus="#n-email"><span data-i18n="qt.follow">Request updates</span><!--@include arrow@--></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="resources" aria-labelledby="res-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="res-head" data-reveal><div><p class="label" data-i18n="res.kicker">Resources &amp; downloads</p><h2 class="h2" id="res-title" data-i18n="res.title"></h2></div><span class="tag" data-i18n="res.flag"></span></div>
+      <ul class="res-grid">
+        <li class="gold-card res" data-tilt="7" data-reveal><span class="res-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h8l4 4v13H6z" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M9 12h6M9 15h6" stroke="currentColor" stroke-width="1.3"/></svg></span><h3 data-i18n="res.1.t"></h3><p data-i18n="res.1.d"></p></li>
+        <li class="gold-card res" data-tilt="7" data-reveal style="--d:.12s"><span class="res-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.5h14v15H5z" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 9h8M8 12h8M8 15h5" stroke="currentColor" stroke-width="1.3"/></svg></span><h3 data-i18n="res.2.t"></h3><p data-i18n="res.2.d"></p></li>
+        <li class="gold-card res" data-tilt="7" data-reveal style="--d:.24s"><span class="res-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6c3-1.5 5.5-1.5 8 0v13c-2.5-1.5-5-1.5-8 0zM20 6c-3-1.5-5.5-1.5-8 0v13c2.5-1.5 5-1.5 8 0z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><h3 data-i18n="res.3.t"></h3><p data-i18n="res.3.d"></p></li>
+      </ul>
+      <div class="actions"><button type="button" class="btn btn-ghost" data-modal="resources" data-i18n="res.explore">Explore Resources</button><a class="link" href="#newsletter" data-focus="#n-email"><span data-i18n="res.updates">Request Updates</span><!--@include arrow@--></a></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track" id="mq2"></div></div>
+
+  <section class="sec" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact-grid">
+      <div data-reveal="left"><p class="label" data-i18n="ct.kicker">Contact</p><h2 class="h2" id="contact-title" data-i18n="ct.title"></h2><p class="lede" data-i18n="ct.lede"></p><p class="expect" data-i18n="ct.expect"></p></div>
+      <div class="gold-card form-card" data-reveal="right"><span class="corner c-tl" aria-hidden="true"></span><span class="corner c-br" aria-hidden="true"></span><!--@include contact-form@--></div>
+    </div>
+  </section>
+
+  <section class="nl" id="newsletter" aria-labelledby="nl-title">
+    <div class="wrap nl-grid">
+      <div data-reveal><p class="label" data-i18n="nl.kicker">Newsletter</p><h2 id="nl-title" data-i18n="nl.title"></h2><p class="social"><strong style="font-weight:500" data-i18n="social.t">Official channels</strong>: <span data-i18n="social.d"></span></p></div>
+      <div data-reveal style="--d:.1s"><!--@include newsletter-form@--></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div><p class="ft-name"><span data-i18n="name.imam">Imam</span> <em data-i18n="name.short">Mohammad Inam Ul Haq</em></p><p class="ft-mission" data-i18n="ft.mission"></p><p style="margin-top:16px"><button type="button" class="pill-btn" data-lang-toggle lang="ar">العربية</button></p></div>
+      <nav data-i18n-aria="ft.pages" aria-label="Pages"><p class="ft-h" data-i18n="ft.pages">Pages</p><ul class="ft-list"><!--@include nav-items@--></ul></nav>
+      <div><p class="ft-h" data-i18n="ft.more">More</p><ul class="ft-list"><!--@include more-items@--></ul></div>
+      <div><p class="ft-h" data-i18n="ft.contact">Contact</p><p data-i18n="ft.contactd"></p><p style="margin-top:10px"><button type="button" class="link-btn" data-enquiry="speaking" data-i18n="nav.invite">Invite to Speak</button></p><p class="ft-h" style="margin-top:22px" data-i18n="ft.legal">Legal</p><ul class="ft-list"><!--@include legal-items@--></ul></div>
+    </div>
+    <div class="ft-bottom"><p data-i18n="ft.disclosure"></p><p data-i18n="ft.copy"></p></div>
+  </div>
+</footer>
+
+<!--@DATA@-->
+<script>
+window.CONCEPT = {
+  archiveLimit: 5,
+  dict: {
+    en: {
+      'meta.title': 'Imam Mohammad Inam Ul Haq — Direction D: Gilded Noir',
+      'cD.place': 'Calgary, Alberta', 'cD.first': 'Mohammad', 'cD.last': 'Inam Ul Haq',
+      'cD.lede': 'Quran lectures, Arabic learning, and resources, shaped by approximately three decades of teaching and lectures.',
+      'cD.l1': 'Lecture archive', 'cD.l1d': 'Search every lecture', 'cD.l2': 'Arabic, step by step', 'cD.l2d': 'A proposed learning path', 'cD.l3d': 'Lectures and programmes',
+      'cD.pub': 'Featured publication', 'cD.aboutMore': 'Read his full introduction',
+      'cD.pathsA': 'An index to', 'cD.pathsB': 'his work',
+      'cD.mq': 'Quran Lectures|Arabic, Step by Step|Articles & Reflections|Arabic Made Easy|Events & Speaking'
+    },
+    ar: {
+      'meta.title': 'الإمام محمد إنعام الحق — الاتجاه D: الأسود المذهّب',
+      'cD.place': 'كالغاري، ألبرتا', 'cD.first': 'محمد', 'cD.last': 'إنعام الحق',
+      'cD.lede': 'محاضرات في القرآن، وتعليم للعربية، وموارد، ثمرة ما يقارب ثلاثة عقود من التدريس وإلقاء المحاضرات.',
+      'cD.l1': 'أرشيف المحاضرات', 'cD.l1d': 'ابحث في المحاضرات', 'cD.l2': 'العربية خطوة خطوة', 'cD.l2d': 'مسار تعلّم مقترح', 'cD.l3d': 'محاضرات وبرامج',
+      'cD.pub': 'منشور مختار', 'cD.aboutMore': 'اقرأ تعريفه كاملًا',
+      'cD.pathsA': 'دليلٌ إلى', 'cD.pathsB': 'أعماله',
+      'cD.mq': 'محاضرات القرآن|العربية خطوة خطوة|مقالات وتأملات|Arabic Made Easy|الفعاليات والمحاضرات'
+    }
+  }
+};
+/* Marquee words follow the active language (decorative, hidden from assistive tech) */
+(function () {
+  function fill() {
+    var lang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
+    var words = window.CONCEPT.dict[lang]['cD.mq'].split('|');
+    ['mq1', 'mq2'].forEach(function (id) {
+      var track = document.getElementById(id);
+      if (!track) return;
+      track.textContent = '';
+      for (var r = 0; r < 4; r++) words.forEach(function (w) { var s = document.createElement('span'); s.textContent = w; track.appendChild(s); });
+    });
+  }
+  new MutationObserver(fill).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  document.addEventListener('DOMContentLoaded', fill);
+  fill();
+})();
+</script>
+<!--@CORE@-->
+</body>
+</html>
